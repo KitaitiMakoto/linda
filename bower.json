@@ -9,6 +9,8 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer"
+    "polymer": "Polymer/polymer",
+    "core-elements": "Polymer/core-elements",
+    "paper-elements": "Polymer/paper-elements"
   }
 }
