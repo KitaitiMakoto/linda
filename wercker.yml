@@ -6,4 +6,4 @@ build:
 deploy:
   steps:
     - heroku-deploy:
-        key-name: LINDA
+        key-name: LINDA_KEY
