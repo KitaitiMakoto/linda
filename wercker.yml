@@ -5,4 +5,5 @@ build:
     - npm-install
 deploy:
   steps:
-    - heroku-deploy
+    - heroku-deploy:
+        key-name: LINDA
