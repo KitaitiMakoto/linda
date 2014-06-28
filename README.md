@@ -13,6 +13,8 @@ Setup
 
 1. bundle install --path=vendor/bundle
 2. npm install
+3. ./node_modules/.bin/hookin Gemfile.lock "bundle install"
+4. ./node_modules/.bin/hookin package.json "npm install && npm prune"
 
 Run server on local
 -------------------
