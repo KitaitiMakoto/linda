@@ -1,3 +1,33 @@
 <!doctype html>
 <title>Linda</title>
-<h1>Linda</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<script src="/components/platform/platform.js"></script>
+<link href="/components/polymer/polymer.html" rel="import">
+<link rel="import" href="/components/paper-button/paper-button.html">
+<link rel="import" href="/components/paper-dialog/paper-dialog.html">
+
+<body unresolved touch-icon="auto">
+  <h1>Linda</h1>
+
+  <section>
+    <paper-button label="Linda" class="hover"></paper-button>
+    <paper-button label="Gaienmae" raisedButton></paper-button>
+    <paper-button label="Tokyo" raisedButton class="hover"></paper-button>
+  </section>
+
+  <section>
+    <paper-button label="maru" raisedButton class="hover" onclick="document.querySelector('#dialog-maru').toggle();"></paper-button>
+    <paper-button label="sankaku" raisedButton class="hover" onclick="document.querySelector('#dialog-sankaku').toggle();"></paper-button>
+    <paper-button label="shikaku" raisedButton class="hover" onclick="document.querySelector('#dialog-shikaku').toggle();"></paper-button>
+  </section>
+
+  <paper-dialog heading="maru" id="dialog-maru">
+    <p>●</p>
+  </paper-dialog>
+  <paper-dialog heading="sankaku" id="dialog-sankaku">
+    <p>▲</p>
+  </paper-dialog>
+  <paper-dialog heading="shikaku" id="dialog-shikaku">
+    <p>■</p>
+  </paper-dialog>
+</body>
