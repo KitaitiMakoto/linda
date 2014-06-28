@@ -1,0 +1,16 @@
+paper-dialog {
+  text-align: center;
+  p {
+    font-size: 6em;
+    margin: 0;
+  }
+  &#dialog-maru {
+    color: red;
+  }
+  &#dialog-sankaku {
+    color: blue;
+  }
+  &#dialog-shikaku {
+    color: yellow;
+  }
+}
