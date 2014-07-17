@@ -13,7 +13,7 @@
     "core-elements": "Polymer/core-elements",
     "paper-elements": "Polymer/paper-elements",
     "easeljs": "CreateJS/EaselJS",
-    "preload": "CreateJS/PreloadJS",
+    "preloadjs": "CreateJS/PreloadJS",
     "tweenjs": "CreateJS/TweenJS"
   }
 }
