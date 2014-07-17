@@ -11,6 +11,9 @@
   "dependencies": {
     "polymer": "Polymer/polymer",
     "core-elements": "Polymer/core-elements",
-    "paper-elements": "Polymer/paper-elements"
+    "paper-elements": "Polymer/paper-elements",
+    "easeljs": "CreateJS/EaselJS",
+    "preload": "CreateJS/PreloadJS",
+    "tweenjs": "CreateJS/TweenJS"
   }
 }
