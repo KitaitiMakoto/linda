@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var circleCount = 20;
     var delay = 1 / circleCount;
     var centerPoint = {x: stageElem.width / 2, y:stageElem.height / 2};
+    var movingCircles = circleCount;
 
     for (var i = 0; i < circleCount; i++) {
         var circle = new cj.Shape();
@@ -27,10 +28,21 @@ document.addEventListener("DOMContentLoaded", function() {
         stage.addChild(circle);
     }
     stage.addEventListener("stagemouseup", function(event) {
+        movingCircles = circleCount;
         circles.forEach(function(circle, i) {
-            cj.Tween.get(circle).to({x: stage.mouseX, y: stage.mouseY}, (0.5 + i * delay) * 1500, cj.Ease.bounceOut)
+            cj.Tween.removeTweens(circle);
+            cj.Tween.get(circle)
+                    .to({x: stage.mouseX, y: stage.mouseY}, (0.5 + i * delay) * 1500, cj.Ease.bounceOut)
+                    .call(function() {movingCircles--;});
         });
     });
 
-    cj.Ticker.addEventListener("tick", stage);
+    cj.Ticker.addEventListener("tick", function() {
+        if (movingCircles > 0) {
+            stage.update();
+        } else if (movingCircles > -1) {
+            stage.update();
+            movingCircles--;
+        }
+    });
 });
