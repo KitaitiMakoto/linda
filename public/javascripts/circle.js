@@ -26,6 +26,4 @@ document.addEventListener("DOMContentLoaded", function() {
     innerCircle.graphics.drawCircle(0, 0, radius / 2);
 
     stage.update();
-
-    setTimeout();
 });
