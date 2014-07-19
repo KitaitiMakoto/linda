@@ -6,19 +6,21 @@ document.addEventListener("DOMContentLoaded", function() {
     stageElem.height = window.innerHeight;
     var stage = new cj.Stage(stageElem);
     var circles = [];
-    var circleCount = 12;
+    var circleCount = 20;
     var delay = 1 / circleCount;
     var centerPoint = {x: stageElem.width / 2, y:stageElem.height / 2};
 
     for (var i = 0; i < circleCount; i++) {
         var circle = new cj.Shape();
         var graphics = circle.graphics;
-        graphics.setStrokeStyle(3);
+        graphics.setStrokeStyle(10);
         graphics.beginStroke("#113355");
-        graphics.drawCircle(0, 0, (i + 1) * 9);
+        graphics.drawCircle(0, 0, (i + 1) * 3);
 
         circle.x = stageElem.width * Math.random();
         circle.y = stageElem.height * Math.random();
+        circle.aplpha = 1 - i * 0.025;
+        circle.compositeOperation = "lighter";
 
         cj.Tween.get(circle).to(centerPoint, 1500, cj.Ease.bounceOut);
         circles.push(circle);
