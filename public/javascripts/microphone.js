@@ -4,8 +4,6 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
 
 if (navigator.getUserMedia) {
 
-    var recorder;
-
     navigator.getUserMedia(
 
     { audio: true },
