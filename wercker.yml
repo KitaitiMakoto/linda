@@ -7,3 +7,8 @@ deploy:
   steps:
     - heroku-deploy:
         key-name: LINDA_KEY
+  after-steps:
+    - sherzberg/slack-notify:
+        subdomain: urasummer
+        token: $SLACK_TOKEN
+        channel: wercker
