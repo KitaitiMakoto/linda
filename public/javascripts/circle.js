@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     [outerCircle, innerCircle].forEach(function(circle) {
 	circle.graphics.beginStroke("#ffffff");
+	circle.shadow = new cj.Shadow("#999999", 6, 10, 24);
 	circle.set(origin);
 	stage.addChild(circle);
     });
