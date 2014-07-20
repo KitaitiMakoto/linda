@@ -10,18 +10,17 @@ document.addEventListener("DOMContentLoaded", function() {
     var innerCircle = new Shape();
 
     [outerCircle, innerCircle].forEach(function(circle) {
-	circle.graphics.beginStroke("#ffffff");
 	circle.shadow = new Shadow("#999999", 6, 10, 24);
 	circle.set(origin);
 	stage.addChild(circle);
     });
 
+    outerCircle.graphics.beginStroke("#ffffff");
     outerCircle.graphics.setStrokeStyle(12);
     outerCircle.graphics.drawCircle(0, 0, shortSide * 0.6 / 2);
 
-    var radius = shortSide * 0.4 / 2;
-    innerCircle.graphics.setStrokeStyle(radius);
-    innerCircle.graphics.drawCircle(0, 0, radius / 2);
+    innerCircle.graphics.beginFill("#ffffff");
+    innerCircle.graphics.drawCircle(0, 0, shortSide * 0.4 / 2);
 
     stage.update();
 });
