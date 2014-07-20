@@ -20,12 +20,33 @@ document.addEventListener("DOMContentLoaded", function() {
     circle.set(origin);
     stage.addChild(circle);
 
-    Tween.get(circle).wait(500).to({scaleX: 0.9, scaleY: 0.9}, 300, Ease.lenear).call(function() {
-        Tween.get(circle).to({scaleX: 1.3, scaleY: 1.3}, 100, Ease.lenear).call(function() {
-            Tween.get(circle).to({scaleX: 1, scaleY: 1}, 1000, Ease.bounceOut);
-        });
+    var waiting = true;
+    Ticker.addEventListener("tick", function() {
+        var tween = Tween.get(circle);
+        switch (circle.scaleX) {
+        case 1:
+            if (waiting) {
+                tween
+                    .wait(1000)
+                    .call(function() {
+                        waiting = false;
+                    });
+            } else {
+                tween.to({scaleX: 0.9, scaleY: 0.9}, 300, Ease.lenear);
+            }
+            break;
+        case 0.9:
+            tween.to({scaleX: 1.3, scaleY: 1.3}, 100, Ease.lenear);
+            break;
+        case 1.3:
+            tween
+                .to({scaleX: 1, scaleY: 1}, 1000, Ease.bounceOut)
+                .call(function() {
+                    waiting = true;
+                });
+            break;
+        }
+        stage.update();
     });
-
-    Ticker.addEventListener("tick", stage);
     stage.update()
 });
