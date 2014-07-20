@@ -1,5 +1,3 @@
-var cj = createjs;
-
 document.addEventListener("DOMContentLoaded", function() {
     var canvas = document.getElementById("stage");
     canvas.width = window.innerWidth;
@@ -7,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
     var longSide = Math.max(canvas.width, canvas.height);
     var shortSide = Math.min(canvas.width, canvas.height);
     var origin = {x: canvas.width / 2, y: canvas.height /2}
-    var stage = new cj.Stage(canvas);
-    var outerCircle = new cj.Shape();
-    var innerCircle = new cj.Shape();
+    var stage = new Stage(canvas);
+    var outerCircle = new Shape();
+    var innerCircle = new Shape();
 
     [outerCircle, innerCircle].forEach(function(circle) {
 	circle.graphics.beginStroke("#ffffff");
-	circle.shadow = new cj.Shadow("#999999", 6, 10, 24);
+	circle.shadow = new Shadow("#999999", 6, 10, 24);
 	circle.set(origin);
 	stage.addChild(circle);
     });
