@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     circle.set(origin);
     stage.addChild(circle);
 
+    Ticker.setFPS(20);
     var waiting = true;
     Ticker.addEventListener("tick", function() {
         var tween = Tween.get(circle);
