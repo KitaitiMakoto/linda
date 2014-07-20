@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var circle = new Shape();
 
     circle.graphics
-	.beginStroke("#ffffff")
+        .beginStroke("#ffffff")
         .setStrokeStyle(12)
         .drawCircle(0, 0, shortSide * 0.6 / 2)
         .endStroke()
@@ -20,5 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
     circle.set(origin);
     stage.addChild(circle);
 
-    stage.update();
+    Tween.get(circle).wait(500).to({scaleX: 0.9, scaleY: 0.9}, 300, Ease.lenear).call(function() {
+        Tween.get(circle).to({scaleX: 1.3, scaleY: 1.3}, 100, Ease.lenear).call(function() {
+            Tween.get(circle).to({scaleX: 1, scaleY: 1}, 1000, Ease.bounceOut);
+        });
+    });
+
+    Ticker.addEventListener("tick", stage);
+    stage.update()
 });
