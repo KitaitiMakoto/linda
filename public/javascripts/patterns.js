@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         shape: {value: new Shape()},
         color: {value: "#ffffff"},
         radius: {value:  shortSide * 0.6 / 2},
-        origin: {value: {x: canvas.width / 2, y: canvas.height / 2}}
+        position: {value: {x: canvas.width / 2, y: canvas.height / 2}}
     });
     circle.draw();
 

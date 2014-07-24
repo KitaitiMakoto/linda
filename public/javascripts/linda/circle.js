@@ -12,7 +12,7 @@ Linda.Circle.prototype.draw = function() {
         .beginFill(this.color)
         .drawCircle(0, 0, this.radius * 2 / 3)
         .endFill();
-    this.shape.set(this.origin);
+    this.shape.set(this.position);
     this.stage.addChild(this.shape);
 
     return this;
