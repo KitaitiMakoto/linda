@@ -10,7 +10,7 @@ Linda.Circle = function(stage, options) {
     this.y = options.y || 0;
     this.scaleX = 1;
     this.scaleY = 1;
-    this.shape = options.shape || new  Shape();
+    this.shape = options.shape || new Shape();
 };
 Linda.Circle.prototype.draw = function() {
     this.shape.graphics
