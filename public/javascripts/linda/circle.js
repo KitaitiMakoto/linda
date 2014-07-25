@@ -2,7 +2,13 @@ if (typeof Linda === "undefined") {
     Linda = {};
 }
 
-Linda.Circle = Object.create(Function);
+Linda.Circle = function(stage, options) {
+    this.stage = stage;
+    this.color = options.color || "#ffffff";
+    this.radius = options.radius;
+    this.position = options.position || {x: 0, y:0}
+    this.shape = options.shape || new  Shape();
+};
 Linda.Circle.prototype.draw = function() {
     this.shape.graphics
         .beginStroke(this.color)
