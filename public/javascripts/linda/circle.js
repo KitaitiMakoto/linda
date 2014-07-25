@@ -6,7 +6,8 @@ Linda.Circle = function(stage, options) {
     this.stage = stage;
     this.color = options.color || "#ffffff";
     this.radius = options.radius;
-    this.position = options.position || {x: 0, y:0}
+    this.position = options.position || {x: 0, y:0};
+    this.scale = {x: 1, y: 1};
     this.shape = options.shape || new  Shape();
 };
 Linda.Circle.prototype.draw = function() {
@@ -30,9 +31,21 @@ Linda.Circle.prototype.moveTo = function(position, duration, callback) {
         tween.call(callback, null, this);
     }
 };
-Linda.Circle.prototype.moveBy = function(difference) {
+Linda.Circle.prototype.moveBy = function(difference, duration, callback) {
     for (var prop in difference) {
         this.position[prop] += difference[prop];
     }
-    Tween.get(this.shape).to({x: this.position.x, y: this.position.y}, 100);
+    var tween = Tween.get(this.shape).to({x: this.position.x, y: this.position.y}, duration);
+    if (callback) {
+        tween.call(callback, null, this);
+    }
+};
+Linda.Circle.prototype.scaleTo = function(scale, duration, callback) {
+    for (var dimension in scale) {
+        this.scale[dimension] = scale[dimension];
+    }
+    var tween = Tween.get(this.shape).to({scaleX: this.scale.x, scaleY: this.scale.y}, duration);
+    if (callback) {
+        tween.call(callback, null, this);
+    }
 };
