@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Ticker.addEventListener("tick", stage);
 
-    circle.draw();
-    circle.moveTo({x: 150, y: 150}, 1000, function() {
-	this.moveBy({x: 150}, 100, function() {
-            this.scaleTo({x: 0.6, y: 0.6}, 800);
+    circle
+        .draw()
+        .moveTo({x: 150, y: 150}, 1000, function() {
+            this.moveBy({x: 150}, 100, function() {
+                this.scaleTo({scaleX: 0.6, scaleY: 0.6}, 800);
+            });
         });
-    });
 });
