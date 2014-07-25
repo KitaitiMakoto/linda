@@ -23,3 +23,6 @@ Linda.Circle.prototype.draw = function() {
 
     return this;
 }
+Linda.Circle.prototype.moveTo = function(position, duration) {
+    Tween.get(this.shape).to(position, duration);
+};
