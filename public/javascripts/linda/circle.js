@@ -23,6 +23,16 @@ Linda.Circle.prototype.draw = function() {
 
     return this;
 }
-Linda.Circle.prototype.moveTo = function(position, duration) {
-    Tween.get(this.shape).to(position, duration);
+Linda.Circle.prototype.moveTo = function(position, duration, callback) {
+    this.position = position;
+    var tween = Tween.get(this.shape).to(position, duration);
+    if (callback) {
+        tween.call(callback, null, this);
+    }
+};
+Linda.Circle.prototype.moveBy = function(difference) {
+    for (var prop in difference) {
+        this.position[prop] += difference[prop];
+    }
+    Tween.get(this.shape).to({x: this.position.x, y: this.position.y}, 100);
 };

@@ -9,5 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     Ticker.addEventListener("tick", stage);
 
     circle.draw();
-    circle.moveTo({x: 150, y: 150}, 1000);
+    circle.moveTo({x: 150, y: 150}, 1000, function() {
+	this.moveBy({x: 150});
+    });
 });
