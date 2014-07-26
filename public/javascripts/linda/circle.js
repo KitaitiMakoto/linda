@@ -65,6 +65,9 @@ Linda.Circle.prototype.moveBy = function(difference, duration, ease, callback) {
     this.tweenTo(newProps, duration, ease, callback);
 };
 Linda.Circle.prototype.scaleTo = Linda.Circle.prototype.tweenTo;
-Linda.Circle.prototype.disappear = function(duration, ease) {
-    this.tweenTo({alpha: 0}, duration, ease);
+Linda.Circle.prototype.appear = function(duration, ease, callback) {
+    this.tweenTo({alpha: 1}, duration, ease, callback);
+};
+Linda.Circle.prototype.disappear = function(duration, ease, callback) {
+    this.tweenTo({alpha: 0}, duration, ease, callback);
 };

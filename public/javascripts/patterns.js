@@ -18,7 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 this.scaleTo({scaleX: 0.6, scaleY: 0.6}, 800, null, function() {
 
                     this.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100, null, function() {
-                        this.disappear(1200);
+                        this.disappear(100, null, function() {
+                            this.appear(100, null, function() {
+                                this.disappear(100, null, function() {
+                                    this.appear(100);
+                                });
+                            });
+                        });
                     });
                 });
             });
