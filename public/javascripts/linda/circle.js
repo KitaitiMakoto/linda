@@ -1,7 +1,3 @@
-if (typeof Linda === "undefined") {
-    Linda = {};
-}
-
 Linda.Circle = function(stage, options) {
     this.stage = stage;
     this.color = options.color || "#ffffff";
