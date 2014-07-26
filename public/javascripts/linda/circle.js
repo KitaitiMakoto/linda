@@ -2,11 +2,13 @@ Linda.Circle = function(stage, options) {
     this.stage = stage;
     this.color = options.color || "#ffffff";
     this.radius = options.radius;
-    this.x = options.x || 0;
-    this.y = options.y || 0;
-    this.scaleX = 1;
-    this.scaleY = 1;
     this.shape = options.shape || new Shape();
+    this.props = {
+        x: options.x || 0,
+        y: options.y || 0,
+        scaleX: 1,
+        scaleY: 1
+    }
 };
 Linda.Circle.prototype.draw = function() {
     this.shape.graphics
@@ -17,7 +19,7 @@ Linda.Circle.prototype.draw = function() {
         .beginFill(this.color)
         .drawCircle(0, 0, this.radius * 2 / 3)
         .endFill();
-    this.shape.set({x: this.x, y: this.y});
+    this.shape.set({x: this.props.x, y: this.props.y});
     this.stage.addChild(this.shape);
 
     return this;
@@ -39,6 +41,6 @@ Linda.Circle.prototype.moveBy = function(difference, duration, callback) {
     for (var prop in difference) {
         this[prop] += difference[prop];
     }
-    this.tweenTo({x: this.x, y: this.y}, duration, callback);
+    this.tweenTo({x: this.props.x, y: this.props.y}, duration, callback);
 };
 Linda.Circle.prototype.scaleTo = Linda.Circle.prototype.tweenTo;
