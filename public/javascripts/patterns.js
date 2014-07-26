@@ -22,12 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }).then(function(circle) {
             return circle.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100);
         }).then(function(circle) {
-            return circle.disappear(100);
-        }).then(function(circle) {
-            return circle.appear(100);
-        }).then(function(circle) {
-            return circle.disappear(100);
-        }).then(function(circle) {
-            return circle.appear(100);
+            var promise = Promise.resolve(circle);
+            for (var i = 0; i < 3; i++) {
+                promise = promise.then(function(circle) {
+                    return circle.disappear(100);
+                }).then(function(circle) {
+                    return circle.appear(100);
+                });
+            }
+            return promise;
         });
 });
