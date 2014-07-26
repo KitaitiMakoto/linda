@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
             this.moveBy({x: 0.15}, 100, function() {
                 this.scaleTo({scaleX: 0.6, scaleY: 0.6}, 800, function() {
 
-                    this.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100);
+                    this.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100, function() {
+                        this.disappear(200);
+                    });
                 });
             });
         });
