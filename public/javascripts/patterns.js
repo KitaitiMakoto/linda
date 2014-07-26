@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     circle
         .draw()
-        .moveTo({x: -0.3, y: -0.1}, 1000, function() {
-            this.moveBy({x: 0.15}, 100, function() {
-                this.scaleTo({scaleX: 0.6, scaleY: 0.6}, 800, function() {
+        .moveTo({x: -0.3, y: -0.1}, 1000, null, function() {
+            this.moveBy({x: 0.15}, 100, null, function() {
+                this.scaleTo({scaleX: 0.6, scaleY: 0.6}, 800, null, function() {
 
-                    this.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100, function() {
-                        this.disappear(200);
+                    this.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100, null, function() {
+                        this.disappear(1200);
                     });
                 });
             });

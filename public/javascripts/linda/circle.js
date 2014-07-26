@@ -29,7 +29,7 @@ Linda.Circle.prototype.draw = function() {
 Linda.Circle.prototype.getTween = function() {
     return Tween.get(this.shape);
 };
-Linda.Circle.prototype.tweenTo = function(props, duration, callback) {
+Linda.Circle.prototype.tweenTo = function(props, duration, ease, callback) {
     for (var prop in props) {
         switch (prop) {
         case "x":
@@ -44,13 +44,13 @@ Linda.Circle.prototype.tweenTo = function(props, duration, callback) {
             this.props[prop] = props[prop];
         }
     }
-    var tween = this.getTween().to(this.props, duration);
+    var tween = this.getTween().to(this.props, duration, ease);
     if (callback) {
         tween.call(callback, null, this);
     }
 };
 Linda.Circle.prototype.moveTo = Linda.Circle.prototype.tweenTo;
-Linda.Circle.prototype.moveBy = function(difference, duration, callback) {
+Linda.Circle.prototype.moveBy = function(difference, duration, ease, callback) {
     var newProps = {};
     for (var prop in difference) {
         switch (prop) {
@@ -62,9 +62,9 @@ Linda.Circle.prototype.moveBy = function(difference, duration, callback) {
             newProps[prop] = this.props[prop] + difference[prop];
         }
     }
-    this.tweenTo(newProps, duration, callback);
+    this.tweenTo(newProps, duration, ease, callback);
 };
 Linda.Circle.prototype.scaleTo = Linda.Circle.prototype.tweenTo;
-Linda.Circle.prototype.disappear = function(duration) {
-    this.tweenTo({alpha: 0}, duration);
+Linda.Circle.prototype.disappear = function(duration, ease) {
+    this.tweenTo({alpha: 0}, duration, ease);
 };
