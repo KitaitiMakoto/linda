@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     circle
         .draw()
-        .moveTo({x: -300, y: -100}, 1000, function() {
-            this.moveBy({x: 150}, 100, function() {
+        .moveTo({x: -0.3, y: -0.1}, 1000, function() {
+            this.moveBy({x: 0.15}, 100, function() {
                 this.scaleTo({scaleX: 0.6, scaleY: 0.6}, 800, function() {
 
                     this.tweenTo({x: 0, y: 0, scaleX: 1, scaleY: 1}, 100);
