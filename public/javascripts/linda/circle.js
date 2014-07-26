@@ -13,61 +13,86 @@ Linda.Circle = function(stage, options) {
     }
 };
 Linda.Circle.prototype.draw = function() {
-    this.shape.graphics
-        .beginStroke(this.color)
-        .setStrokeStyle(12)
-        .drawCircle(0, 0, this.radius)
-        .endStroke()
-        .beginFill(this.color)
-        .drawCircle(0, 0, this.radius * 2 / 3)
-        .endFill();
-    this.shape.set({x: this.props.x, y: this.props.y});
-    this.stage.addChild(this.shape);
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        self.shape.graphics
+            .beginStroke(self.color)
+            .setStrokeStyle(12)
+            .drawCircle(0, 0, self.radius)
+            .endStroke()
+            .beginFill(self.color)
+            .drawCircle(0, 0, self.radius * 2 / 3)
+            .endFill();
+        self.shape.set({x: self.props.x, y: self.props.y});
+        self.stage.addChild(self.shape);
 
-    return this;
+        resolve(self);
+    });
 }
 Linda.Circle.prototype.getTween = function() {
     return Tween.get(this.shape);
 };
-Linda.Circle.prototype.tweenTo = function(props, duration, ease, callback) {
-    for (var prop in props) {
-        switch (prop) {
-        case "x":
-            this.x = props.x;
-            this.props.x = this.stage.canvas.width * this.x;
-            break;
-        case "y":
-            this.y = props.y;
-            this.props.y = this.stage.canvas.height * this.y;
-            break;
-        default:
-            this.props[prop] = props[prop];
+Linda.Circle.prototype.tweenTo = function(props, duration, ease) {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        for (var prop in props) {
+            switch (prop) {
+            case "x":
+                self.x = props.x;
+                self.props.x = self.stage.canvas.width * self.x;
+                break;
+            case "y":
+                self.y = props.y;
+                self.props.y = self.stage.canvas.height * self.y;
+                break;
+            default:
+                self.props[prop] = props[prop];
+            }
         }
-    }
-    var tween = this.getTween().to(this.props, duration, ease);
-    if (callback) {
-        tween.call(callback, null, this);
-    }
+        self.getTween()
+            .to(self.props, duration, ease)
+            .call(function() {
+                resolve(self);
+            });
+    });
 };
 Linda.Circle.prototype.moveTo = Linda.Circle.prototype.tweenTo;
-Linda.Circle.prototype.moveBy = function(difference, duration, ease, callback) {
-    var newProps = {};
-    for (var prop in difference) {
-        switch (prop) {
-        case "x":
-        case "y":
-            newProps[prop] = this[prop] + difference[prop];
-            break;
-        default:
-            newProps[prop] = this.props[prop] + difference[prop];
+Linda.Circle.prototype.moveBy = function(difference, duration, ease) {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        var newProps = {};
+        for (var prop in difference) {
+            switch (prop) {
+            case "x":
+            case "y":
+                newProps[prop] = self[prop] + difference[prop];
+                break;
+            default:
+                newProps[prop] = self.props[prop] + difference[prop];
+            }
         }
-    }
-    this.tweenTo(newProps, duration, ease, callback);
+        self.tweenTo(newProps, duration, ease)
+            .then(function() {
+                resolve(self);
+            });
+    });
 };
 Linda.Circle.prototype.scaleTo = Linda.Circle.prototype.tweenTo;
-Linda.Circle.prototype.appear = function(duration, ease, callback) {
-    this.tweenTo({alpha: 1}, duration, ease, callback);
+Linda.Circle.prototype.appear = function(duration, ease) {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        self.tweenTo({alpha: 1}, duration, ease)
+            .then(function() {
+                resolve(self);
+            });
+    });
 };
-Linda.Circle.prototype.disappear = function(duration, ease, callback) {
-    this.tweenTo({alpha: 0}, duration, ease, callback);
+Linda.Circle.prototype.disappear = function(duration, ease) {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        self.tweenTo({alpha: 0}, duration, ease)
+            .then(function() {
+                resolve(self);
+            });
+    });
 };
