@@ -3,6 +3,17 @@
   #stage {
     background: #dddddd;
   }
+  #controls {
+    float: right;
+    width: 50%;
+  }
+  #controls input[type="text"] {
+    width: 2em;
+    margin-right: 0.5em;
+  }
+  #controls input[type="number"] {
+    width: 4em;
+  }
 </style>
 <canvas id="stage"></canvas>
 <script type="text/javascript">
@@ -16,8 +27,21 @@
 <script src="components/vue/dist/vue.min.js" type="text/javascript"></script>
 <script src="javascripts/patterns.js" type="text/javascript"></script>
 
-<button onclick="run();">Run</button>
-<button onclick="reset();">Reset</button>
+<div id="controls">
+  <button onclick="run();">Run</button>
+  <button onclick="clearTweens();">Clear</button>
+  <ul>
+    <li v-repeat="tweens">
+      <form v-on="submit: add">
+        <input type="submit" value="Add">
+        {{func}} - 
+        <label v-repeat="args">{{$value}}: <input name="{{$value}}" type="text"></label>
+        duration: <input name="duration" type="number">ms
+        （{{desc}}）
+      </form>
+    </li>
+  </ul>
+</div>
 <ol id="tweens">
   <li v-repeat="tweens"><button v-on="click: remove">Remove</button>{{func}}({{args}})</li>
 </ol>

@@ -62,6 +62,42 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    var controls = new Vue({
+        el: "#controls",
+        data: {
+            tweens: []
+        },
+        methods: {
+            add: function(event) {
+                event.preventDefault();
+                var index = event.targetVM.$index;
+                var tween = this.tweens[index];
+                var form = event.target;
+                var props = {};
+                tween.args.forEach(function(arg) {
+                    var value = form[arg].value;
+                    if (value !== "") {
+                        props[arg] = value;
+                    }
+                });
+                tweens.$data.tweens.push({
+                    func: tween.func,
+                    args: [props, form.duration.value]
+                });
+            }
+        },
+        created: function() {
+            this.tweens.push(
+                {func: "moveTo", args: ["x", "y"], desc: "キャンバスサイズに対する割合。0.5で半分"},
+                {func: "moveBy", args: ["x", "y"], desc: "現在位置から移動する距離"},
+                {func: "scaleTo", args: ["scaleX", "scaleY"], desc: "拡大率。1が元の大きさ"},
+                {func: "appear", args: [], desc: "出現する"},
+                {func: "disappear", args: [], desc: "消える"},
+                {func: "tweenTo", args: ["x", "y", "scaleX", "scaleY", "alpha"], desc: "汎用"}
+            );
+        }
+    });
+
     window.run = function() {
         window.scrollTo(0, 0);
         var promise = circle.draw();
@@ -71,8 +107,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     };
-    window.reset = function() {
-        console.info(tweens.$data.tweens);
+    window.clearTweens = function() {
         tweens.$data.tweens.splice(0);
+        circle.draw();
     };
 });
