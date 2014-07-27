@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     window.run = function() {
+        window.scrollTo(0, 0);
         var promise = circle.draw();
         tweens.$data.tweens.forEach(function(tween) {
             promise = promise.then(function(circle) {
