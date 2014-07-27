@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
         methods: {
             remove: function(event) {
                 this.tweens.splice(event.targetVM.$index, 1);
+            },
+            reset: function(event) {
+                this.tweens.length = 0;
             }
         },
         created: function() {
@@ -66,5 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 return Linda.Circle.prototype[tween.func].apply(circle, tween.args);
             });
         });
-    }
+    };
+    window.reset = function() {
+        console.info(tweens.$data.tweens);
+        tweens.$data.tweens.splice(0);
+    };
 });

@@ -16,7 +16,8 @@
 <script src="components/vue/dist/vue.min.js" type="text/javascript"></script>
 <script src="javascripts/patterns.js" type="text/javascript"></script>
 
-<button onclick="run()">Run</button>
+<button onclick="run();">Run</button>
+<button onclick="reset();">Reset</button>
 <ol id="tweens">
   <li v-repeat="tweens"><button v-on="click: remove">Remove</button>{{func}}({{args}})</li>
 </ol>
