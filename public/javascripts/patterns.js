@@ -100,7 +100,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.run = function() {
         window.scrollTo(0, 0);
-        var promise = circle.draw();
+        var promise = circle.draw()
+            .then(function(circle) {
+                return circle.tweenTo({x: 0, y:0, scaleX: 1, scaleY: 1, alpha: 1}, 0);
+            });
         tweens.$data.tweens.forEach(function(tween) {
             promise = promise.then(function(circle) {
                 return Linda.Circle.prototype[tween.func].apply(circle, tween.args);
