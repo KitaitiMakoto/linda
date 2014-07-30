@@ -10,13 +10,8 @@ navigator.getUserMedia(
     function(stream) {
         var acon = new AudioContext();
         var input = acon.createMediaStreamSource(stream);
-        var filter = acon.createBiquadFilter();
-        filter.frequency.value = 60.0;
-        filter.type = filter.NOTCH;
-        filter.Q = 10.0;
         var analyser = acon.createAnalyser();
-        input.connect(filter);
-        filter.connect(analyser);
+        input.connect(analyser);
 
         var ccon = canvas.getContext("2d");
 
