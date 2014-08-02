@@ -8,10 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
     var stage = new Stage(canvas);
     var triangle = new Shape();
 
+    var base = shortSide * 0.5;
+    var height = shortSide * 0.6;
+
     triangle.graphics
         .beginStroke("#ffffff")
         .setStrokeStyle(12)
-        .drawPolyStar(0, 0, shortSide * 0.6 / 2, 3, 0, -90);
+        .moveTo(- base / 2, height / 2)
+        .lineTo(base / 2, height / 2)
+        .lineTo(0, - height / 2)
+        .closePath()
+        .endStroke();
     triangle.shadow = new Shadow("#999999", 3, -3, 24);
     triangle.set(origin);
     stage.addChild(triangle);
