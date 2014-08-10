@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 circle.set({x: 0, y: 0, scaleX: 1, scaleY: 1, alpha: 1})
                 stage.addChild(circle);
                 Tween.get(circle)
-                    .to({scaleX: scaleTo, scaleY: scaleTo, alpha: 0}, 2000);
+                    .to({scaleX: scaleTo, scaleY: scaleTo, alpha: -0.8}, 2000);
             }, 500 * i);
         });
     }
