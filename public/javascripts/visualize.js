@@ -25,7 +25,7 @@ navigator.getUserMedia(
             ccon.clearRect(0, 0, WIDTH, HEIGHT);
             for (var i = 0; i < freqDomain.length; i++) {
                 var value = freqDomain[i];
-                var percent = value / 256;
+                var percent = value / 255;
                 var height = HEIGHT * percent;
                 var offset = HEIGHT - height;
                 var barWidth = WIDTH / analyser.frequencyBinCount;
