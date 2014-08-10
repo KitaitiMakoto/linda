@@ -23,7 +23,7 @@ navigator.getUserMedia(
             var freqDomain = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(freqDomain);
             ccon.clearRect(0, 0, WIDTH, HEIGHT);
-            for (var i = 0; i < analyser.frequencyBinCount; i++) {
+            for (var i = 0; i < freqDomain.length; i++) {
                 var value = freqDomain[i];
                 var percent = value / 256;
                 var height = HEIGHT * percent;
