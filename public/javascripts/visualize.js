@@ -17,6 +17,7 @@ navigator.getUserMedia(
 
         var ccon = canvas.getContext("2d");
 
+        var barWidth = WIDTH / analyser.frequencyBinCount;
         var requestID = null;
         requestID = requestAnimationFrame(function(timestamp) {
             var freqDomain = new Uint8Array(analyser.frequencyBinCount);
