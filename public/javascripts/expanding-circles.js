@@ -4,29 +4,44 @@ document.addEventListener("DOMContentLoaded", function() {
     var shortSide = Math.min(canvas.width, canvas.height);
     var longSide = Math.max(canvas.width, canvas.height);
     var circles = [new Shape(), new Shape(), new Shape()];
-    var circle = new Shape();
 
-    var radius = shortSide * 0.1 / 2;
-    var scaleTo = (longSide * 2 / 2) / radius;
-
-    var run = function() {
-        circles.forEach(function(circle, i) {
+    var expandCircle = function(circle, startRadius, endRadius, duration) {
+        var start = null;
+        var requestID = null;
+        var step = function(timestamp) {
+            if (start === null) {
+                start = timestamp;
+            }
+            var progress = timestamp - start;
+            if (progress > duration) {
+                cancelAnimationFrame(requestID);
+                return;
+            }
+            var radius = startRadius + (endRadius - startRadius) * (progress / duration)
             circle.graphics
                 .clear()
-                .beginStroke("#cccccc")
-                .setStrokeStyle(1)
+                .beginStroke("#ffffff")
+                .setStrokeStyle(3)
                 .drawCircle(0, 0, radius)
                 .endStroke();
-            circle.set({alpha: 0})
-            stage.addChild(circle);
-            Tween.get(circle)
-                .wait(1000 + i * 500)
-                .to({x: 0, y: 0, scaleX: 1, scaleY: 1, alpha: 1}, 0)
-                .to({scaleX: scaleTo, scaleY: scaleTo, alpha: -0.8}, 4000)
-                .wait(1000);
-        });
-    }
+            circle.set({alpha: 1 - (progress / duration) - 0.2});
+            requestID = requestAnimationFrame(step);
+        };
+        requestID = requestAnimationFrame(step);
+    };
 
+    circles.forEach(function(circle) {
+        stage.addChild(circle);
+    });
+
+    var run = function() {
+        circles.forEach(function(circle, index) {
+            Tween.get(circle).wait(index * 400).call(function() {
+                expandCircle(circle, shortSide * 0.1 / 2, longSide * 2 / 2, 4000);
+            });
+        });
+    };
     setInterval(run, 5000);
+
     Ticker.addEventListener("tick", stage);
 });
