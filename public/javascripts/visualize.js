@@ -19,6 +19,7 @@ navigator.getUserMedia(
 
         var barWidth = WIDTH / analyser.frequencyBinCount;
         var requestID = null;
+        var fsDivN = acon.sampleRate / analyser.fftSize;
         requestID = requestAnimationFrame(function(timestamp) {
             var freqDomain = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(freqDomain);
@@ -28,10 +29,17 @@ navigator.getUserMedia(
                 var percent = value / 255;
                 var height = HEIGHT * percent;
                 var offset = HEIGHT - height;
-                var barWidth = WIDTH / analyser.frequencyBinCount;
                 var hue = i / analyser.frequencyBinCount * 360;
+                var frequency = i * fsDivN;
+                if (frequency < 100 || 20000 < frequency) {
+                    continue;
+                }
                 ccon.fillStyle = "hsl(" + hue + ",100%, 50%)";
                 ccon.fillRect(i * barWidth, offset, barWidth, height);
+
+                if (i % 12 === 0) {
+                    ccon.fillText(frequency, i * barWidth, i);
+                }
             }
 
             requestID = requestAnimationFrame(arguments.callee);
