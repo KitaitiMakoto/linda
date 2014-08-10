@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var circles = [new Shape(), new Shape(), new Shape()];
     var circle = new Shape();
 
-    var radius = shortSide * 0.2 / 2;
+    var radius = shortSide * 0.1 / 2;
     var scaleTo = (longSide * 2 / 2) / radius;
 
     var run = function() {
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 circle.graphics
                     .beginStroke("#cccccc")
-                    .setStrokeStyle(2)
+                    .setStrokeStyle(1)
                     .drawCircle(0, 0, radius)
                     .endStroke();
                 circle.set({x: 0, y: 0, scaleX: 1, scaleY: 1, alpha: 1})
