@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         circles.forEach(function(circle, i) {
             setTimeout(function() {
                 circle.graphics
+                    .clear()
                     .beginStroke("#cccccc")
                     .setStrokeStyle(1)
                     .drawCircle(0, 0, radius)
