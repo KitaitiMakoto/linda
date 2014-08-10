@@ -11,18 +11,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var run = function() {
         circles.forEach(function(circle, i) {
-            setTimeout(function() {
-                circle.graphics
-                    .clear()
-                    .beginStroke("#cccccc")
-                    .setStrokeStyle(1)
-                    .drawCircle(0, 0, radius)
-                    .endStroke();
-                circle.set({x: 0, y: 0, scaleX: 1, scaleY: 1, alpha: 1})
-                stage.addChild(circle);
-                Tween.get(circle)
-                    .to({scaleX: scaleTo, scaleY: scaleTo, alpha: -0.8}, 4000);
-            }, 500 * i);
+            circle.graphics
+                .clear()
+                .beginStroke("#cccccc")
+                .setStrokeStyle(1)
+                .drawCircle(0, 0, radius)
+                .endStroke();
+            circle.set({alpha: 0})
+            stage.addChild(circle);
+            Tween.get(circle)
+                .wait(1000 + i * 500)
+                .to({x: 0, y: 0, scaleX: 1, scaleY: 1, alpha: 1}, 0)
+                .to({scaleX: scaleTo, scaleY: scaleTo, alpha: -0.8}, 4000)
+                .wait(1000);
         });
     }
 
