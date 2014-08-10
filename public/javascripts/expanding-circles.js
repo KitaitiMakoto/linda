@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var shortSide = Math.min(canvas.width, canvas.height);
     var longSide = Math.max(canvas.width, canvas.height);
     var circles = [new Shape(), new Shape(), new Shape()];
+    circles.forEach(function(circle) {
+        stage.addChild(circle);
+    });
 
     var expandCircle = function(circle, startRadius, endRadius, duration) {
         var start = null;
@@ -29,10 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         requestID = requestAnimationFrame(step);
     };
-
-    circles.forEach(function(circle) {
-        stage.addChild(circle);
-    });
 
     var run = function() {
         circles.forEach(function(circle, index) {
