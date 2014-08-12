@@ -1,4 +1,5 @@
 <!doctype html>
+<meta name="viewport" content="width=device-width">
 <style type="text/css">
   canvas {
     background-color: black;
@@ -16,3 +17,21 @@
 <script src="javascripts/linda.js" type="text/javascript"></script>
 <script src="javascripts/linda/circle.js" type="text/javascript"></script>
 <script src="javascripts/expanding-circles.js" type="text/javascript"></script>
+
+<script src="components/vue/dist/vue.min.js" type="text/javascript"></script>
+<div id="controls">
+  <ul>
+    <li>
+      <label>背景色：<input name="background-color" type="color" value="#000000" v-on="change: updateBackgroundColor"></label>
+    </li>
+    <li>
+      <label>線の色：<input name="line-color" type="color" value="#ffffff" v-on="change: updateLineColor"></label>
+    </li>
+    <li>
+      <label>最初の円の直径：短辺の<input name="start-radius" value="0.1" type="text" v-on="change: updateStartRadius">倍</label>
+    </li>
+    <li>
+      <label>最後の円の直径：長辺の<input name="end-radius" value="2" type="text" v-on="change: updateEndRadius">倍</label>
+    </li>
+  </ul>
+</div>

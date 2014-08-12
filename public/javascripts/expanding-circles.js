@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         stage.addChild(circle);
     });
 
+    var lineColor = "#ffffff";
     var expandCircle = function(circle, startRadius, endRadius, duration) {
         var start = null;
         var requestID = null;
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var radius = startRadius + (endRadius - startRadius) * (progress / duration)
             circle.graphics
                 .clear()
-                .beginStroke("#ffffff")
+                .beginStroke(lineColor)
                 .setStrokeStyle(3)
                 .drawCircle(0, 0, radius)
                 .endStroke();
@@ -33,14 +34,39 @@ document.addEventListener("DOMContentLoaded", function() {
         requestID = requestAnimationFrame(step);
     };
 
+    var startRadius = shortSide * 0.1 / 2;
+    var endRadius = longSide * 2 / 2;
     var run = function() {
         circles.forEach(function(circle, index) {
             Tween.get(circle).wait(index * 400).call(function() {
-                expandCircle(circle, shortSide * 0.1 / 2, longSide * 2 / 2, 4000);
+                expandCircle(circle, startRadius, endRadius, 4000);
             });
         });
     };
     setInterval(run, 5000);
 
     Ticker.addEventListener("tick", stage);
+
+    var controls = new Vue({
+        el: "#controls",
+        data: {
+        },
+        methods: {
+            updateBackgroundColor: function(event) {
+                canvas.style.backgroundColor = event.target.value;
+            },
+            updateLineColor: function(event) {
+                lineColor = event.target.value;
+                run();
+            },
+            updateStartRadius: function(event) {
+                startRadius = shortSide * event.target.value / 2;
+                run();
+            },
+            updateEndRadius: function(event) {
+                endRadius = longSide * event.target.value / 2;
+                run();
+            }
+        }
+    });
 });
