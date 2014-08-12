@@ -11,7 +11,7 @@ navigator.getUserMedia(
         var acon = new AudioContext();
         var input = acon.createMediaStreamSource(stream);
         var analyser = acon.createAnalyser();
-        analyser.maxDecibels = -80;
+        analyser.maxDecibels = -77;
         analyser.minDecibels = -90;
         input.connect(analyser);
 
