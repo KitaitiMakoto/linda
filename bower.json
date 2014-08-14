@@ -14,7 +14,9 @@
     "paper-elements": "Polymer/paper-elements",
     "easeljs": "CreateJS/EaselJS",
     "preloadjs": "CreateJS/PreloadJS",
-    "tweenjs": "CreateJS/TweenJS",
+    "tweenjs": "CreateJS/TweenJS"
+  },
+  "devDependencies": {
     "vue": "*"
   }
 }
