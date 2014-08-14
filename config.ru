@@ -12,7 +12,7 @@ Compass.add_project_configuration(File.join(File.dirname(__FILE__), 'config', 'c
 environment = Sprockets::Environment.new
 environment.append_path 'public/scss'
 
-map '/css' do
+map '/stylesheets' do
   run environment
 end
 
