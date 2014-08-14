@@ -77,7 +77,7 @@ PrototypeCircle.prototype.draw = function() {
         .setStrokeStyle(this.lineWidth)
         .drawCircle(this.x, this.y, this.radius)
         .endStroke();
-    this.shape.set({alpha: this.alpha});
+    // this.shape.set({alpha: this.alpha});
 
     return this;
 };
