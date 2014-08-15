@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Ticker.addEventListener("tick", stage);
 
-    var square = new Linda.Square({length: shortSide * 0.3 / 2});
+    var square = new Linda.Square({radius: shortSide * 0.3 / 2});
     stage.addChild(square.shape);
     square.draw();
-    square.tweenTo({length: longSide * 2 / 2, alpha: 0});
+    square.tweenTo({radius: longSide * 2 / 2, alpha: 0});
 });
