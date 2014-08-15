@@ -9,15 +9,16 @@ window.addEventListener("load", function() {
 
     Ticker.addEventListener("tick", stage);
 
-    var numCircles = 12;
-    var circles = [];
-    for (var i = 0; i < numCircles; i++) {
-        circles.push(new Linda.Circle({radius: shortSide * 0.1 / 2, thickness: 8}));
+    var numShapes = 12;
+    var shapes = [];
+    var shape = [Linda.Circle, Linda.Triangle, Linda.Square][Math.floor(Math.random() * 3)];
+    for (var i = 0; i < numShapes; i++) {
+        shapes.push(new shape({radius: shortSide * 0.1 / 2, thickness: 8}));
     }
-    circles.forEach(function(circle, index) {
+    shapes.forEach(function(shape, index) {
         setTimeout(function() {
-            stage.addChild(circle.shape);
-            circle.tweenTo({radius: longSide * 2 / 2});
+            stage.addChild(shape.shape);
+            shape.tweenTo({radius: longSide * 2.4 / 2});
         }, index * 100);
     });
 });
