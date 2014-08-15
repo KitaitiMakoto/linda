@@ -8,7 +8,7 @@ Linda.Square = function(options) {
     this.y = options.y || 0;
     this.shape = new Shape();
 };
-Linda.Square.prototype = Linda.Shape.prototype;
+Linda.Square.prototype = Object.create(Linda.Shape.prototype);
 Linda.Square.prototype.draw = function() {
     var halfLength = this.length / 2;
     this.shape.graphics

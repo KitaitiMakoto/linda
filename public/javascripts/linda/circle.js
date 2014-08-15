@@ -8,7 +8,7 @@ Linda.Circle = function(options) {
     this.y = options.y || 0;
     this.shape = new Shape();
 };
-Linda.Circle.prototype = Linda.Shape.prototype;
+Linda.Circle.prototype = Object.create(Linda.Shape.prototype);
 Linda.Circle.prototype.draw = function() {
     this.shape.graphics
         .clear()

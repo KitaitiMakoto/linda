@@ -8,7 +8,7 @@ Linda.Triangle = function(options) {
     this.y = options.y || 0;
     this.shape = new Shape();
 };
-Linda.Triangle.prototype = Linda.Shape.prototype;
+Linda.Triangle.prototype = Object.create(Linda.Shape.prototype);
 Linda.Triangle.prototype.draw = function() {
     this.shape.graphics
         .clear()
