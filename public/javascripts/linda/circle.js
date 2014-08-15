@@ -10,10 +10,7 @@ Linda.Circle = function(options) {
 };
 Linda.Circle.prototype = Object.create(Linda.Shape.prototype);
 Linda.Circle.prototype.draw = function() {
-    this.shape.graphics
-        .clear()
-        .beginStroke(this.color)
-        .setStrokeStyle(this.thickness)
+    this.beginDraw()
         .drawCircle(this.x, this.y, this.radius);
     this.shape.set({x: this.x, y: this.y, alpha: this.alpha});
 }

@@ -11,10 +11,7 @@ Linda.Square = function(options) {
 Linda.Square.prototype = Object.create(Linda.Shape.prototype);
 Linda.Square.prototype.draw = function() {
     var halfLength = this.radius * Math.sin(Math.PI / 4);
-    this.shape.graphics
-        .clear()
-        .beginStroke(this.color)
-        .setStrokeStyle(this.thickness)
+    this.beginDraw()
         .rect(this.x - halfLength, this.y - halfLength, halfLength * 2, halfLength * 2);
     this.shape.set({x: this.x, y: this.y, alpha: this.alpha});
 }

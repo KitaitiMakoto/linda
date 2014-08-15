@@ -1,4 +1,10 @@
 Linda.Shape = function() {};
+Linda.Shape.prototype.beginDraw = function() {
+    return this.shape.graphics
+        .clear()
+        .beginStroke(this.color)
+        .setStrokeStyle(this.thickness);
+};
 Linda.Shape.prototype.tweenTo = function(props, duration) {
     duration = duration || 1000;
     var startProps = {};

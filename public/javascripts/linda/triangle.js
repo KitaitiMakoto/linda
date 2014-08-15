@@ -10,10 +10,7 @@ Linda.Triangle = function(options) {
 };
 Linda.Triangle.prototype = Object.create(Linda.Shape.prototype);
 Linda.Triangle.prototype.draw = function() {
-    this.shape.graphics
-        .clear()
-        .beginStroke(this.color)
-        .setStrokeStyle(this.thickness)
+    this.beginDraw()
         .drawPolyStar(0, 0, this.radius, 3, 0, -90)
         .closePath()
         .endStroke();
