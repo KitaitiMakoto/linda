@@ -3,7 +3,11 @@ window.addEventListener("load", function() {
     var stage = Linda.initializeStage(canvas);
     var backgroundImages = JSON.parse(document.getElementById("background-images").innerHTML);
     var backgroundImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
-    canvas.style.backgroundImage = "url('../images/" + backgroundImage + "')";
+    var img = new Image();
+    img.src = "images/" + backgroundImage;
+    img.addEventListener("load", function() {
+        canvas.style.backgroundImage = "url('" + img.src + "')";
+    });
     var shortSide = Math.min(canvas.width, canvas.height)
     var longSide = Math.max(canvas.width, canvas.height);
 

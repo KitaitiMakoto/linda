@@ -10,7 +10,18 @@ Linda.Circle = function(options) {
 };
 Linda.Circle.prototype = Object.create(Linda.Shape.prototype);
 Linda.Circle.prototype.draw = function() {
-    this.beginDraw()
-        .drawCircle(this.x, this.y, this.radius);
+
+
+var m = new Matrix2D();
+m.translate(-canvas.width / 2, -canvas.height / 2)
+    .scale(bg.width / canvas.width, 1);
+
+    this.shape.graphics
+        .clear()
+        .beginBitmapFill(bg, "no-repeat", m)
+        .drawCircle(this.x, this.y, this.radius + this.thickness / 2)
+        .beginFill("#ffffff")
+        .drawCircle(this.x, this.y, this.radius - this.thickness / 2);
+    ;
     this.shape.set({x: this.x, y: this.y, alpha: this.alpha});
 }
