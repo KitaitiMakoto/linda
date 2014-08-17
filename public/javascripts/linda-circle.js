@@ -23,12 +23,12 @@ bg.src = "images/bg_sea01.jpg";
 
     var circles = [];
     for (var i = 0; i < 12; i++) {
-        circles.push(new Linda.Circle({radius: shortSide * 0.1 / 2, thickness: 30}));
+        circles.push(new Linda.Circle({radius: shortSide * 0.1 / 2, thickness: 60}));
     }
     circles.forEach(function(circle, index) {
         setTimeout(function() {
             stage.addChild(circle.shape);
             circle.tweenTo({radius: longSide * 2 / 2});
-        }, index * 100);
+        }, index * 300);
     });
 });
