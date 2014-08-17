@@ -22,13 +22,14 @@ bg.src = "images/bg_sea01.jpg";
     Ticker.addEventListener("tick", stage);
 
     var circles = [];
-    for (var i = 0; i < 12; i++) {
+    // for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < 1; i++) {
         circles.push(new Linda.Circle({radius: shortSide * 0.1 / 2, thickness: 60}));
     }
     circles.forEach(function(circle, index) {
         setTimeout(function() {
             stage.addChild(circle.shape);
-            circle.tweenTo({radius: longSide * 2 / 2});
+            circle.tweenTo({radius: longSide * 2 / 2}, 3000);
         }, index * 300);
     });
 });
