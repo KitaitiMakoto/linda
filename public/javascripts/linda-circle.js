@@ -26,10 +26,16 @@ bg.src = "images/bg_sea01.jpg";
     for (var i = 0; i < 1; i++) {
         circles.push(new Linda.Circle({radius: shortSide * 0.1 / 2, thickness: 60}));
     }
+
+bg.addEventListener("load", function() {
+
     circles.forEach(function(circle, index) {
         setTimeout(function() {
             stage.addChild(circle.shape);
             circle.tweenTo({radius: longSide * 2 / 2}, 3000);
         }, index * 300);
     });
+
+});
+
 });
