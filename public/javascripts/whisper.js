@@ -3,6 +3,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
 
 var logContainer = document.getElementById("status");
 
+var threasholds = {min: 200, max: 255};
+
 navigator.getUserMedia(
     {audio: true},
     function(stream) {
@@ -34,9 +36,9 @@ navigator.getUserMedia(
                     max.freq = frequency;
                 }
             }
-            if (max.vol <= 200) {
+            if (max.vol <= threasholds.min) {
                 log("too quiet");
-            } else if (200 < max.vol && max.vol < 255) {
+            } else if (threasholds.min < max.vol && max.vol < threasholds.max) {
                 log("whispering("+max.freq+" Hz, "+max.vol+")");
             } else {
                 log("too loud");
