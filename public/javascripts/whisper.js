@@ -41,6 +41,7 @@ navigator.getUserMedia(
                 }
             }
             whisper.updateRealtime(max, timestamp);
+            log(whisper.realtime);
             requestID = requestAnimationFrame(arguments.callee);
         });
     },

@@ -16,5 +16,4 @@ Linda.Microphone.prototype.updateRealtime = function(max, timestamp) {
         this.stop(timestamp);
         this.realtime = "too loud";
     }
-    log(this.realtime);
 };
