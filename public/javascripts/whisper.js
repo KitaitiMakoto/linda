@@ -40,7 +40,7 @@ navigator.getUserMedia(
                     max.freq = frequency;
                 }
             }
-            whisper.updateRealtime(max, timestamp);
+            whisper.dispatchInput(max, timestamp);
             log(whisper.realtime);
             requestID = requestAnimationFrame(arguments.callee);
         });

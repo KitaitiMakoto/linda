@@ -6,7 +6,7 @@ Linda.Microphone = function(options) {
     this.realtime = null;
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
-Linda.Microphone.prototype.updateRealtime = function(max, timestamp) {
+Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
     if (max.vol <= thresholds.min) {
         this.stop(timestamp);
         this.realtime = "too quiet";
