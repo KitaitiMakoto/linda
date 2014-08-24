@@ -40,7 +40,7 @@ navigator.getUserMedia(
                     max.freq = frequency;
                 }
             }
-            whisper.updateRealtime(max);
+            whisper.updateRealtime(max, timestamp);
             requestID = requestAnimationFrame(arguments.callee);
         });
     },
@@ -72,14 +72,37 @@ var whisper = {
     endedAt: null,
     realtime: null,
     status: "notWhispering",
-    updateRealtime: function(max) {
+    updateRealtime: function(max, timestamp) {
         if (max.vol <= thresholds.min) {
+            this.endWhispering(timestamp);
             this.realtime = "too quiet";
         } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
             this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
+            this.endedAt = null;
+            if (this.status === "notWhispering") {
+                this.startedAt = timestamp;
+                this.status = "whispering"
+                window.dispatchEvent(new CustomEvent("linda.inputstart"));
+            }
         } else {
+            this.endWhispering(timestamp);
             this.realtime = "too loud";
         }
         log(this.realtime);
+    },
+    endWhispering: function(timestamp) {
+            if (! this.endedAt) {
+                this.endedAt = timestamp;
+            }
+            if (timestamp - this.endedAt > thresholds.dur) {
+                window.dispatchEvent(new CustomEvent("linda.inputend"));
+                this.status = "notWhispering";
+            }
     }
 };
+window.addEventListener("linda.inputstart", function(event) {
+    statusContainer.innerHTML = "whisper starts";
+});
+window.addEventListener("linda.inputend", function(event) {
+    statusContainer.innerHTML = "whisper ends("+(whisper.endedAt - whisper.startedAt)+" ms)";
+});
