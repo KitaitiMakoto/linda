@@ -14,11 +14,7 @@ navigator.getUserMedia(
         input.connect(analyser);
 
         var fsDivN = con.sampleRate / analyser.fftSize;
-        var startedAt = null;
         var requestID = requestAnimationFrame(function(timestamp) {
-            if (! startedAt) {
-                startedAt = timestamp;
-            }
             var freqDomain = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(freqDomain);
             var max = {vol: 0, freq: 0};
