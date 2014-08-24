@@ -15,8 +15,8 @@ navigator.getUserMedia(
         var con = new AudioContext();
         var input = con.createMediaStreamSource(stream);
         var analyser = con.createAnalyser();
-        analyser.maxDecibels = -50;
-        analyser.minDecibels = -100;
+        analyser.maxDecibels = whisper.decibelsRange.max;
+        analyser.minDecibels = whisper.decibelsRange.min;
         input.connect(analyser);
 
         var fsDivN = con.sampleRate / analyser.fftSize;

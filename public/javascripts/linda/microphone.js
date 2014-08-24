@@ -1,6 +1,7 @@
 Linda.Microphone = function(options) {
     options = options || {};
     this.init(options);
+    this.decibelsRange = options.decibelsRange || {min: -100, max: -50};
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.realtime = null;
 };
