@@ -18,3 +18,41 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
         this.realtime = "too loud";
     }
 };
+Linda.Microphone.prototype.startListening = function(navigator) {
+    navigator.getUserMedia(
+        {audio: true},
+        function(stream) {
+            var con = new AudioContext();
+            var input = con.createMediaStreamSource(stream);
+            var analyser = con.createAnalyser();
+            analyser.maxDecibels = whisper.decibelsRange.max;
+            analyser.minDecibels = whisper.decibelsRange.min;
+            input.connect(analyser);
+
+            var fsDivN = con.sampleRate / analyser.fftSize;
+            var requestID = requestAnimationFrame(function(timestamp) {
+                var freqDomain = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteFrequencyData(freqDomain);
+                var max = {vol: 0, freq: 0};
+                for (var i = 0, l = freqDomain.length; i < l; i++) {
+                    var value = freqDomain[i];
+                    var frequency = i * fsDivN;
+
+                    if (frequency < 100 || 20000 < frequency) {
+                        continue;
+                    }
+                    if (max.vol < value) {
+                        max.vol = value;
+                        max.freq = frequency;
+                    }
+                }
+                whisper.dispatchInput(max, timestamp);
+                log(whisper.realtime);
+                requestID = requestAnimationFrame(arguments.callee);
+            });
+        },
+        function(error) {
+            alert(error);
+        }
+    );
+};
