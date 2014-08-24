@@ -3,12 +3,6 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
 
 var realtimeLog = document.getElementById("realtime-log");
 
-var thresholds = {
-    min: 200,
-    max: 255,
-    dur: 6000
-};
-
 navigator.getUserMedia(
     {audio: true},
     function(stream) {
