@@ -77,18 +77,21 @@ var whisper = {
             this.endWhispering(timestamp);
             this.realtime = "too quiet";
         } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
+            this.startWhispering(timestamp);
             this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
-            this.endedAt = null;
-            if (this.status === "notWhispering") {
-                this.startedAt = timestamp;
-                this.status = "whispering"
-                window.dispatchEvent(new CustomEvent("linda.inputstart"));
-            }
         } else {
             this.endWhispering(timestamp);
             this.realtime = "too loud";
         }
         log(this.realtime);
+    },
+    startWhispering: function(timestamp) {
+        this.endedAt = null;
+        if (this.status === "notWhispering") {
+            this.startedAt = timestamp;
+            this.status = "whispering"
+            window.dispatchEvent(new CustomEvent("linda.inputstart", {detail: {timestamp: timestamp}}));
+        }
     },
     endWhispering: function(timestamp) {
             if (! this.endedAt) {
