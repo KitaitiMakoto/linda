@@ -65,6 +65,5 @@ max.addEventListener("change", function(event) {
 });
 
 function log(text) {
-    var li = document.createElement("li");
-    logContainer.innerHTML = "<li>"+text+"</li>";
+    logContainer.innerHTML = text;
 }
