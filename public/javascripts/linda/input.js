@@ -1,4 +1,7 @@
 Linda.Input = function(options) {
+    this.init(options);
+};
+Linda.Input.prototype.init = function(options) {
     options = options || {};
     this.startedAt = null;
     this.pausedAt = null;

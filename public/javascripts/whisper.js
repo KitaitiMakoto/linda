@@ -67,26 +67,10 @@ function log(text) {
 }
 
 var statusContainer = document.getElementById("status");
-var whisper = {
-    input: new Linda.Input(),
-    realtime: null,
-    updateRealtime: function(max, timestamp) {
-        if (max.vol <= thresholds.min) {
-            this.input.stop(timestamp);
-            this.realtime = "too quiet";
-        } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
-            this.input.start(timestamp);
-            this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
-        } else {
-            this.input.stop(timestamp);
-            this.realtime = "too loud";
-        }
-        log(this.realtime);
-    }
-};
+var whisper = new Linda.Microphone();
 window.addEventListener("linda.inputstart", function(event) {
     statusContainer.innerHTML = "whisper starts";
 });
 window.addEventListener("linda.inputend", function(event) {
-    statusContainer.innerHTML = "whisper ends("+(whisper.input.stoppedAt - whisper.input.startedAt)+" ms)";
+    statusContainer.innerHTML = "whisper ends("+(whisper.stoppedAt - whisper.startedAt)+" ms)";
 });
