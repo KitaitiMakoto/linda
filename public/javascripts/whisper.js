@@ -68,44 +68,25 @@ function log(text) {
 
 var statusContainer = document.getElementById("status");
 var whisper = {
-    startedAt: null,
-    endedAt: null,
+    input: new Linda.Input(),
     realtime: null,
-    status: "notWhispering",
     updateRealtime: function(max, timestamp) {
         if (max.vol <= thresholds.min) {
-            this.endWhispering(timestamp);
+            this.input.stop(timestamp);
             this.realtime = "too quiet";
         } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
-            this.startWhispering(timestamp);
+            this.input.start(timestamp);
             this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
         } else {
-            this.endWhispering(timestamp);
+            this.input.stop(timestamp);
             this.realtime = "too loud";
         }
         log(this.realtime);
-    },
-    startWhispering: function(timestamp) {
-        this.endedAt = null;
-        if (this.status === "notWhispering") {
-            this.startedAt = timestamp;
-            this.status = "whispering"
-            window.dispatchEvent(new CustomEvent("linda.inputstart", {detail: {timestamp: timestamp}}));
-        }
-    },
-    endWhispering: function(timestamp) {
-            if (! this.endedAt) {
-                this.endedAt = timestamp;
-            }
-            if (timestamp - this.endedAt > thresholds.dur) {
-                window.dispatchEvent(new CustomEvent("linda.inputend"));
-                this.status = "notWhispering";
-            }
     }
 };
 window.addEventListener("linda.inputstart", function(event) {
     statusContainer.innerHTML = "whisper starts";
 });
 window.addEventListener("linda.inputend", function(event) {
-    statusContainer.innerHTML = "whisper ends("+(whisper.endedAt - whisper.startedAt)+" ms)";
+    statusContainer.innerHTML = "whisper ends("+(whisper.input.stoppedAt - whisper.input.startedAt)+" ms)";
 });
