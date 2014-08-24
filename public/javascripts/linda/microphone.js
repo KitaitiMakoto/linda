@@ -19,14 +19,15 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
     }
 };
 Linda.Microphone.prototype.startListening = function(navigator) {
+    var self = this;
     navigator.getUserMedia(
         {audio: true},
         function(stream) {
             var con = new AudioContext();
             var input = con.createMediaStreamSource(stream);
             var analyser = con.createAnalyser();
-            analyser.maxDecibels = whisper.decibelsRange.max;
-            analyser.minDecibels = whisper.decibelsRange.min;
+            analyser.maxDecibels = self.decibelsRange.max;
+            analyser.minDecibels = self.decibelsRange.min;
             input.connect(analyser);
 
             var fsDivN = con.sampleRate / analyser.fftSize;
@@ -46,8 +47,8 @@ Linda.Microphone.prototype.startListening = function(navigator) {
                         max.freq = frequency;
                     }
                 }
-                whisper.dispatchInput(max, timestamp);
-                log(whisper.realtime);
+                self.dispatchInput(max, timestamp);
+                self.log(self.realtime);
                 requestID = requestAnimationFrame(arguments.callee);
             });
         },
@@ -55,4 +56,7 @@ Linda.Microphone.prototype.startListening = function(navigator) {
             alert(error);
         }
     );
+};
+Linda.Microphone.prototype.log = function(message) {
+    console.log(message);
 };

@@ -16,12 +16,11 @@ max.addEventListener("change", function(event) {
     whisper.whisperRange.upper = max.value = maxValue.value = value;
 });
 
-function log(text) {
-    realtimeLog.innerHTML = text;
-}
-
 var statusContainer = document.getElementById("status");
 var whisper = new Linda.Microphone();
+whisper.log = function(text) {
+    realtimeLog.innerHTML = text;
+}
 whisper.startListening(navigator);
 window.addEventListener("linda.inputstart", function(event) {
     statusContainer.innerHTML = "whisper starts";
