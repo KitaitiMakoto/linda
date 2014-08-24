@@ -3,7 +3,11 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
 
 var realtimeLog = document.getElementById("realtime-log");
 
-var thresholds = {min: 200, max: 255};
+var thresholds = {
+    min: 200,
+    max: 255,
+    dur: 6000
+};
 
 navigator.getUserMedia(
     {audio: true},
@@ -36,13 +40,7 @@ navigator.getUserMedia(
                     max.freq = frequency;
                 }
             }
-            if (max.vol <= thresholds.min) {
-                log("too quiet");
-            } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
-                log("whispering("+max.freq+" Hz, "+max.vol+")");
-            } else {
-                log("too loud");
-            }
+            whisper.updateRealtime(max);
             requestID = requestAnimationFrame(arguments.callee);
         });
     },
@@ -67,3 +65,20 @@ max.addEventListener("change", function(event) {
 function log(text) {
     realtimeLog.innerHTML = text;
 }
+
+var statusContainer = document.getElementById("status");
+var whisper = {
+    startedAt: null,
+    endedAt: null,
+    realtime: null,
+    status: "notWhispering",
+    updateRealtime: function(max) {
+        if (max.vol <= thresholds.min) {
+            log("too quiet");
+        } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
+            log("whispering(" + max.freq + " Hz, " + max.vol + ")");
+        } else {
+            log("too loud");
+        }
+    }
+};
