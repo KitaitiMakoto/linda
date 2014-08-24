@@ -74,11 +74,12 @@ var whisper = {
     status: "notWhispering",
     updateRealtime: function(max) {
         if (max.vol <= thresholds.min) {
-            log("too quiet");
+            this.realtime = "too quiet";
         } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
-            log("whispering(" + max.freq + " Hz, " + max.vol + ")");
+            this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
         } else {
-            log("too loud");
+            this.realtime = "too loud";
         }
+        log(this.realtime);
     }
 };
