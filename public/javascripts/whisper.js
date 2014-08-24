@@ -56,11 +56,11 @@ var max = document.getElementById("max");
 var maxValue = document.getElementById("max-value");
 min.addEventListener("change", function(event) {
     var value = Math.min(event.target.value, maxValue.value);
-    thresholds.min = min.value = minValue.value = value;
+    whisper.whisperRange.lower = min.value = minValue.value = value;
 });
 max.addEventListener("change", function(event) {
     var value = Math.max(event.target.value, minValue.value);
-    thresholds.max = max.value = maxValue.value = value;
+    whisper.whisperRange.upper = max.value = maxValue.value = value;
 });
 
 function log(text) {

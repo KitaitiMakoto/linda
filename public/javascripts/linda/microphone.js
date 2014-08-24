@@ -7,10 +7,10 @@ Linda.Microphone = function(options) {
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
 Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
-    if (max.vol <= thresholds.min) {
+    if (max.vol <= this.whisperRange.lower) {
         this.stop(timestamp);
         this.realtime = "too quiet";
-    } else if (thresholds.min < max.vol && max.vol < thresholds.max) {
+    } else if (this.whisperRange.lower < max.vol && max.vol < this.whisperRange.upper) {
         this.start(timestamp);
         this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
     } else {
