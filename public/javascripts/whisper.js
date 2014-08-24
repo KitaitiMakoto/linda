@@ -1,7 +1,7 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
 
-var logContainer = document.getElementById("status");
+var realtimeLog = document.getElementById("realtime-log");
 
 var thresholds = {min: 200, max: 255};
 
@@ -65,5 +65,5 @@ max.addEventListener("change", function(event) {
 });
 
 function log(text) {
-    logContainer.innerHTML = text;
+    realtimeLog.innerHTML = text;
 }
