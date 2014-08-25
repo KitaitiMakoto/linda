@@ -21,7 +21,6 @@ var whisper = new Linda.Microphone(window.navigator);
 whisper.log = function(text) {
     realtimeLog.innerHTML = text;
 }
-whisper.startListening();
 window.addEventListener("linda.inputstart", function(event) {
     statusContainer.innerHTML = "whisper starts";
 });
