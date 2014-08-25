@@ -10,16 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 0; i < 12; i++) {
         circles.push(new Linda.Circle({radius: shortSide * 0.1 / 2, thickness: 8}));
     }
-
-bg.addEventListener("load", function() {
-
     circles.forEach(function(circle, index) {
         setTimeout(function() {
             stage.addChild(circle.shape);
             circle.tweenTo({radius: longSide * 2 / 2}, 3000);
         }, index * 300);
     });
-
-});
-
 });
