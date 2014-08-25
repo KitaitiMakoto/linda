@@ -4,13 +4,7 @@ Linda.Microphone = function(navigator, options) {
     this.navigator = navigator;
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.listener = Linda.Microphone.createListener(this);
-    this.audioContext = new AudioContext();
-    this.analyser = this.audioContext.createAnalyser();
-    var decibelsRange = options.decibelsRange || {min: -100, max: -50};
-    this.analyser.maxDecibels = decibelsRange.max;
-    this.analyser.minDecibels = decibelsRange.min;
-    this.freqDomain = new Uint8Array(this.analyser.frequencyBinCount);
-    this.fsDivN = this.audioContext.sampleRate / this.analyser.fftSize;
+    this.initAudioContext(options.decibelsRange);
     this.getUserMedia();
 };
 Linda.Microphone.createListener = function(scope) {
@@ -52,6 +46,15 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
         var realtimeState = "too loud";
     }
     this.log(realtimeState);
+};
+Linda.Microphone.prototype.initAudioContext = function(decibelsRange) {
+    decibelsRange = decibelsRange || {min: -100, max: -50};
+    this.audioContext = new AudioContext();
+    this.analyser = this.audioContext.createAnalyser();
+    this.analyser.maxDecibels = decibelsRange.max;
+    this.analyser.minDecibels = decibelsRange.min;
+    this.freqDomain = new Uint8Array(this.analyser.frequencyBinCount);
+    this.fsDivN = this.audioContext.sampleRate / this.analyser.fftSize;
 };
 Linda.Microphone.prototype.handleStreamError = function(error) {
     alert(error);
