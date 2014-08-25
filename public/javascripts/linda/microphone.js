@@ -2,14 +2,14 @@ Linda.Microphone = function(navigator, options) {
     options = options || {};
     this.init(options);
     this.navigator = navigator;
-    this.decibelsRange = options.decibelsRange || {min: -100, max: -50};
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.realtime = null;
     this.listener = Linda.Microphone.createListener(this);
     this.audioContext = new AudioContext();
     this.analyser = this.audioContext.createAnalyser();
-    this.analyser.maxDecibels = this.decibelsRange.max;
-    this.analyser.minDecibels = this.decibelsRange.min;
+    var decibelsRange = options.decibelsRange || {min: -100, max: -50};
+    this.analyser.maxDecibels = decibelsRange.max;
+    this.analyser.minDecibels = decibelsRange.min;
     this.fsDivN = this.audioContext.sampleRate / this.analyser.fftSize;
     this.getUserMedia();
 };
