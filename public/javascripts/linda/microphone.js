@@ -5,7 +5,41 @@ Linda.Microphone = function(navigator, options) {
     this.decibelsRange = options.decibelsRange || {min: -100, max: -50};
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.realtime = null;
+    this.listener = Linda.Microphone.createListener(this);
+    this.audioContext = new AudioContext();
+    this.analyser = this.audioContext.createAnalyser();
+    this.analyser.maxDecibels = this.decibelsRange.max;
+    this.analyser.minDecibels = this.decibelsRange.min;
+    this.fsDivN = this.audioContext.sampleRate / this.analyser.fftSize;
     this.getUserMedia();
+};
+Linda.Microphone.createListener = function(scope) {
+    return function(timestamp) {
+        var freqDomain = new Uint8Array(scope.analyser.frequencyBinCount);
+        scope.analyser.getByteFrequencyData(freqDomain);
+        var max = {vol: 0, freq: 0};
+        for (var i = 0, l = freqDomain.length; i < l; i++) {
+            var value = freqDomain[i];
+            var frequency = i * scope.fsDivN;
+
+            if (frequency < 100 || 20000 < frequency) {
+                continue;
+            }
+            if (max.vol < value) {
+                max.vol = value;
+                max.freq = frequency;
+            }
+        }
+        scope.dispatchInput(max, timestamp);
+        scope.log(scope.realtime);
+        scope.requestID = requestAnimationFrame(arguments.callee);
+    };
+};
+Linda.Microphone.createStreamHandler = function(scope) {
+    return function(stream) {
+        var input = scope.audioContext.createMediaStreamSource(stream);
+        input.connect(scope.analyser);
+    };
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
 Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
@@ -20,45 +54,19 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
         this.realtime = "too loud";
     }
 };
-Linda.Microphone.prototype.generateStreamHandler = function(scope) {
-    return function(stream) {
-        var con = new AudioContext();
-        var input = con.createMediaStreamSource(stream);
-        var analyser = con.createAnalyser();
-        analyser.maxDecibels = scope.decibelsRange.max;
-        analyser.minDecibels = scope.decibelsRange.min;
-        input.connect(analyser);
-
-        var fsDivN = con.sampleRate / analyser.fftSize;
-        var requestID = requestAnimationFrame(function(timestamp) {
-            var freqDomain = new Uint8Array(analyser.frequencyBinCount);
-            analyser.getByteFrequencyData(freqDomain);
-            var max = {vol: 0, freq: 0};
-            for (var i = 0, l = freqDomain.length; i < l; i++) {
-                var value = freqDomain[i];
-                var frequency = i * fsDivN;
-
-                if (frequency < 100 || 20000 < frequency) {
-                    continue;
-                }
-                if (max.vol < value) {
-                    max.vol = value;
-                    max.freq = frequency;
-                }
-            }
-            scope.dispatchInput(max, timestamp);
-            scope.log(scope.realtime);
-            requestID = requestAnimationFrame(arguments.callee);
-        });
-    };
-};
 Linda.Microphone.prototype.handleStreamError = function(error) {
     alert(error);
+};
+Linda.Microphone.prototype.startListening = function() {
+    this.requestID = requestAnimationFrame(this.listener);
+};
+Linda.Microphone.prototype.stopListening = function() {
+    cancelAnimationFrame(this.requestID);
 };
 Linda.Microphone.prototype.getUserMedia = function() {
     this.navigator.getUserMedia(
         {audio: true},
-        this.generateStreamHandler(this),
+        Linda.Microphone.createStreamHandler(this),
         this.handleStreamError
     );
 };
