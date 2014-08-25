@@ -27,10 +27,10 @@ Linda.Microphone.createListener = function(scope) {
         scope.requestID = requestAnimationFrame(arguments.callee);
     };
 };
-Linda.Microphone.createStreamHandler = function(scope) {
+Linda.Microphone.createStreamHandler = function(analyser) {
     return function(stream) {
-        var input = scope.audioContext.createMediaStreamSource(stream);
-        input.connect(scope.analyser);
+        var input = analyser.context.createMediaStreamSource(stream);
+        input.connect(analyser);
     };
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
@@ -49,12 +49,12 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
 };
 Linda.Microphone.prototype.initAudioContext = function(decibelsRange) {
     decibelsRange = decibelsRange || {min: -100, max: -50};
-    this.audioContext = new AudioContext();
-    this.analyser = this.audioContext.createAnalyser();
-    this.analyser.maxDecibels = decibelsRange.max;
-    this.analyser.minDecibels = decibelsRange.min;
-    this.freqDomain = new Uint8Array(this.analyser.frequencyBinCount);
-    this.fsDivN = this.audioContext.sampleRate / this.analyser.fftSize;
+    var con = new AudioContext();
+    var analyser = this.analyser = con.createAnalyser();
+    analyser.maxDecibels = decibelsRange.max;
+    analyser.minDecibels = decibelsRange.min;
+    this.freqDomain = new Uint8Array(analyser.frequencyBinCount);
+    this.fsDivN = con.sampleRate / analyser.fftSize;
 };
 Linda.Microphone.prototype.handleStreamError = function(error) {
     alert(error);
@@ -68,7 +68,7 @@ Linda.Microphone.prototype.stopListening = function() {
 Linda.Microphone.prototype.getUserMedia = function() {
     this.navigator.getUserMedia(
         {audio: true},
-        Linda.Microphone.createStreamHandler(this),
+        Linda.Microphone.createStreamHandler(this.analyser),
         this.handleStreamError
     );
 };
