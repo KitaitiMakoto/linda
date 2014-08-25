@@ -3,7 +3,6 @@ Linda.Microphone = function(navigator, options) {
     this.init(options);
     this.navigator = navigator;
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
-    this.realtime = null;
     this.listener = Linda.Microphone.createListener(this);
     this.audioContext = new AudioContext();
     this.analyser = this.audioContext.createAnalyser();
@@ -31,7 +30,6 @@ Linda.Microphone.createListener = function(scope) {
             }
         }
         scope.dispatchInput(max, timestamp);
-        scope.log(scope.realtime);
         scope.requestID = requestAnimationFrame(arguments.callee);
     };
 };
@@ -45,14 +43,15 @@ Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
 Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
     if (max.vol <= this.whisperRange.lower) {
         this.stop(timestamp);
-        this.realtime = "too quiet";
+        var realtimeState = "too quiet";
     } else if (this.whisperRange.lower < max.vol && max.vol < this.whisperRange.upper) {
         this.start(timestamp);
-        this.realtime = "whispering(" + max.freq + " Hz, " + max.vol + ")";
+        var realtimeState = "whispering(" + max.freq + " Hz, " + max.vol + ")";
     } else {
         this.stop(timestamp);
-        this.realtime = "too loud";
+        var realtimeState = "too loud";
     }
+    this.log(realtimeState);
 };
 Linda.Microphone.prototype.handleStreamError = function(error) {
     alert(error);
