@@ -10,16 +10,16 @@ Linda.Microphone = function(navigator, options) {
     var decibelsRange = options.decibelsRange || {min: -100, max: -50};
     this.analyser.maxDecibels = decibelsRange.max;
     this.analyser.minDecibels = decibelsRange.min;
+    this.freqDomain = new Uint8Array(this.analyser.frequencyBinCount);
     this.fsDivN = this.audioContext.sampleRate / this.analyser.fftSize;
     this.getUserMedia();
 };
 Linda.Microphone.createListener = function(scope) {
     return function(timestamp) {
-        var freqDomain = new Uint8Array(scope.analyser.frequencyBinCount);
-        scope.analyser.getByteFrequencyData(freqDomain);
+        scope.analyser.getByteFrequencyData(scope.freqDomain);
         var max = {vol: 0, freq: 0};
-        for (var i = 0, l = freqDomain.length; i < l; i++) {
-            var value = freqDomain[i];
+        for (var i = 0, l = scope.freqDomain.length; i < l; i++) {
+            var value = scope.freqDomain[i];
             var frequency = i * scope.fsDivN;
 
             if (frequency < 100 || 20000 < frequency) {
