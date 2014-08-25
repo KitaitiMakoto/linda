@@ -29,8 +29,9 @@ Linda.Microphone.createListener = function(scope) {
 };
 Linda.Microphone.createStreamHandler = function(analyser) {
     return function(stream) {
-        var input = analyser.context.createMediaStreamSource(stream);
-        input.connect(analyser);
+        analyser.context
+            .createMediaStreamSource(stream)
+            .connect(analyser);
     };
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
