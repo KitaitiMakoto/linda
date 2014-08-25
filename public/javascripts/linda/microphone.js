@@ -32,6 +32,7 @@ Linda.Microphone.createStreamHandler = function(analyser) {
         analyser.context
             .createMediaStreamSource(stream)
             .connect(analyser);
+        window.dispatchEvent(new CustomEvent("linda.inputready"));
     };
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
