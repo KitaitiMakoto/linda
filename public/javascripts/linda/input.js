@@ -15,7 +15,7 @@ Linda.Input.prototype.start = function(timestamp) {
     if (this.state === "not inputting") {
         this.startedAt = timestamp;
         this.state = "inputting";
-        this._dispatchEvent("inputstart");
+        this.fire("inputstart");
     }
 };
 Linda.Input.prototype.stop = function(timestamp) {
@@ -24,9 +24,9 @@ Linda.Input.prototype.stop = function(timestamp) {
         this.pausedAt = timestamp;
     } else if (! this.stoppedAt && timestamp - this.pausedAt > this.pauseThreshold) {
         this.stoppedAt = timestamp;
-        this._dispatchEvent("inputend");
+        this.fire("inputend");
     }
 };
-Linda.Input.prototype._dispatchEvent = function(type) {
+Linda.Input.prototype.fire = function(type) {
     window.dispatchEvent(new CustomEvent("linda." + type), {detail: {input: this}});
 };
