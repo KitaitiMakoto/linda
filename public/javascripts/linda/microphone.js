@@ -5,7 +5,7 @@ Linda.Microphone = function(navigator, options) {
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.listener = Linda.Microphone.createListener(this);
     this.initAudioContext(options.decibelsRange);
-    this.getUserMedia();
+    this.initInput();
 };
 Linda.Microphone.createListener = function(scope) {
     return function(timestamp) {
@@ -66,7 +66,7 @@ Linda.Microphone.prototype.startListening = function() {
 Linda.Microphone.prototype.stopListening = function() {
     cancelAnimationFrame(this.listener.requestID);
 };
-Linda.Microphone.prototype.getUserMedia = function() {
+Linda.Microphone.prototype.initInput = function() {
     this.navigator.getUserMedia(
         {audio: true},
         Linda.Microphone.createStreamHandler(this.analyser),
