@@ -24,7 +24,7 @@ Linda.Microphone.createListener = function(scope) {
             }
         }
         scope.dispatchInput(max, timestamp);
-        scope.requestID = requestAnimationFrame(arguments.callee);
+        arguments.callee.requestID = requestAnimationFrame(arguments.callee);
     };
 };
 Linda.Microphone.createStreamHandler = function(analyser) {
@@ -61,10 +61,10 @@ Linda.Microphone.prototype.handleStreamError = function(error) {
     alert(error);
 };
 Linda.Microphone.prototype.startListening = function() {
-    this.requestID = requestAnimationFrame(this.listener);
+    this.listener.requestID = requestAnimationFrame(this.listener);
 };
 Linda.Microphone.prototype.stopListening = function() {
-    cancelAnimationFrame(this.requestID);
+    cancelAnimationFrame(this.listener.requestID);
 };
 Linda.Microphone.prototype.getUserMedia = function() {
     this.navigator.getUserMedia(
