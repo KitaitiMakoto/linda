@@ -9,13 +9,13 @@ var imageUri = "images/bg_sea01.jpg";
 var queue = new LoadQueue(false);
 queue.on("fileload", function(event) {
     var circles = [];
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < 1; i++) {
         circles.push(new PrototypeCircle(event.result));
     }
     circles.forEach(function(circle, i) {
         stage.addChild(circle.shape);
         setTimeout(function(circle) {
-            circle.tweenTo({radius: canvas.width * 2}, 6000);
+            circle.tweenTo({radius: canvas.width * 2}, 12, 6000);
         }, i * 400, circle);
     });
 });
@@ -37,7 +37,7 @@ PrototypeCircle.prototype.draw = function(radius) {
         .endStroke();
 };
 
-PrototypeCircle.prototype.tweenTo = function(props, duration) {
+PrototypeCircle.prototype.tweenTo = function(props, number, duration) {
     duration = duration || 2000;
     var shape = this;
     var startedAt = null;
@@ -48,7 +48,21 @@ PrototypeCircle.prototype.tweenTo = function(props, duration) {
         }
         var progress = timestamp - startedAt;
         var radius = props.radius * (progress / duration);
-        shape.draw(radius);
+        //shape.draw(radius);
+
+        var graphics = shape.shape.graphics.clear();
+        for (var i = 0; i < number; i++) {
+            var r = radius - i * 120;
+            if (r < 0) {
+                continue;
+            }
+            graphics
+                .beginBitmapStroke(shape.image)
+                .setStrokeStyle(50)
+                .drawCircle(origin.x, origin.y, r)
+                .endStroke();
+        }
+
         if (progress > duration) {
             cancelAnimationFrame(requestID);
             shape = null;
