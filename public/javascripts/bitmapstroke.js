@@ -15,7 +15,7 @@ queue.on("fileload", function(event) {
     circles.forEach(function(circle, i) {
         stage.addChild(circle.shape);
         setTimeout(function(circle) {
-            circle.tweenTo({radius: canvas.width * 2});
+            circle.tweenTo({radius: canvas.width * 2}, 6000);
         }, i * 400, circle);
     });
 });
