@@ -17,11 +17,11 @@ max.addEventListener("change", function(event) {
 });
 
 var statusContainer = document.getElementById("status");
-var whisper = new Linda.Microphone();
+var whisper = new Linda.Microphone(window.navigator);
 whisper.log = function(text) {
     realtimeLog.innerHTML = text;
 }
-whisper.startListening(navigator);
+whisper.startListening();
 window.addEventListener("linda.inputstart", function(event) {
     statusContainer.innerHTML = "whisper starts";
 });

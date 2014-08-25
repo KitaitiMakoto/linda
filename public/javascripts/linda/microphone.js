@@ -1,6 +1,7 @@
-Linda.Microphone = function(options) {
+Linda.Microphone = function(navigator, options) {
     options = options || {};
     this.init(options);
+    this.navigator = navigator;
     this.decibelsRange = options.decibelsRange || {min: -100, max: -50};
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.realtime = null;
@@ -18,9 +19,9 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
         this.realtime = "too loud";
     }
 };
-Linda.Microphone.prototype.startListening = function(navigator) {
+Linda.Microphone.prototype.startListening = function() {
     var self = this;
-    navigator.getUserMedia(
+    this.navigator.getUserMedia(
         {audio: true},
         function(stream) {
             var con = new AudioContext();
