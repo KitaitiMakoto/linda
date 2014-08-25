@@ -23,8 +23,8 @@ Linda.Microphone.createListener = function(scope) {
                 max.freq = frequency;
             }
         }
-        scope.dispatchInput(max, timestamp);
         arguments.callee.requestID = requestAnimationFrame(arguments.callee);
+        scope.dispatchInput(max, timestamp);
     };
 };
 Linda.Microphone.createStreamHandler = function(analyser) {

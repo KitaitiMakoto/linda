@@ -1,4 +1,12 @@
 <!doctype html>
+<style>
+  #stage {
+    background-color: #000000;
+  }
+</style>
+
+<canvas id="stage"></canvas>
+
 <p id="realtime-log"></p>
 <p id="status">not whispering</p>
 
@@ -17,6 +25,12 @@
     </tr>
   </table>
 </section>
+<script type="text/javascript">
+  "use strict";
+  var createjs = this;
+</script>
+<script src="components/easeljs/lib/easeljs-0.7.1.min.js" type="text/javascript"></script>
+<script src="components/preloadjs/lib/preloadjs-0.4.1.min.js" type="text/javascript"></script>
 <script src="javascripts/linda.js" type="text/javascript"></script>
 <script src="javascripts/linda/input.js" type="text/javascript"></script>
 <script src="javascripts/linda/microphone.js" type="text/javascript"></script>
