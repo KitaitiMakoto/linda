@@ -5,6 +5,7 @@ var stage = new Stage(canvas);
 var origin = {x: canvas.width / 2, y: canvas.height / 2};
 
 var imageUri = "images/bg_sea01.jpg";
+var numCircles = location.search.slice(1) || 12;
 
 var queue = new LoadQueue(false);
 queue.on("fileload", function(event) {
@@ -15,7 +16,7 @@ queue.on("fileload", function(event) {
     circles.forEach(function(circle, i) {
         stage.addChild(circle.shape);
         setTimeout(function(circle) {
-            circle.tweenTo({radius: canvas.width * 2}, 12, 6000);
+            circle.tweenTo({radius: canvas.width * 2}, numCircles, 6000);
         }, i * 400, circle);
     });
 });

@@ -5,11 +5,12 @@ var stage = new Stage(canvas);
 var origin = {x: canvas.width / 2, y: canvas.height / 2};
 
 var imageUri = "images/bg_sea01.jpg";
+var numCircles = location.search.slice(1) || 12;
 
 var queue = new LoadQueue(false);
 queue.on("fileload", function(event) {
     var circles = [];
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < numCircles; i++) {
         circles.push(new PrototypeCircle(event.result));
     }
     circles.forEach(function(circle, i) {
