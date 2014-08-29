@@ -1,3 +1,9 @@
+/**
+ * Events
+ *   * "linda.inputstart"(inhereted from Linda.Input)
+ *   * "linda.inputend"(inhereted from Linda.Input)
+ *   * "linda.inputready"
+ */
 Linda.Microphone = function(navigator, options) {
     options = options || {};
     this.init(options);

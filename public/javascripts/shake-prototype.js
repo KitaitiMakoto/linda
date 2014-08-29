@@ -24,12 +24,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     Ticker.addEventListener("tick", stage);
 
-    var input = new PrototypeShakeSensor();
-    input.startListening(function(count) {
-        expandCircles(count, function(circle) {
-            circle.alpha = 0.8;
-        });
+    var input = new Linda.Shake({pauseThreshold: 1000});
+    window.addEventListener("linda.inputend", function(event) {
+	input.stopListening();
+	expandCircles(3, function(circle) {
+	    circle.alpha = 0.8;
+	});
+	setTimeout(function() {
+	    input.startListening()
+	}, 5000);
     });
+    input.startListening();
 });
 
 function PrototypeCircle(options) {
@@ -84,7 +89,7 @@ PrototypeCircle.prototype.draw = function() {
 
 function PrototypeShakeSensor() {
     this.count = 0;
-    this.intervalThresold = 3000;
+    this.intervalThresold = 1000;
 }
 
 PrototypeShakeSensor.prototype.startListening = function(callback) {

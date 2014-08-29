@@ -1,3 +1,8 @@
+/**
+ * Events
+ *   * "linda.inputstart"
+ *   * "linda.inputend"
+ */
 Linda.Input = function(options) {
     this.init(options);
 };
