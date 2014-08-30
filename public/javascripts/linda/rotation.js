@@ -1,6 +1,13 @@
+/**
+ * Events
+ *   * "linda.inputstart"(inhereted from Linda.Input)
+ *   * "linda.inputend"(inhereted from Linda.Input)
+ *   * "linda.inputready"
+ */
 Linda.Rotation = function(options) {
     this.init(options);
     this.listener = Linda.Rotation.createListener(this);
+    this.fire("inputready");
 };
 Linda.Rotation.createListener = function(scope) {
     return function(event) {
