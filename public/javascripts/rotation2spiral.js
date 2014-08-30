@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var input = new inputConstructor({pauseThreshold: 1000});
             window.addEventListener("linda.inputend", function(event) {
                 input.stopListening();
-                spiral.rotate(rotation, duration);
-            });
-            window.addEventListener("linda.animationend", function(event) {
-                spiral.clear();
-                input.startListening();
+                spiral
+                    .rotate(rotation, duration)
+                    .then(function(spiral) {
+                        spiral.clear();
+                        startListening();
+                    });
             });
             input.startListening();
         });

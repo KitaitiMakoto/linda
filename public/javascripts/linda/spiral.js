@@ -20,20 +20,22 @@ Linda.Spiral.prototype.draw = function(additionalAngle) {
 };
 Linda.Spiral.prototype.rotate = function(rotation, duration) {
     var scope = this;
-    var startedAt = null;
-    var requestID = requestAnimationFrame(function(timestamp) {
-        if (! startedAt) {
-            startedAt = timestamp;
-        }
-        var progress = (timestamp - startedAt) / duration;
-        var additional = rotation * progress;
-        scope.draw(additional);
-        if (progress > 1) {
-            cancelAnimationFrame(requestID);
-            window.dispatchEvent(new CustomEvent("linda.animationend"));
-        } else {
-            requestID = requestAnimationFrame(arguments.callee);
-        }
+    return new Promise(function(resolve, reject) {
+        var startedAt = null;
+        var requestID = requestAnimationFrame(function(timestamp) {
+            if (! startedAt) {
+                startedAt = timestamp;
+            }
+            var progress = (timestamp - startedAt) / duration;
+            var additional = rotation * progress;
+            scope.draw(additional);
+            if (progress > 1) {
+                cancelAnimationFrame(requestID);
+                resolve(scope);
+            } else {
+                requestID = requestAnimationFrame(arguments.callee);
+            }
+        });
     });
 };
 Linda.Spiral.prototype.clear = function() {
