@@ -99,7 +99,7 @@ PrototypeShakeSensor.prototype.startListening = function(callback) {
         var lastCount = ++self.count;
         setTimeout(function() {
             if (self.count === lastCount) {
-                self.stop();
+                self.stopInputting();
             }
         }, self.intervalThresold);
     });

@@ -6,10 +6,10 @@ Linda.Rotation.createListener = function(scope) {
     return function(event) {
         var rotationRate = Math.abs(event.rotationRate.gamma);
         if (rotationRate > 6) {
-            scope.start(event.timeStamp);
-            scope.stop(event.timeStamp);
+            scope.startInputting(event.timeStamp);
+            scope.stopInputting(event.timeStamp);
             setTimeout(function() {
-                scope.stop(new Date);
+                scope.stopInputting(new Date);
             }, scope.pauseThreshold);
         }
     };

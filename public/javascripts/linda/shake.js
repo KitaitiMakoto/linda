@@ -6,10 +6,10 @@ Linda.Shake = function(options) {
 Linda.Shake.createListener = function(scope) {
     return function(event) {
         scope.active = true;
-        scope.start(event.timeStamp);
-        scope.stop(event.timeStamp);
+        scope.startInputting(event.timeStamp);
+        scope.stopInputting(event.timeStamp);
         setTimeout(function() {
-            scope.stop(new Date);
+            scope.stopInputting(new Date);
         }, scope.pauseThreshold);
     };
 };
