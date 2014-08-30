@@ -11,20 +11,20 @@ Linda.Input.prototype.init = function(options) {
     this.startedAt = null;
     this.pausedAt = null;
     this.stoppedAt = null;
-    this.state = "not inputting";
+    this.active = false;
     this.pauseThreshold = options.pauseThreshold || 2000;
 };
 Linda.Input.prototype.start = function(timestamp) {
     this.pausedAt = null;
     this.stoppedAt = null;
-    if (this.state === "not inputting") {
+    if (! this.active) {
         this.startedAt = timestamp;
-        this.state = "inputting";
+        this.active = true;
         this.fire("inputstart");
     }
 };
 Linda.Input.prototype.stop = function(timestamp) {
-    this.state = "not inputting";
+    this.active = false;
     if (! this.pausedAt) {
         this.pausedAt = timestamp;
     } else if (! this.stoppedAt && timestamp - this.pausedAt > this.pauseThreshold) {
