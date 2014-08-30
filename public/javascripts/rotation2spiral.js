@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             Ticker.addEventListener("tick", stage);
 
-            var input = new Linda.Shake({pauseThreshold: 1000});
+            var inputConstructor = /sense=shake/.test(location.search) ? Linda.Shake : Linda.Rotation;
+            var input = new inputConstructor({pauseThreshold: 1000});
             window.addEventListener("linda.inputend", function(event) {
                 input.stopListening();
                 rotateSpiral();
