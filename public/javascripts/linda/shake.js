@@ -1,11 +1,9 @@
 Linda.Shake = function(options) {
     this.init(options);
-    this.active = false;
     this.listener = Linda.Shake.createListener(this);
 };
 Linda.Shake.createListener = function(scope) {
     return function(event) {
-        scope.active = true;
         scope.startInputting(event.timeStamp);
         scope.stopInputting(event.timeStamp);
         setTimeout(function() {
