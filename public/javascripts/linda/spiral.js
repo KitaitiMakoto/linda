@@ -1,6 +1,5 @@
 Linda.Spiral = function(options) {
     options = options || {};
-    this.rotation = options.rotation;
     this.image = options.image;
     this.thickness = options.thickness || 24;
     this.x = options.x || 0;
