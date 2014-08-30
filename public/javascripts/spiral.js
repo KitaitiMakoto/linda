@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", function() {
         queue.on("fileload", function(event) {
             stage.addChild(spiral);
 
-            var rotation = 12*Math.PI;
+            var rotation = 24*Math.PI;
             var startedAt = null;
             var duration = 6000;
 
