@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             Ticker.addEventListener("tick", stage);
 
             var unit = 12;
+            var angle = 1/5  * Math.PI;
             var coord = {x: -unit, y: 0};
-            var pos = translate(coord, origin)
+            var pos = translate(rotate(coord, angle), origin)
             triangle.graphics
                 .clear()
                 .beginBitmapStroke(image)
@@ -38,13 +39,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     coord.y += length;
                     break;
                 }
-                pos = translate(coord, origin);
+                var pos = translate(rotate(coord, angle), origin);
                 triangle.graphics.lineTo(pos.x, pos.y);
             }
         });
         queue.loadFile(imageUri);
     });
 });
+function rotate(coord, angle) {
+    return {
+        x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
+        y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
+    };
+}
 function translate(coord, origin) {
     return {
         x: coord.x + origin.x,
