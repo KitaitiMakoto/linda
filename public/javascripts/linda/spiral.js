@@ -19,3 +19,20 @@ Linda.Spiral.prototype.draw = function(additionalAngle) {
         this.shape.graphics.lineTo(this.x + x, this.y + y);
     }
 };
+Linda.Spiral.prototype.rotate = function(rotation, duration) {
+    var scope = this;
+    var startedAt = null;
+    var requestID = requestAnimationFrame(function(timestamp) {
+        if (! startedAt) {
+            startedAt = timestamp;
+        }
+        var progress = (timestamp - startedAt) / duration;
+        var additional = rotation * progress;
+        scope.draw(additional);
+        if (progress > 1) {
+            cancelAnimationFrame(requestID);
+        } else {
+            requestID = requestAnimationFrame(arguments.callee);
+        }
+    });
+};

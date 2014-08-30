@@ -18,20 +18,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 image: event.result
             });
             stage.addChild(spiral.shape);
-
-            var requestID = requestAnimationFrame(function(timestamp) {
-                if (! startedAt) {
-                    startedAt = timestamp;
-                }
-                var progress = (timestamp - startedAt) / duration;
-                var additional = rotation * progress;
-                spiral.draw(additional);
-                if (progress > 1) {
-                    cancelAnimationFrame(requestID);
-                } else {
-                    requestID = requestAnimationFrame(arguments.callee);
-                }
-            });
+            spiral.rotate(rotation, duration);
         });
         queue.loadFile("images/bg_sea01.jpg");
     });
