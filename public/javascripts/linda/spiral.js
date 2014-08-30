@@ -7,8 +7,7 @@ Linda.Spiral = function(options) {
     this.shape = new Shape();
 };
 Linda.Spiral.prototype.draw = function(additionalAngle) {
-    this.shape.graphics
-        .clear()
+    this.clear()
         .beginBitmapStroke(this.image)
         .setStrokeStyle(this.thickness);
     // stolen from http://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
@@ -31,8 +30,12 @@ Linda.Spiral.prototype.rotate = function(rotation, duration) {
         scope.draw(additional);
         if (progress > 1) {
             cancelAnimationFrame(requestID);
+            window.dispatchEvent(new CustomEvent("linda.animationend"));
         } else {
             requestID = requestAnimationFrame(arguments.callee);
         }
     });
+};
+Linda.Spiral.prototype.clear = function() {
+    return this.shape.graphics.clear();
 };
