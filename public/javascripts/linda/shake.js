@@ -7,7 +7,10 @@
 Linda.Shake = function(options) {
     this.init(options);
     this.listener = Linda.Shake.createListener(this);
-    this.fire("inputready");
+    var scope = this;
+    setTimeout(function() {
+	scope.fire("inputready");
+    });
 };
 Linda.Shake.createListener = function(scope) {
     return function(event) {

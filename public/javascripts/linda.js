@@ -62,14 +62,15 @@ Linda.prototype.initImage = function() {
 };
 Linda.prototype.initInput = function(options) {
     return new Promise(function(resolve, reject) {
-        if (Linda.Microphone.available()) {
-            var input = new Linda.Microphone(navigator, options);
-        } else {
-            var input = new Linda.Shake();
-        }
-        addEventListener("linda.inputready", function() {
-            resolve(input);
+        var input = undefined;
+        addEventListener("linda.inputready", function(event) {
+            resolve(event.detail.input);
         });
+        if (Linda.Microphone.available()) {
+            input = new Linda.Microphone(navigator, options);
+        } else {
+            input = new Linda.Shake();
+        }
     });
 };
 
