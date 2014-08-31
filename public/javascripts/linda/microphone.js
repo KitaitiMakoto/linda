@@ -36,12 +36,12 @@ Linda.Microphone.createListener = function(scope) {
         scope.dispatchInput(max, timestamp);
     };
 };
-Linda.Microphone.createStreamHandler = function(analyser) {
+Linda.Microphone.createStreamHandler = function(scope) {
     return function(stream) {
-        analyser.context
+        scope.analyser.context
             .createMediaStreamSource(stream)
-            .connect(analyser);
-        Linda.Input.prototype.fire("inputready");
+            .connect(scope.analyser);
+        scope.fire("inputready");
     };
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
@@ -75,7 +75,7 @@ Linda.Microphone.prototype.stopListening = function() {
 Linda.Microphone.prototype.initInput = function() {
     this.navigator.getUserMedia(
         {audio: true},
-        Linda.Microphone.createStreamHandler(this.analyser),
+        Linda.Microphone.createStreamHandler(this),
         this.handleStreamError
     );
 };

@@ -22,7 +22,7 @@
     return Linda.init(
         document.getElementById("stage"),
         null,
-        {whisperRange: {lower: 100, upper: 255}}
+        {whisperRange: {lower: 120, upper: 255}}
     );
 }).then(function(app) {
     setTimeout(function() {
