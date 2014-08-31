@@ -12,36 +12,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             Ticker.addEventListener("tick", stage);
 
-            var unit = 12;
             var angle = 1/5  * Math.PI;
-            var coord = {x: -unit, y: 0};
-            var pos = translate(rotate(coord, angle), origin)
-            triangle.graphics
-                .clear()
-                .beginBitmapStroke(image)
-                .setStrokeStyle(24)
-                .moveTo(origin.x, origin.y)
-                .lineTo(pos.x, pos.y)
-            for (i = 0; i < 720; i++) {
-                var direction = i % 4;// 0 => left, 1 => down, 2 => right, 3 => up
-                var length = unit * (i + 1) * 2;
-                switch(direction) {
-                case 0:
-                    coord.x -= length;
-                    break;
-                case 1:
-                    coord.y -= length;
-                    break;
-                case 2:
-                    coord.x += length;
-                    break;
-                case 3:
-                    coord.y += length;
-                    break;
-                }
-                var pos = translate(rotate(coord, angle), origin);
-                triangle.graphics.lineTo(pos.x, pos.y);
-            }
+	    var shape = new Linda.SpiralSquare({
+		x: origin.x,
+		y: origin.y,
+		image: image
+	    });
+	    stage.addChild(shape.shape);
+	    shape.draw(angle);
         });
         queue.loadFile(imageUri);
     });
