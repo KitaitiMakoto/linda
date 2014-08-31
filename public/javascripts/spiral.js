@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
             Ticker.addEventListener("tick", stage);
 
-            var spiral = new Linda.Spiral({
+            var spiral = new Linda.SpiralCircle({
                 x: origin.x,
                 y: origin.y,
                 image: event.result

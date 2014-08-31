@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var image = event.result;
             var rotation = 24 * Math.PI;
             var duration = 6000;
-            var spiral = new Linda.Spiral({
+            var spiral = new Linda.SpiralCircle({
                 x: origin.x,
                 y: origin.y,
                 image: image

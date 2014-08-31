@@ -1,4 +1,4 @@
-Linda.Spiral = function(options) {
+Linda.SpiralCircle = function(options) {
     options = options || {};
     this.image = options.image;
     this.thickness = options.thickness || 24;
@@ -6,7 +6,7 @@ Linda.Spiral = function(options) {
     this.y = options.y || 0;
     this.shape = new Shape();
 };
-Linda.Spiral.prototype.draw = function(additionalAngle) {
+Linda.SpiralCircle.prototype.draw = function(additionalAngle) {
     this.clear()
         .beginBitmapStroke(this.image)
         .setStrokeStyle(this.thickness);
@@ -18,7 +18,7 @@ Linda.Spiral.prototype.draw = function(additionalAngle) {
         this.shape.graphics.lineTo(this.x + x, this.y + y);
     }
 };
-Linda.Spiral.prototype.animate = function(rotation, duration) {
+Linda.SpiralCircle.prototype.animate = function(rotation, duration) {
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
@@ -38,6 +38,6 @@ Linda.Spiral.prototype.animate = function(rotation, duration) {
         });
     });
 };
-Linda.Spiral.prototype.clear = function() {
+Linda.SpiralCircle.prototype.clear = function() {
     return this.shape.graphics.clear();
 };
