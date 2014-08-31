@@ -12,10 +12,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
             Ticker.addEventListener("tick", stage);
 
-            var spiral = new Linda.SpiralCircle({
+            var spiral = new Linda.SpiralCircle(event.result, {
                 x: origin.x,
-                y: origin.y,
-                image: event.result
+                y: origin.y
             });
             stage.addChild(spiral.shape);
             spiral.animate(rotation, duration);

@@ -1,15 +1,9 @@
-Linda.SpiralCircle = function(options) {
-    options = options || {};
-    this.image = options.image;
-    this.thickness = options.thickness || 24;
-    this.x = options.x || 0;
-    this.y = options.y || 0;
-    this.shape = new Shape();
+Linda.SpiralCircle = function(image, options) {
+    this.init(image, options);
 };
+Linda.SpiralCircle.prototype = Object.create(Linda.Spiral.prototype);
 Linda.SpiralCircle.prototype.draw = function(additionalAngle) {
-    this.clear()
-        .beginBitmapStroke(this.image)
-        .setStrokeStyle(this.thickness);
+    this.beginDrawing();
     // stolen from http://stackoverflow.com/questions/6824391/drawing-a-spiral-on-an-html-canvas-using-javascript
     for (i = 0; i < 720; i++) {
         var angle = 0.1 * i;
@@ -37,7 +31,4 @@ Linda.SpiralCircle.prototype.animate = function(rotation, duration) {
             }
         });
     });
-};
-Linda.SpiralCircle.prototype.clear = function() {
-    return this.shape.graphics.clear();
 };
