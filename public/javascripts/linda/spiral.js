@@ -18,7 +18,7 @@ Linda.Spiral.prototype.draw = function(additionalAngle) {
         this.shape.graphics.lineTo(this.x + x, this.y + y);
     }
 };
-Linda.Spiral.prototype.rotate = function(rotation, duration) {
+Linda.Spiral.prototype.animate = function(rotation, duration) {
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;

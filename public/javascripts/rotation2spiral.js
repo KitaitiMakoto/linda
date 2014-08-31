@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             window.addEventListener("linda.inputend", function(event) {
                 input.stopListening();
                 spiral
-                    .rotate(rotation, duration)
+                    .animate(rotation, duration)
                     .then(function(spiral) {
                         spiral.clear();
                         startListening();
