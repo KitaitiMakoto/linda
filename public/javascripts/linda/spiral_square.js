@@ -10,7 +10,7 @@ Linda.SpiralSquare = function(options) {
 Linda.SpiralSquare.prototype.draw = function(angle) {
     angle = angle || 0;
     var coord = {x: -this.unit, y: 0};
-    var pos = translate(rotate(coord, angle), {x: this.x, y: this.y});
+    var pos = this.translate(this.rotate(coord, angle));
     this.clear()
         .beginBitmapStroke(this.image)
         .setStrokeStyle(this.thickness)
@@ -33,7 +33,7 @@ Linda.SpiralSquare.prototype.draw = function(angle) {
             coord.y += length;
             break;
         }
-        var pos = translate(rotate(coord, angle), {x: this.x, y: this.y});
+        var pos = this.translate(this.rotate(coord, angle));
         this.shape.graphics.lineTo(pos.x, pos.y);
     }
 };
@@ -59,4 +59,16 @@ Linda.SpiralSquare.prototype.animate = function(rotation, duration) {
 };
 Linda.SpiralSquare.prototype.clear = function() {
     return this.shape.graphics.clear();
+};
+Linda.SpiralSquare.prototype.rotate = function(coord, angle) {
+    return {
+        x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
+        y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
+    };
+};
+Linda.SpiralSquare.prototype.translate = function(coord) {
+    return {
+        x: coord.x + this.x,
+        y: coord.y + this.y
+    }
 };

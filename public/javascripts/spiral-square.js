@@ -24,15 +24,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
         queue.loadFile(imageUri);
     });
 });
-function rotate(coord, angle) {
-    return {
-        x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
-        y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
-    };
-}
-function translate(coord, origin) {
-    return {
-        x: coord.x + origin.x,
-        y: coord.y + origin.y
-    };
-}
