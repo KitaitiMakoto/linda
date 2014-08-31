@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		image: image
 	    });
 	    stage.addChild(shape.shape);
-	    shape.draw(angle);
+	    shape.animate(24 * Math.PI, 6000);
         });
         queue.loadFile(imageUri);
     });

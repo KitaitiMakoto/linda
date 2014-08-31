@@ -38,7 +38,24 @@ Linda.SpiralSquare.prototype.draw = function(angle) {
     }
 };
 Linda.SpiralSquare.prototype.animate = function(rotation, duration) {
-
+    var scope = this;
+    return new Promise(function(resolve, reject) {
+        var startedAt = null;
+        var requestID = requestAnimationFrame(function(timestamp) {
+            if (! startedAt) {
+                startedAt = timestamp;
+            }
+            var progress = (timestamp - startedAt) / duration;
+            var additional = rotation * progress;
+            scope.draw(additional);
+            if (progress > 1) {
+                cancelAnimationFrame(requestID);
+                resolve(scope);
+            } else {
+                requestID = requestAnimationFrame(arguments.callee);
+            }
+        });
+    });
 };
 Linda.SpiralSquare.prototype.clear = function() {
     return this.shape.graphics.clear();
