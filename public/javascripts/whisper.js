@@ -1,6 +1,7 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
 
+document.querySelector("[rel='import']").addEventListener("load", function() {
 canvas = undefined;
 stage = undefined;
 origin = undefined;
@@ -121,4 +122,5 @@ window.addEventListener("linda.inputready", function() {
     });
 
     queue.loadFile(imageUri);
+});
 });
