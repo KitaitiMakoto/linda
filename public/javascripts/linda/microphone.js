@@ -13,6 +13,9 @@ Linda.Microphone = function(navigator, options) {
     this.initAudioContext(options.decibelsRange);
     this.initInput();
 };
+Linda.Microphone.available = function() {
+    return !!(navigator.getUserMedia && AudioContext);
+};
 Linda.Microphone.createListener = function(scope) {
     return function(timestamp) {
         scope.analyser.getByteFrequencyData(scope.freqDomain);
