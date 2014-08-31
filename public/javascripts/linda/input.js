@@ -33,5 +33,5 @@ Linda.Input.prototype.stopInputting = function(timestamp) {
     }
 };
 Linda.Input.prototype.fire = function(type) {
-    window.dispatchEvent(new CustomEvent("linda." + type), {detail: {input: this}});
+    window.dispatchEvent(new CustomEvent("linda." + type, {detail: {input: this}}));
 };
