@@ -37,9 +37,6 @@ Linda.SpiralSquare.prototype.draw = function(angle) {
         this.shape.graphics.lineTo(pos.x, pos.y);
     }
 };
-Linda.SpiralSquare.prototype.rotate = function(angle) {
-
-};
 Linda.SpiralSquare.prototype.animate = function(rotation, duration) {
 
 };
