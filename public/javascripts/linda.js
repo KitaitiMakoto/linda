@@ -6,13 +6,19 @@ Linda = function(canvas) {
     canvas.height = window.innerHeight;
     this.stage = new Stage(canvas);
 };
-Linda.init = function(canvas) {
+Linda.init = function(canvas, shapeOptions, inputOptions) {
     var app = new Linda(canvas);
-    return Promise.all([app.initImage(), app.initInput()])
+    shapeOptions = shapeOptions || {};
+    if (! ("x" in shapeOptions)) {
+        shapeOptions.x = canvas.width / 2;
+    }
+    if (! ("y" in shapeOptions)) {
+        shapeOptions.y = canvas.height / 2;
+    }
+    return Promise.all([app.initImage(), app.initInput(inputOptions)])
         .then(function(results) {
             var shapeConstructor = [Linda.SpiralCircle, Linda.SpiralSquare][Math.floor(Math.random() * 2)];
-            var canvas = app.stage.canvas;
-            app.shape = Linda.Spiral.createShape(results[0], {x: canvas.width / 2, y: canvas.height / 2});
+            app.shape = Linda.Spiral.createShape(results[0], shapeOptions);
             app.stage.addChild(app.shape.shape);
             app.input = results[1];
             return app;
@@ -54,10 +60,10 @@ Linda.prototype.initImage = function() {
         image.src = uri;
     });
 };
-Linda.prototype.initInput = function() {
+Linda.prototype.initInput = function(options) {
     return new Promise(function(resolve, reject) {
         if (Linda.Microphone.available()) {
-            var input = new Linda.Microphone(navigator, {whisperRange: {lower: 100, upper: 255}}); console.warn("FIXME: make configurable");
+            var input = new Linda.Microphone(navigator, options);
         } else {
             var input = new Linda.Shake();
         }

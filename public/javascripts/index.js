@@ -18,7 +18,11 @@
         });
     });
 }).then(function() {
-    return Linda.init(document.getElementById("stage"));
+    return Linda.init(
+        document.getElementById("stage"),
+        null,
+        {whisperRange: {lower: 100, upper: 255}}
+    );
 }).then(function(app) {
     setTimeout(function() {
         app.run();
