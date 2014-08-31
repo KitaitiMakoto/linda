@@ -44,16 +44,12 @@ Linda.Microphone.createStreamHandler = function(analyser) {
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
 Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
     if (max.vol <= this.whisperRange.lower) {
-        this.stopInputting(timestamp);
-        var realtimeState = "too quiet";
+        this.stopInputting(timestamp, {vol: max.vol, freq: max.freq, state: "too quiet"});
     } else if (this.whisperRange.lower < max.vol && max.vol < this.whisperRange.upper) {
-        this.startInputting(timestamp);
-        var realtimeState = "whispering(" + max.freq + " Hz, " + max.vol + ")";
+        this.startInputting(timestamp, {vol: max.vol, freq: max.freq, state: "whispering"});
     } else {
-        this.stopInputting(timestamp);
-        var realtimeState = "too loud";
+        this.stopInputting(timestamp, {vol: max.vol, freq: max.freq, state: "tool loud"});
     }
-    this.log(realtimeState);
 };
 Linda.Microphone.prototype.initAudioContext = function(decibelsRange) {
     decibelsRange = decibelsRange || {min: -100, max: -50};
@@ -79,7 +75,4 @@ Linda.Microphone.prototype.initInput = function() {
         Linda.Microphone.createStreamHandler(this.analyser),
         this.handleStreamError
     );
-};
-Linda.Microphone.prototype.log = function(message) {
-    console.log(message);
 };

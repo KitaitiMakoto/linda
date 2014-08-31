@@ -80,9 +80,13 @@ function initControls() {
     window.addEventListener("linda.inputend", function(event) {
         statusContainer.innerHTML = "whisper ends("+(whisper.stoppedAt - whisper.startedAt)+" ms)";
     });
-    whisper.log = function(text) {
-        realtimeLog.innerHTML = text;
-    }
+    window.addEventListener("linda.inputsensingstart", function(event) {
+        var data = event.detail.additional;
+        realtimeLog.innerHTML = data.state + "(" + Math.floor(data.freq) + " Hz, " + data.vol + ")";
+    });
+    window.addEventListener("linda.inputsensingstop", function(event) {
+        realtimeLog.innerHTML = event.detail.additional.state;
+    });
 }
 
 function initStage() {
