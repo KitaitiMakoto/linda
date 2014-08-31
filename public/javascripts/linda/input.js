@@ -14,7 +14,7 @@ Linda.Input.prototype.init = function(options) {
     this.pausedAt = null;
     this.stoppedAt = null;
     this.inputting = false;
-    this.pauseThreshold = options.pauseThreshold || 2000;
+    this.pauseThreshold = options.pauseThreshold || 1000;
 };
 Linda.Input.prototype.startInputting = function(timestamp, additional) {
     this.pausedAt = null;
