@@ -12,8 +12,7 @@ Linda.init = function(canvas) {
         .then(function(results) {
             var shapeConstructor = [Linda.SpiralCircle, Linda.SpiralSquare][Math.floor(Math.random() * 2)];
             var canvas = app.stage.canvas;
-            app.shape = new shapeConstructor(results[0], {x: canvas.width / 2, y: canvas.height / 2});
-            console.warn("FIXME");
+            app.shape = Linda.Spiral.createShape(results[0], {x: canvas.width / 2, y: canvas.height / 2});
             app.stage.addChild(app.shape.shape);
             app.input = results[1];
             return app;
@@ -58,7 +57,7 @@ Linda.prototype.initImage = function() {
 Linda.prototype.initInput = function() {
     return new Promise(function(resolve, reject) {
         if (Linda.Microphone.available()) {
-            var input = new Linda.Microphone(navigator, {whisperRange: {lower: 100, upper: 255}});
+            var input = new Linda.Microphone(navigator, {whisperRange: {lower: 100, upper: 255}}); console.warn("FIXME: make configurable");
         } else {
             var input = new Linda.Shake();
         }

@@ -1,6 +1,7 @@
 Linda.SpiralCircle = function(image, options) {
     this.init(image, options);
 };
+Linda.Spiral.constructors.push(Linda.SpiralCircle);
 Linda.SpiralCircle.prototype = Object.create(Linda.Spiral.prototype);
 Linda.SpiralCircle.prototype.draw = function(additionalAngle) {
     this.beginDrawing();
