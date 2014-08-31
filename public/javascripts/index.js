@@ -13,8 +13,9 @@
         if (! loader) {
             return reject(new Error("linda-loader not found"));
         }
-        loader.addEventListener("load", function() {
+        loader.addEventListener("load", function(event) {
             resolve();
+            event.target.removeEventListener("load", arguments.callee);
         });
     });
 }).then(function() {
