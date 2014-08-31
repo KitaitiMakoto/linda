@@ -4,13 +4,51 @@
   #stage {
     background-color: #000000;
   }
+  .monitor {
+    height: 36px;
+  }
+  #monitor-container {
+    position: relative;
+    z-index: 2;
+  }
+  #monitor-too-quiet, #monitor-too-loud {
+    position: absolute;
+    top: 0;
+    background-color: red;
+  }
+  #monitor-too-quiet {
+    left: 0;
+    width: 78%; /* 200 / 256 */
+    z-index: 1;
+    opacity: 0.8;
+  }
+  #monitor-too-loud {
+    right: 0;
+    width: 0.4%; /* 1 / 256 */
+    z-index: 1;
+    opacity: 0.8;
+  }
+  #monitor-current {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-color: green;
+  }
 </style>
 
 <canvas id="stage"></canvas>
 
-<p id="realtime-log"></p>
-<p id="status">not whispering</p>
-
+<section>
+  <h2>monitor</h2>
+  <p id="status">listening</p>
+  <div id="monitor-container" class="monitor">
+    <div id="monitor-too-quiet" class="monitor"></div>
+    <div id="monitor-too-loud" class="monitor"></div>
+    <div id="monitor-current" class="monitor"></div>
+  </div>
+  <p id="realtime-log"></p>
+</section>
 <section>
   <h2>threasholds(0 - 255)</h2>
   <table>

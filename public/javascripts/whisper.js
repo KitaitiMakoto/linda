@@ -62,31 +62,38 @@ function initControls() {
 
     var min = document.getElementById("min");
     var minValue = document.getElementById("min-value");
+    var minMeter = document.getElementById("monitor-too-quiet");
     var max = document.getElementById("max");
     var maxValue = document.getElementById("max-value");
+    var maxMeter = document.getElementById("monitor-too-loud");
     min.addEventListener("change", function(event) {
         var value = Math.min(event.target.value, maxValue.value);
         whisper.whisperRange.lower = min.value = minValue.value = value;
+        minMeter.style.width = (value / 256 * 100) + "%";
     });
     max.addEventListener("change", function(event) {
         var value = Math.max(event.target.value, minValue.value);
         whisper.whisperRange.upper = max.value = maxValue.value = value;
+        maxMeter.style.width = (value / 256 * 100) + "%";
     });
 
     var statusContainer = document.getElementById("status");
 
-    window.addEventListener("linda.inputstart", function(event) {
-        statusContainer.innerHTML = "whisper starts";
+    window.addEventListener("linda.animationend", function(event) {
+        statusContainer.innerHTML = "listening";
     });
     window.addEventListener("linda.inputend", function(event) {
-        statusContainer.innerHTML = "whisper ends("+(whisper.stoppedAt - whisper.startedAt)+" ms)";
+        statusContainer.innerHTML = "animating";
     });
     window.addEventListener("linda.inputsensingstart", function(event) {
         var data = event.detail.additional;
         realtimeLog.innerHTML = data.state + "(" + Math.floor(data.freq) + " Hz, " + data.vol + ")";
+        document.getElementById("monitor-current").style.width = (data.vol / 256 * 100) + "%";
     });
     window.addEventListener("linda.inputsensingstop", function(event) {
-        realtimeLog.innerHTML = event.detail.additional.state;
+        var data = event.detail.additional;
+        realtimeLog.innerHTML = data.state;
+        document.getElementById("monitor-current").style.width = (data.vol / 256 * 100) + "%";
     });
 }
 
