@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", function() {
                 image: event.result
             });
             stage.addChild(spiral.shape);
-            spiral.rotate(rotation, duration);
+            spiral.animate(rotation, duration);
         });
         queue.loadFile("images/bg_sea01.jpg");
     });
