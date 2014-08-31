@@ -1,19 +1,14 @@
-Linda.SpiralSquare = function(options) {
+Linda.SpiralSquare = function(image, options) {
     options = options || {};
-    this.image = options.image;
-    this.thickness = options.thickness || 24;
-    this.x = options.x || 0;
-    this.y = options.y || 0;
+    this.init(image, options);
     this.unit = options.unit || 12;
-    this.shape = new Shape();
 };
+Linda.SpiralSquare.prototype = Object.create(Linda.Spiral.prototype);
 Linda.SpiralSquare.prototype.draw = function(angle) {
     angle = angle || 0;
     var coord = {x: -this.unit, y: 0};
     var pos = this.translate(this.rotate(coord, angle));
-    this.clear()
-        .beginBitmapStroke(this.image)
-        .setStrokeStyle(this.thickness)
+    this.beginDrawing()
         .moveTo(this.x, this.y)
         .lineTo(pos.x, pos.y);
     for (var i = 0; i < 720; i++) {
@@ -56,9 +51,6 @@ Linda.SpiralSquare.prototype.animate = function(rotation, duration) {
             }
         });
     });
-};
-Linda.SpiralSquare.prototype.clear = function() {
-    return this.shape.graphics.clear();
 };
 Linda.SpiralSquare.prototype.rotate = function(coord, angle) {
     return {

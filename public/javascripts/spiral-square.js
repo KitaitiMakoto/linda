@@ -13,10 +13,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             Ticker.addEventListener("tick", stage);
 
             var angle = 1/5  * Math.PI;
-	    var shape = new Linda.SpiralSquare({
+	    var shape = new Linda.SpiralSquare(image, {
 		x: origin.x,
-		y: origin.y,
-		image: image
+		y: origin.y
 	    });
 	    stage.addChild(shape.shape);
 	    shape.animate(24 * Math.PI, 6000);
