@@ -32,26 +32,6 @@ Linda.SpiralSquare.prototype.draw = function(angle) {
         this.shape.graphics.lineTo(pos.x, pos.y);
     }
 };
-Linda.SpiralSquare.prototype.animate = function(rotation, duration) {
-    var scope = this;
-    return new Promise(function(resolve, reject) {
-        var startedAt = null;
-        var requestID = requestAnimationFrame(function(timestamp) {
-            if (! startedAt) {
-                startedAt = timestamp;
-            }
-            var progress = (timestamp - startedAt) / duration;
-            var additional = rotation * progress;
-            scope.draw(additional);
-            if (progress > 1) {
-                cancelAnimationFrame(requestID);
-                resolve(scope);
-            } else {
-                requestID = requestAnimationFrame(arguments.callee);
-            }
-        });
-    });
-};
 Linda.SpiralSquare.prototype.rotate = function(coord, angle) {
     return {
         x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),

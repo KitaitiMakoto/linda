@@ -12,23 +12,3 @@ Linda.SpiralCircle.prototype.draw = function(additionalAngle) {
         this.shape.graphics.lineTo(this.x + x, this.y + y);
     }
 };
-Linda.SpiralCircle.prototype.animate = function(rotation, duration) {
-    var scope = this;
-    return new Promise(function(resolve, reject) {
-        var startedAt = null;
-        var requestID = requestAnimationFrame(function(timestamp) {
-            if (! startedAt) {
-                startedAt = timestamp;
-            }
-            var progress = (timestamp - startedAt) / duration;
-            var additional = rotation * progress;
-            scope.draw(additional);
-            if (progress > 1) {
-                cancelAnimationFrame(requestID);
-                resolve(scope);
-            } else {
-                requestID = requestAnimationFrame(arguments.callee);
-            }
-        });
-    });
-};
