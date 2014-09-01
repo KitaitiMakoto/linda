@@ -61,14 +61,14 @@ Linda.prototype.initImage = function() {
 };
 Linda.prototype.initInput = function(options) {
     return new Promise(function(resolve, reject) {
-        var input = undefined;
         addEventListener("linda.inputready", function(event) {
+            console.info(event.detail.input);
             resolve(event.detail.input);
         });
         if (Linda.Microphone.available()) {
-            input = new Linda.Microphone(navigator, options);
+            new Linda.Microphone(navigator, options);
         } else {
-            input = new Linda.Shake();
+            new Linda.Shake();
         }
     });
 };
