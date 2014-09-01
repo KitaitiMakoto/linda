@@ -13,10 +13,14 @@
         if (! loader) {
             return reject(new Error("linda-loader not found"));
         }
-        loader.addEventListener("load", function(event) {
+        if (loader.readyState !== "loading") {
             resolve();
-            event.target.removeEventListener("load", arguments.callee);
-        });
+        } else {
+            loader.addEventListener("load", function(event) {
+                resolve();
+                event.target.removeEventListener("load", arguments.callee);
+            });
+        }
     });
 }).then(function() {
     return Linda.init(
