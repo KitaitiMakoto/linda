@@ -68,7 +68,7 @@ Linda.prototype.initInput = function(options) {
         if (Linda.Microphone.available()) {
             new Linda.Microphone(navigator, options);
         } else {
-            new Linda.Shake();
+            new Linda.Shake(options);
         }
     });
 };
