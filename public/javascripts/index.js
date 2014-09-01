@@ -9,6 +9,14 @@
     }
 })).then(function() {
     return new Promise(function(resolve, reject) {
+        if (/chrome/i.test(navigator.userAgent)) {
+            resolve();
+        } else {
+            reject(new Error("user agent not chromium or chrome"));
+        }
+    });
+}).then(function() {
+    return new Promise(function(resolve, reject) {
         var loader = document.getElementById("linda-loader");
         if (! loader) {
             return reject(new Error("linda-loader not found"));
