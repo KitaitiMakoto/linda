@@ -62,7 +62,6 @@ Linda.prototype.initImage = function() {
 Linda.prototype.initInput = function(options) {
     return new Promise(function(resolve, reject) {
         addEventListener("linda.inputready", function(event) {
-            console.info(event.detail.input);
             resolve(event.detail.input);
         });
         if (Linda.Microphone.available()) {
