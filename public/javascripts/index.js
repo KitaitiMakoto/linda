@@ -25,6 +25,7 @@
         {whisperRange: {lower: 120, upper: 255}}
     );
 }).then(function(app) {
+    console.warn("FIXME: app.run should accept delay time");
     setTimeout(function() {
         app.run();
     }, 2000);
