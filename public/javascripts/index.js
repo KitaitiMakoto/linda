@@ -1,6 +1,3 @@
-if (! ("Promise" in window)) {
-    throw new Error("Promise not supported");
-}
 (new Promise(function(resolve, reject) {
     if (document.readyState !== "loading") {
         resolve();
