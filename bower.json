@@ -9,9 +9,6 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer",
-    "core-elements": "Polymer/core-elements",
-    "paper-elements": "Polymer/paper-elements",
     "easeljs": "CreateJS/EaselJS",
     "preloadjs": "CreateJS/PreloadJS",
     "tweenjs": "CreateJS/TweenJS",
