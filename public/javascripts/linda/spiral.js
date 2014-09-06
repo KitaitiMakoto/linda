@@ -33,7 +33,8 @@ Linda.Spiral.prototype.animate = function(rotation, duration) {
             }
             var progress = (timestamp - startedAt) / duration;
             var additional = rotation * progress;
-            scope.draw(additional);
+            var gradient = additional;
+            scope.draw(additional, gradient);
             if (progress > 1) {
                 cancelAnimationFrame(requestID);
                 resolve(scope);
