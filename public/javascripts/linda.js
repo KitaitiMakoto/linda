@@ -15,7 +15,7 @@ Linda.init = function(canvas, shapeOptions, inputOptions) {
     if (! ("y" in shapeOptions)) {
         shapeOptions.y = canvas.height / 2;
     }
-    return Promise.all([app.initImage(), app.initInput(inputOptions)])
+    return Promise.all([app.initImage(shapeOptions.imageIndex), app.initInput(inputOptions)])
         .then(function(results) {
             app.shape = Linda.Spiral.createShape(results[0], shapeOptions);
             app.stage.addChild(app.shape.shape);
@@ -39,13 +39,14 @@ Linda.prototype.run = function() {
     Ticker.addEventListener("tick", this.stage);
     this.input.startListening();
 };
-Linda.prototype.initImage = function() {
+Linda.prototype.initImage = function(index) {
     return new Promise(function(resolve, reject) {
         var uris = JSON.parse(document.getElementById("image-uris").textContent);
         if (! uris) {
             return reject(new Error("image-uris not found"));
         }
-        var uri = uris[Math.floor(Math.random() * uris.length)];
+        index = index || Math.floor(Math.random() * uris.length);
+        var uri = uris[index];
         var image = new Image();
         image.addEventListener("load", function(event) {
             resolve(event.target);
