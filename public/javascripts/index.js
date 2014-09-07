@@ -22,7 +22,7 @@
         shapeOptions.imageIndex = match[1];
     }
     if (match = /shape=(.+)/.exec(location.search)) {
-        shapeOptions.constructor = Linda[match[1]];
+        shapeOptions.shapeConstructor = Linda[match[1]];
     }
     if (/input=shake/.test(location.search)) {
         Linda.Microphone.available = function() {return false};
