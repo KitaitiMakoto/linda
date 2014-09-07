@@ -3,6 +3,6 @@
     "bower": "*"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/bower install && ./node_modules/.bin/bower prune"
+    "postinstall": "PATH=./node_modules/.bin:$PATH bower install && bower prune"
   }
 }
