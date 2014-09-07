@@ -34,6 +34,7 @@
     );
 }).then(function(app) {
     app.run(2000);
+    document.querySelector("body").classList.remove("uninitialized");
 }).catch(function(error) {
     console.error(error);
     alert(error);

@@ -1,3 +1,22 @@
 #stage {
     background-color: black;
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 2s;
+}
+
+#loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+body.uninitialized {
+    #stage {
+        opacity: 0;
+    }
+    #loading {
+        display: block;
+    }
 }
