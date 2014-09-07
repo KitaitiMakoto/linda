@@ -21,7 +21,7 @@
     if (match = /image=(\d+)/.exec(location.search)) {
         shapeOptions.imageIndex = match[1];
     }
-    if (match = /shape=(.+)/.exec(location.search)) {
+    if (match = /shape=(\w+)/.exec(location.search)) {
         shapeOptions.shapeConstructor = Linda[match[1]];
     }
     if (/input=shake/.test(location.search)) {
