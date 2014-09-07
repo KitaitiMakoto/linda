@@ -16,21 +16,6 @@
         }
     });
 }).then(function() {
-    return new Promise(function(resolve, reject) {
-        var loader = document.getElementById("linda-loader");
-        if (! loader) {
-            return reject(new Error("linda-loader not found"));
-        }
-        if (loader.readyState !== "loading") {
-            resolve();
-        } else {
-            loader.addEventListener("load", function(event) {
-                resolve();
-                event.target.removeEventListener("load", arguments.callee);
-            });
-        }
-    });
-}).then(function() {
     return Linda.init(
         document.getElementById("stage"),
         null,
