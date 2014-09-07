@@ -1,11 +1,12 @@
 Linda.Spiral = function(image, options) {};
 Linda.Spiral.constructors = [];
-Linda.Spiral.createShape = function(image, options, constructor) {
-    if (! constructor) {
+Linda.Spiral.createShape = function(image, options) {
+    options = options || {};
+    if (! options.constructor) {
         var constructors = Linda.Spiral.constructors;
-        constructor = constructors[Math.floor(Math.random() * constructors.length)];
+        options.constructor = constructors[Math.floor(Math.random() * constructors.length)];
     }
-    return new constructor(image, options);
+    return new options.constructor(image, options);
 };
 Linda.Spiral.prototype.init = function(image, options) {
     options = options || {};
