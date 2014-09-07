@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "bower": "*"
+    "bower": "*",
+    "vulcanize": "*"
   },
   "scripts": {
     "postinstall": "PATH=./node_modules/.bin:$PATH bower install && bower prune"
