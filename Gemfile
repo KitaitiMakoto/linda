@@ -2,7 +2,7 @@ ruby '2.1.2'
 source 'https://rubygems.org'
 
 gem 'rack'
-gem 'thin'
+gem 'puma'
 gem 'sprockets'
 gem 'compass'
 gem 'sprockets-sass'
