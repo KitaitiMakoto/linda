@@ -16,6 +16,9 @@
         }
     });
 }).then(function() {
+    if (/input=shake/.test(location.search)) {
+        Linda.Microphone.available = function() {return false};
+    }
     return Linda.init(
         document.getElementById("stage"),
         null,
