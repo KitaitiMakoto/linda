@@ -2,9 +2,6 @@
   "dependencies": {
     "bower": "*"
   },
-  "devDependencies": {
-    "hookin": "*"
-  },
   "scripts": {
     "postinstall": "./node_modules/.bin/bower install && ./node_modules/.bin/bower prune"
   }
