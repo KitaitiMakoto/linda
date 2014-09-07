@@ -36,4 +36,5 @@
     app.run(2000);
 }).catch(function(error) {
     console.error(error);
+    alert(error);
 });
