@@ -1,6 +1,6 @@
 {
   "dependencies": {
-     "bower": "*"
+    "bower": "*"
   },
   "devDependencies": {
     "hookin": "*"
