@@ -9,10 +9,10 @@
     }
 })).then(function() {
     return new Promise(function(resolve, reject) {
-        if (/chrome/i.test(navigator.userAgent)) {
+        if (/chrome|safari/i.test(navigator.userAgent)) {
             resolve();
         } else {
-            reject(new Error("user agent not chromium or chrome"));
+            reject(new Error("サポートしていないブラウザーです。Google ChromeまたはSafariをお使いください。"));
         }
     });
 }).then(function() {
