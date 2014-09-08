@@ -1,12 +1,9 @@
 Linda.Spiral = function(image, options) {};
 Linda.Spiral.constructors = [];
 Linda.Spiral.createShape = function(image, options) {
-    options = options || {};
-    if (! options.shapeConstructor) {
-        constructors = Linda.Spiral.constructors;
-        options.shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
-    }
-    return new options.shapeConstructor(image, options);
+    var spiral = new Linda.Spiral(image, options);
+    spiral.init(image, options);
+    return spiral;
 };
 Linda.Spiral.prototype.init = function(image, options) {
     options = options || {};
@@ -14,6 +11,10 @@ Linda.Spiral.prototype.init = function(image, options) {
     this.thickness = options.thickness || 24;
     this.x = options.x || 0;
     this.y = options.y || 0;
+    this.expandingRate = options.expandingRate || (this.thickness / 3);
+    this.unit = options.unit || 12;
+    this.rotate = Linda.SpiralSquare.prototype.rotate;
+    this.translate = Linda.SpiralSquare.prototype.translate;
     this.shape = new Shape();
 };
 Linda.Spiral.prototype.beginDrawing = function() {
@@ -25,6 +26,9 @@ Linda.Spiral.prototype.clear = function() {
     return this.shape.graphics.clear();
 };
 Linda.Spiral.prototype.animate = function(rotation, duration) {
+    var constructors = Linda.Spiral.constructors;
+    var shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
+    this.draw = shapeConstructor.prototype.draw;
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
