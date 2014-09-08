@@ -1,11 +1,4 @@
-Linda.Spiral = function(image, options) {};
-Linda.Spiral.constructors = [];
-Linda.Spiral.createShape = function(image, options) {
-    var spiral = new Linda.Spiral(image, options);
-    spiral.init(image, options);
-    return spiral;
-};
-Linda.Spiral.prototype.init = function(image, options) {
+Linda.Spiral = function(image, options) {
     options = options || {};
     this.image = image;
     this.thickness = options.thickness || 24;
@@ -17,6 +10,7 @@ Linda.Spiral.prototype.init = function(image, options) {
     this.translate = Linda.SpiralSquare.prototype.translate;
     this.shape = new Shape();
 };
+Linda.Spiral.constructors = [];
 Linda.Spiral.prototype.beginDrawing = function() {
     return this.clear()
         .beginBitmapStroke(this.image)

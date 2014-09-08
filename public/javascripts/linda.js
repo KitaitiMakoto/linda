@@ -17,7 +17,7 @@ Linda.init = function(canvas, shapeOptions, inputOptions) {
     }
     return Promise.all([app.initImage(shapeOptions.imageIndex), app.initInput(inputOptions)])
         .then(function(results) {
-            app.shape = Linda.Spiral.createShape(results[0], shapeOptions);
+            app.shape = new Linda.Spiral(results[0], shapeOptions);
             app.stage.addChild(app.shape.shape);
             app.input = results[1];
             return app;
