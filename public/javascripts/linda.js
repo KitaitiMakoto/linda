@@ -15,7 +15,7 @@ Linda.init = function(canvas, shapeOptions, inputOptions) {
     if (! ("y" in shapeOptions)) {
         shapeOptions.y = canvas.height / 2;
     }
-    return Promise.all([app.initImage(shapeOptions.imageIndex), app.initInput(inputOptions)])
+    return Promise.all([app.initImages(), app.initInput(inputOptions)])
         .then(function(results) {
             app.shape = new Linda.Spiral(results[0], shapeOptions);
             app.stage.addChild(app.shape.shape);
@@ -42,26 +42,23 @@ Linda.prototype.run = function(startIn) {
         app.input.startListening();
     }, startIn);
 };
-Linda.prototype.initImage = function(index) {
-    return new Promise(function(resolve, reject) {
-        var uris = JSON.parse(document.getElementById("image-uris").textContent);
-        if (! uris) {
-            return reject(new Error("image-uris not found"));
-        }
-        index = index || Math.floor(Math.random() * uris.length);
-        var uri = uris[index];
-        var image = new Image();
-        image.addEventListener("load", function(event) {
-            resolve(event.target);
+Linda.prototype.initImages = function() {
+    var uris = JSON.parse(document.getElementById("image-uris").textContent);
+    return Promise.all(uris.map(function(uri) {
+        return new Promise(function(resolve, reject) {
+            var image = new Image();
+            image.addEventListener("load", function(event) {
+                resolve(event.target);
+            });
+            image.addEventListener("error", function(event) {
+                reject(new Error(event.srcElement.src + " not found"));
+            });
+            image.addEventListener("abort", function(event) {
+                reject(new Error("request for " + event.srcElement.src + " aborted"));
+            });
+            image.src = uri;
         });
-        image.addEventListener("error", function(event) {
-            reject(new Error(event.srcElement.src + " not found"));
-        });
-        image.addEventListener("abort", function(event) {
-            reject(new Error("request for " + event.srcElement.src + " aborted"));
-        });
-        image.src = uri;
-    });
+    }));
 };
 Linda.prototype.initInput = function(options) {
     return new Promise(function(resolve, reject) {

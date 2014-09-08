@@ -1,6 +1,6 @@
-Linda.Spiral = function(image, options) {
+Linda.Spiral = function(images, options) {
     options = options || {};
-    this.image = image;
+    this.images = images;
     this.thickness = options.thickness || 24;
     this.x = options.x || 0;
     this.y = options.y || 0;
@@ -21,6 +21,7 @@ Linda.Spiral.prototype.animate = function(rotation, duration) {
     var constructors = Linda.Spiral.constructors;
     var shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
     this.draw = shapeConstructor.draw;
+    this.image = this.images[Math.floor(Math.random() * this.images.length)];
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
