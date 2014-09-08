@@ -1,8 +1,4 @@
-Linda.SpiralSquare = function(image, options) {
-    options = options || {};
-    this.init(image, options);
-    this.unit = options.unit || 12;
-};
+Linda.SpiralSquare = function() {};
 Linda.Spiral.constructors.push(Linda.SpiralSquare);
 Linda.SpiralSquare.prototype = Object.create(Linda.Spiral.prototype);
 Linda.SpiralSquare.prototype.draw = function(angle) {
