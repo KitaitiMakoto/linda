@@ -6,8 +6,6 @@ Linda.Spiral = function(image, options) {
     this.y = options.y || 0;
     this.expandingRate = options.expandingRate || (this.thickness / 3);
     this.unit = options.unit || 12;
-    this.rotate = Linda.SpiralSquare.prototype.rotate;
-    this.translate = Linda.SpiralSquare.prototype.translate;
     this.shape = new Shape();
 };
 Linda.Spiral.constructors = [];
@@ -42,4 +40,16 @@ Linda.Spiral.prototype.animate = function(rotation, duration) {
             }
         });
     });
+};
+Linda.Spiral.prototype.rotate = function(coord, angle) {
+    return {
+        x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
+        y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
+    };
+};
+Linda.Spiral.prototype.translate = function(coord) {
+    return {
+        x: coord.x + this.x,
+        y: coord.y + this.y
+    }
 };

@@ -33,15 +33,3 @@ Linda.SpiralSquare.prototype.draw = function(angle) {
         this.shape.graphics.lineTo(pos.x, pos.y);
     }
 };
-Linda.SpiralSquare.prototype.rotate = function(coord, angle) {
-    return {
-        x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
-        y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
-    };
-};
-Linda.SpiralSquare.prototype.translate = function(coord) {
-    return {
-        x: coord.x + this.x,
-        y: coord.y + this.y
-    }
-};
