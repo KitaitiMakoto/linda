@@ -17,11 +17,18 @@ Linda.Spiral.prototype.beginDrawing = function() {
 Linda.Spiral.prototype.clear = function() {
     return this.shape.graphics.clear();
 };
-Linda.Spiral.prototype.animate = function(rotation, duration) {
+Linda.Spiral.prototype.getDrawFunction = function() {
     var constructors = Linda.Spiral.constructors;
     var shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
-    this.draw = shapeConstructor.draw;
-    this.image = this.images[Math.floor(Math.random() * this.images.length)];
+    return shapeConstructor.draw;
+};
+Linda.Spiral.prototype.getImage = function() {
+    var images = this.images;
+    return images[Math.floor(Math.random() * images.length)];
+};
+Linda.Spiral.prototype.animate = function(rotation, duration) {
+    this.draw = this.getDrawFunction();
+    this.image = this.getImage();
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
