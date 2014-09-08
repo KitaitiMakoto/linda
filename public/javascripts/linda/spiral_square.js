@@ -1,7 +1,6 @@
-Linda.SpiralSquare = function() {};
+Linda.SpiralSquare = {};
 Linda.Spiral.constructors.push(Linda.SpiralSquare);
-Linda.SpiralSquare.prototype = Object.create(Linda.Spiral.prototype);
-Linda.SpiralSquare.prototype.draw = function(angle) {
+Linda.SpiralSquare.draw = function(angle) {
     angle = angle || 0;
     var coord = {x: -this.unit, y: 0};
     var pos = this.translate(this.rotate(coord, angle));

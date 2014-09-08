@@ -1,7 +1,6 @@
-Linda.SpiralCircle = function() {};
+Linda.SpiralCircle = {};
 Linda.Spiral.constructors.push(Linda.SpiralCircle);
-Linda.SpiralCircle.prototype = Object.create(Linda.Spiral.prototype);
-Linda.SpiralCircle.prototype.draw = function(rotation, gradient) {
+Linda.SpiralCircle.draw = function(rotation, gradient) {
     gradient = gradient || 0;
     this.beginDrawing();
     for (var rot = 0; rot <= rotation; rot += 0.1) {

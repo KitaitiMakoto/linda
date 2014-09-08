@@ -20,7 +20,7 @@ Linda.Spiral.prototype.clear = function() {
 Linda.Spiral.prototype.animate = function(rotation, duration) {
     var constructors = Linda.Spiral.constructors;
     var shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
-    this.draw = shapeConstructor.prototype.draw;
+    this.draw = shapeConstructor.draw;
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
