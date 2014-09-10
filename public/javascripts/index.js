@@ -26,8 +26,22 @@
         {whisperRange: {lower: 120, upper: 255}}
     );
 }).then(function(app) {
-    app.run(2000);
+    var promise = new Promise(function(resolve, reject) {
+        var listener = function(event) {
+            ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
+                event.target.removeEventListener(eventName, listener);
+                resolve(app);
+            });
+            delete listener;
+        };
+        ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
+            app.stage.canvas.addEventListener(eventName, listener);
+        });
+    });
     document.querySelector("body").classList.remove("uninitialized");
+    return promise;
+}).then(function(app) {
+    app.run();
 }).catch(function(error) {
     console.error(error);
     alert(error);
