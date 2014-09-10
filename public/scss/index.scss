@@ -1,5 +1,11 @@
+$canvas-color: black;
+
+body {
+    margin: 0;
+    padding: 0;
+}
 #stage {
-    background-color: black;
+    background-color: $canvas-color;
     opacity: 1;
     transition-property: opacity;
     transition-duration: 2s;
@@ -10,6 +16,29 @@
     top: 0;
     left: 0;
     display: none;
+}
+
+#state {
+    $radius: 0.5em;
+    position: absolute;
+    top: $radius;
+    left: 0.5em;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: $radius * 2;
+    height: $radius * 2;
+    border-style: solid;
+    border-width: $radius / 5;
+    border-color: $canvas-color;
+    border-radius: $radius;
+    background-color: white;
+    &.active {
+        border-color: red;
+    }
+    &.animating {
+        display: none;
+    }
 }
 
 body.uninitialized {

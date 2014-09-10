@@ -21,5 +21,4 @@ Linda.State.View.prototype.render = function(state, oldState) {
         return;
     }
     this.element.setAttribute("class", state);
-    this.element.textContent = state;
 };
