@@ -1,4 +1,4 @@
-Linda.Spiral = function(images, options) {
+Linda.Animation = function(images, options) {
     options = options || {};
     this.images = images;
     this.thickness = options.thickness || 24;
@@ -8,25 +8,25 @@ Linda.Spiral = function(images, options) {
     this.unit = options.unit || 12;
     this.shape = new Shape();
 };
-Linda.Spiral.constructors = [];
-Linda.Spiral.prototype.beginDrawing = function() {
+Linda.Animation.constructors = [];
+Linda.Animation.prototype.beginDrawing = function() {
     return this.clear()
         .beginBitmapStroke(this.image)
         .setStrokeStyle(this.thickness);
 };
-Linda.Spiral.prototype.clear = function() {
+Linda.Animation.prototype.clear = function() {
     return this.shape.graphics.clear();
 };
-Linda.Spiral.prototype.getDrawFunction = function() {
-    var constructors = Linda.Spiral.constructors;
+Linda.Animation.prototype.getDrawFunction = function() {
+    var constructors = Linda.Animation.constructors;
     var shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
     return shapeConstructor.draw;
 };
-Linda.Spiral.prototype.getImage = function() {
+Linda.Animation.prototype.getImage = function() {
     var images = this.images;
     return images[Math.floor(Math.random() * images.length)];
 };
-Linda.Spiral.prototype.animate = function(rotation, duration) {
+Linda.Animation.prototype.animate = function(rotation, duration) {
     this.draw = this.getDrawFunction();
     this.image = this.getImage();
     var scope = this;
@@ -49,13 +49,13 @@ Linda.Spiral.prototype.animate = function(rotation, duration) {
         });
     });
 };
-Linda.Spiral.prototype.rotate = function(coord, angle) {
+Linda.Animation.prototype.rotate = function(coord, angle) {
     return {
         x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
         y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
     };
 };
-Linda.Spiral.prototype.translate = function(coord) {
+Linda.Animation.prototype.translate = function(coord) {
     return {
         x: coord.x + this.x,
         y: coord.y + this.y

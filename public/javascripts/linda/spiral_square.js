@@ -1,5 +1,5 @@
 Linda.SpiralSquare = {};
-Linda.Spiral.constructors.push(Linda.SpiralSquare);
+Linda.Animation.constructors.push(Linda.SpiralSquare);
 Linda.SpiralSquare.draw = function(angle) {
     angle = angle || 0;
     var coord = {x: -this.unit, y: 0};
