@@ -67,6 +67,7 @@ Linda.Microphone.prototype.handleStreamError = function(error) {
     alert(error);
 };
 Linda.Microphone.prototype.startListening = function() {
+    this.fire("listeningstart");
     this.listener.requestID = requestAnimationFrame(this.listener);
 };
 Linda.Microphone.prototype.stopListening = function() {

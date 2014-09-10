@@ -23,6 +23,7 @@ Linda.Shake.createListener = function(scope) {
 };
 Linda.Shake.prototype = Object.create(Linda.Input.prototype);
 Linda.Shake.prototype.startListening = function() {
+    this.fire("listeningstart");
     window.addEventListener("shake", this.listener);
 };
 Linda.Shake.prototype.stopListening = function() {

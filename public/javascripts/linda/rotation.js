@@ -23,6 +23,7 @@ Linda.Rotation.createListener = function(scope) {
 };
 Linda.Rotation.prototype = Object.create(Linda.Input.prototype);
 Linda.Rotation.prototype.startListening = function() {
+    this.fire("listeningstart");
     window.addEventListener("devicemotion", this.listener);
 };
 Linda.Rotation.prototype.stopListening = function() {
