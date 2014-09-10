@@ -16,7 +16,7 @@ Linda.transition = {
     "inputready":        "waiting",
     "listeningstart":    "listening",
     "inputstart":        "inputting",
-    "inputend":          "aniating",
+    "inputend":          "animating",
     "inputsensingstart": "active",
     "inputsensingstop":  "inactive"
 };
