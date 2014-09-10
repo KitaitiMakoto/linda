@@ -8,7 +8,7 @@ Linda.Animation = function(images, options) {
     this.unit = options.unit || 12;
     this.shape = new Shape();
 };
-Linda.Animation.constructors = [];
+Linda.Animation.patterns = [];
 Linda.Animation.prototype.beginDrawing = function() {
     return this.clear()
         .beginBitmapStroke(this.image)
@@ -18,9 +18,9 @@ Linda.Animation.prototype.clear = function() {
     return this.shape.graphics.clear();
 };
 Linda.Animation.prototype.getDrawFunction = function() {
-    var constructors = Linda.Animation.constructors;
-    var shapeConstructor = constructors[Math.floor(Math.random() * constructors.length)];
-    return shapeConstructor.draw;
+    var patterns = Linda.Animation.patterns;
+    var pattern = patterns[Math.floor(Math.random() * patterns.length)];
+    return pattern.draw;
 };
 Linda.Animation.prototype.getImage = function() {
     var images = this.images;

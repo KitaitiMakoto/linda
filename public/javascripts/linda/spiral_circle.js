@@ -1,5 +1,5 @@
 Linda.SpiralCircle = {};
-Linda.Animation.constructors.push(Linda.SpiralCircle);
+Linda.Animation.patterns.push(Linda.SpiralCircle);
 Linda.SpiralCircle.draw = function(rotation, gradient) {
     gradient = gradient || 0;
     this.beginDrawing();
