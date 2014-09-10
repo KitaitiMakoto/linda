@@ -6,18 +6,18 @@ Linda = function(canvas) {
     canvas.height = window.innerHeight;
     this.stage = new Stage(canvas);
 };
-Linda.init = function(canvas, shapeOptions, inputOptions) {
+Linda.init = function(canvas, animationOptions, inputOptions) {
     var app = new Linda(canvas);
-    shapeOptions = shapeOptions || {};
-    if (! ("x" in shapeOptions)) {
-        shapeOptions.x = canvas.width / 2;
+    animationOptions = animationOptions || {};
+    if (! ("x" in animationOptions)) {
+        animationOptions.x = canvas.width / 2;
     }
-    if (! ("y" in shapeOptions)) {
-        shapeOptions.y = canvas.height / 2;
+    if (! ("y" in animationOptions)) {
+        animationOptions.y = canvas.height / 2;
     }
     return Promise.all([app.initImages(), app.initInput(inputOptions)])
         .then(function(results) {
-            app.shape = new Linda.Animation(results[0], shapeOptions);
+            app.shape = new Linda.Animation(results[0], animationOptions);
             app.stage.addChild(app.shape.shape);
             app.input = results[1];
             return app;
