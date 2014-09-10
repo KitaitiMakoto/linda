@@ -16,20 +16,13 @@
         }
     });
 }).then(function() {
-    var animationOptions = {};
     var match;
-    if (match = /image=(\d+)/.exec(location.search)) {
-        animationOptions.imageIndex = match[1];
-    }
-    if (match = /shape=(\w+)/.exec(location.search)) {
-        animationOptions.shapeConstructor = Linda[match[1]];
-    }
     if (/input=shake/.test(location.search)) {
         Linda.Microphone.available = function() {return false};
     }
     return Linda.init(
         document.getElementById("stage"),
-        animationOptions,
+        {},
         {whisperRange: {lower: 120, upper: 255}}
     );
 }).then(function(app) {
