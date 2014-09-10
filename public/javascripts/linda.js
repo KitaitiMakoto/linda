@@ -8,7 +8,7 @@ Linda = function(canvas) {
     var self = this;
     Object.keys(Linda.transition).forEach(function(eventName) {
         addEventListener("linda." + eventName, function() {
-            self.setState(Linda.transition[eventName]);
+            self.state.set(Linda.transition[eventName]);
         });
     });
 };
@@ -22,8 +22,7 @@ Linda.transition = {
 };
 Linda.init = function(canvas, animationOptions, inputOptions) {
     var app = new Linda(canvas);
-    app.stateView = document.getElementById("state");
-    app.setState("initializing");
+    app.initState();
     animationOptions = animationOptions || {};
     if (! ("x" in animationOptions)) {
         animationOptions.x = canvas.width / 2;
@@ -38,11 +37,6 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
             app.input = results[1];
             return app;
         });
-};
-Linda.prototype.setState = function(state) {
-    this.state = state;
-    this.stateView.setAttribute("class", state);
-    this.stateView.textContent = this.state;
 };
 Linda.prototype.run = function() {
     var rotation = 24 * Math.PI;
@@ -89,6 +83,10 @@ Linda.prototype.initInput = function(options) {
             new Linda.Shake(options);
         }
     });
+};
+Linda.prototype.initState = function() {
+    this.state = new Linda.State();
+    this.state.view = new Linda.State.View(document.getElementById("state"), this.state);
 };
 
 // Obsolete
