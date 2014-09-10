@@ -23,8 +23,7 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
             return app;
         });
 };
-Linda.prototype.run = function(startIn) {
-    startIn = startIn || 0;
+Linda.prototype.run = function() {
     var rotation = 24 * Math.PI;
     var duration = 6000;
     var app = this;
@@ -38,9 +37,7 @@ Linda.prototype.run = function(startIn) {
             });
     });
     Ticker.addEventListener("tick", this.stage);
-    setTimeout(function() {
-        app.input.startListening();
-    }, startIn);
+    app.input.startListening();
 };
 Linda.prototype.initImages = function() {
     var uris = JSON.parse(document.getElementById("image-uris").textContent);
