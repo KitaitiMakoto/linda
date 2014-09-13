@@ -6,6 +6,7 @@ Linda.Splash.run = function() {
             return new Promise(function(resolve, reject) {
                 setTimeout(function() {
                     character.addEventListener("transitionend", resolve);
+                    character.addEventListener("webkitTransitionEnd", resolve);
                     character.classList.add("splashed");
                 }, index * 300);
             })
