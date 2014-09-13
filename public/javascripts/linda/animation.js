@@ -29,6 +29,7 @@ Linda.Animation.prototype.getImage = function() {
 Linda.Animation.prototype.animate = function(rotation, duration) {
     this.draw = this.getDrawFunction();
     this.image = this.getImage();
+    this.rotation = rotation;
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
@@ -37,9 +38,8 @@ Linda.Animation.prototype.animate = function(rotation, duration) {
                 startedAt = timestamp;
             }
             var progress = (timestamp - startedAt) / duration;
-            var additional = rotation * progress;
-            var gradient = additional;
-            scope.draw(additional, gradient);
+            var gradient = scope.rotation * progress;
+            scope.draw(progress, gradient);
             if (progress > 1) {
                 cancelAnimationFrame(requestID);
                 resolve(scope);

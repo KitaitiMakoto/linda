@@ -1,7 +1,8 @@
 Linda.SpiralSquare = {};
 Linda.Animation.patterns.push(Linda.SpiralSquare);
-Linda.SpiralSquare.draw = function(angle) {
-    angle = angle || 0;
+Linda.SpiralSquare.draw = function(progress) {
+    progress = progress || 0;
+    var angle = this.rotation * progress;
     var coord = {x: -this.unit, y: 0};
     var pos = this.translate(this.rotate(coord, angle));
     this.beginDrawing()
