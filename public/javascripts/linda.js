@@ -45,7 +45,7 @@ Linda.prototype.run = function() {
     addEventListener("linda.inputend", function() {
         app.input.stopListening();
         app.shape
-            .animate(rotation, duration)
+            .animate(rotation + Math.random(), duration + Math.random() * 100)
             .then(function(shape) {
                 shape.clear();
                 app.input.startListening();
