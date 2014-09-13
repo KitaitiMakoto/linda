@@ -5,8 +5,8 @@ Linda.PassingLines.draw = function(progress) {
     var canvas = this.shape.parent.canvas;
     var canvasWidth = canvas.width;
     var length = Math.min(canvasWidth * progress, canvasWidth);
-    var halfWidth = this.thickness / 2;
-    var startPoint = {x: -canvasWidth / 2, y: -canvas.height / 2 + halfWidth}
+    var lineWidth = canvas.height / 2;
+    var startPoint = {x: -canvasWidth / 2, y: -canvas.height / 2 + lineWidth / 2}
     var endPoint = {x: startPoint.x + length, y: startPoint.y};
     var mirrorStartPoint = {x: -startPoint.x, y: -startPoint.y};
     var mirrorEndPoint = {x: -endPoint.x, y: -endPoint.y};
@@ -17,6 +17,7 @@ Linda.PassingLines.draw = function(progress) {
     mirrorEndPoint = this.translate(this.rotate(mirrorEndPoint, gradient));
 
     this.beginDrawing()
+        .setStrokeStyle(lineWidth)
         .moveTo(startPoint.x, startPoint.y)
         .lineTo(endPoint.x, endPoint.y)
         .moveTo(mirrorStartPoint.x, mirrorStartPoint.y)
