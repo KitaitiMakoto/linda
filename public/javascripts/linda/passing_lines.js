@@ -1,20 +1,15 @@
 Linda.PassingLines = function() {};
 Linda.Animation.patterns.push(Linda.PassingLines);
-Linda.PassingLines.draw = function(rotation, gradient) {
-    gradient = gradient || 0;
-    var progress = rotation;
+Linda.PassingLines.draw = function(progress) {
+    var gradient = this.rotation || 0;
+    var canvas = this.shape.parent.canvas;
+    var canvasWidth = canvas.width;
+    var length = Math.min(canvasWidth * progress, canvasWidth);
     var halfWidth = this.thickness / 2;
-
-
-console.warn("FIXME");
-gradient = window.gradient;
-var startPoint = {x: window.startX, y: window.startY + halfWidth}
-var length = Math.abs(window.startX) * 2 * progress;
-var endPoint = {x: startPoint.x + length, y: startPoint.y};
-var mirrorStartPoint = {x: -startPoint.x, y: -startPoint.y};
-var mirrorEndPoint = {x: -endPoint.x, y: -endPoint.y};
-
-
+    var startPoint = {x: -canvasWidth / 2, y: -canvas.height / 2 + halfWidth}
+    var endPoint = {x: startPoint.x + length, y: startPoint.y};
+    var mirrorStartPoint = {x: -startPoint.x, y: -startPoint.y};
+    var mirrorEndPoint = {x: -endPoint.x, y: -endPoint.y};
 
     startPoint = this.translate(this.rotate(startPoint, gradient));
     endPoint = this.translate(this.rotate(endPoint, gradient));

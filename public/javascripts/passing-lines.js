@@ -11,11 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
             thickness: canvas.height / 2
         });
         stage.addChild(animation.shape);
-window.gradient = 0.3;
-window.startX = -canvas.width / 2;
-window.startY = -canvas.height / 2;
         setTimeout(function() {
-            animation.animate(1, 1000);
+            animation.animate(Math.random() * Math.PI, 600);
         }, 600);
         Ticker.addEventListener("tick", stage);
     });
