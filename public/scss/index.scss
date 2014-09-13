@@ -18,23 +18,19 @@ body {
     display: none;
 }
 
-#state {
-    $radius: 0.5em;
+#speech-text {
     position: absolute;
-    top: $radius;
-    left: 0.5em;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: $radius * 2;
-    height: $radius * 2;
-    border-style: solid;
-    border-width: $radius / 5;
-    border-color: $canvas-color;
-    border-radius: $radius;
-    background-color: white;
+    top: 1em;
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+    color: white;
     &.active {
-        border-color: red;
+      $text-shadow-color: #ff0000;
+      text-shadow: -2px 0 0 $text-shadow-color,
+                   0 -2px 0 $text-shadow-color,
+                   2px 0 0 $text-shadow-color,
+                   0 2px 0 $text-shadow-color;
     }
     &.animating {
         display: none;

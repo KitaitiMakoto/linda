@@ -86,7 +86,7 @@ Linda.prototype.initInput = function(options) {
 };
 Linda.prototype.initState = function() {
     this.state = new Linda.State();
-    this.state.view = new Linda.State.View(document.getElementById("state"), this.state);
+    new Linda.State.View(document.getElementById("speech-text"), this.state);
 };
 
 // Obsolete
