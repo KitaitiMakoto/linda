@@ -11,6 +11,7 @@ Linda.Microphone = function(navigator, options) {
     this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
     this.listener = Linda.Microphone.createListener(this);
     this.initAudioContext(options.decibelsRange);
+    this.controls = this.initControls(options.controls);
     this.initInput();
 };
 Linda.Microphone.available = function() {
@@ -72,6 +73,33 @@ Linda.Microphone.prototype.startListening = function() {
 };
 Linda.Microphone.prototype.stopListening = function() {
     cancelAnimationFrame(this.listener.requestID);
+};
+Linda.Microphone.prototype.initControls = function(form) {
+    if (! form) {
+        return form;
+    }
+    form.addEventListener("submit", function(event) {
+        event.target.preventDefault();
+    });
+    var inputs = form.elements;
+    var microphone = this;
+    ["lower", "upper"].forEach(function(prop) {
+        var name = "whisper-range-" + prop;
+        var input = inputs[name];
+        var output = form.querySelector('output[for="' + name + '"]');
+        output.value = input.value = microphone.whisperRange[prop];
+        input.addEventListener("input", function(event) {
+            var value = Number(event.target.value);
+            if ((prop === "lower") && (value > microphone.whisperRange.upper)) {
+                value = input.value = microphone.whisperRange.upper;
+            }
+            if (prop === "upper" && value < microphone.whisperRange.lower) {
+                value = input.value = microphone.whisperRange.lower;
+            }
+            output.value = microphone.whisperRange[prop] = value;
+        });
+    });
+    return form;
 };
 Linda.Microphone.prototype.initInput = function() {
     this.navigator.getUserMedia(

@@ -23,7 +23,7 @@
     return Linda.init(
         document.getElementById("stage"),
         {},
-        {whisperRange: {lower: 120, upper: 255}}
+        {whisperRange: {lower: 120, upper: 255}, controls: document.getElementById("microphone-controls")}
     );
 }).then(function(app) {
     var promise = new Promise(function(resolve, reject) {
