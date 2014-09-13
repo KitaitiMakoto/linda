@@ -104,6 +104,7 @@ Linda.Microphone.prototype.initControls = function(form) {
     });
     this.volumeRange = inputs["whisper-range-current"];
     this.volumeOutput = form.querySelector('output[for="whisper-range-current"]');
+    form.style.display = "block";
     return form;
 };
 Linda.Microphone.prototype.initInput = function() {

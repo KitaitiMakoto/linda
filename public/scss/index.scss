@@ -37,6 +37,10 @@ body {
     }
 }
 
+#microphone-controls {
+    display: none;
+}
+
 body.uninitialized {
     #stage {
         opacity: 0;
