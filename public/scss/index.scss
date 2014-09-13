@@ -11,11 +11,29 @@ body {
     transition-duration: 2s;
 }
 
-#loading {
+#splash {
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
+    width: 100%;
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    font-size: 6em;
+    color: white;
+    text-shadow: -2px 0 0 black,
+                 0 -2px 0 black,
+                 2px 0 0 black,
+                 0 2px 0 black;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+    span {
+        &.splashed {
+            transform: rotate3d(0, 1, 0, 360deg);
+            transition-property: transform;
+            transition-duration: 1s;
+        }
+    }
 }
 
 #speech-text {
@@ -37,7 +55,7 @@ body {
     }
 }
 
-#microphone-controls {
+#microphone-controls.uninitialized {
     display: none;
 }
 
@@ -45,7 +63,7 @@ body.uninitialized {
     #stage {
         opacity: 0;
     }
-    #loading {
-        display: block;
+    #splash {
+        opacity: 1;
     }
 }

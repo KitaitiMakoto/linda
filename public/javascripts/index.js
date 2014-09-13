@@ -20,12 +20,16 @@
     if (/input=shake/.test(location.search)) {
         Linda.Microphone.available = function() {return false};
     }
-    return Linda.init(
-        document.getElementById("stage"),
-        {},
-        {whisperRange: {lower: 120, upper: 255}, controls: document.getElementById("microphone-controls")}
-    );
+    return Promise.all([
+	Linda.init(
+            document.getElementById("stage"),
+            {},
+            {whisperRange: {lower: 120, upper: 255}, controls: document.getElementById("microphone-controls")}
+        ),
+	Linda.Splash.run()
+    ]);
 }).then(function(app) {
+    app = app[0];
     var promise = new Promise(function(resolve, reject) {
         var listener = function(event) {
             ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
