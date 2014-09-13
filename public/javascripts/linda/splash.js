@@ -1,20 +1,14 @@
 Linda.Splash = function() {};
 Linda.Splash.run = function() {
-    return Array.prototype.reduce.call(
+    return Promise.all(Array.prototype.map.call(
         document.querySelectorAll("#splash span"),
-        function(splash, character) {
-            return splash.then(function() {
-                return new Promise(function(resolve, reject) {
-                    setTimeout(function() {
-                        character.classList.add("splashed");
-                        resolve();
-                    }, 500);
-                })
-            });
-        }, Promise.resolve()
-    ).then(function() {
-        return new Promise(function(resolve, reject) {
-            setTimeout(resolve, 1200);
-        });
-    });
+        function(character, index) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    character.addEventListener("transitionend", resolve);
+                    character.classList.add("splashed");
+                }, index * 300);
+            })
+        }
+    ));
 };
