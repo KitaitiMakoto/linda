@@ -54,6 +54,9 @@ Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
     } else {
         this.stopInputting(timestamp, {vol: max.vol, freq: max.freq, state: "tool loud"});
     }
+    if (this.controls) {
+        this.volumeRange.value = this.volumeOutput.value = max.vol;
+    }
 };
 Linda.Microphone.prototype.initAudioContext = function(decibelsRange) {
     decibelsRange = decibelsRange || {min: -100, max: -50};
@@ -99,6 +102,8 @@ Linda.Microphone.prototype.initControls = function(form) {
             output.value = microphone.whisperRange[prop] = value;
         });
     });
+    this.volumeRange = inputs["whisper-range-current"];
+    this.volumeOutput = form.querySelector('output[for="whisper-range-current"]');
     return form;
 };
 Linda.Microphone.prototype.initInput = function() {
