@@ -1,6 +1,8 @@
 <script>
   "use script";
   var createjs = this;
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  AudioContext = AudioContext || webkitAudioContext || mozAudioContext;
 </script>
 <script src="components/easeljs/lib/easeljs-0.7.1.min.js"></script>
 <script src="javascripts/linda.js"></script>

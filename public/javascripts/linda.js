@@ -1,6 +1,3 @@
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
-
 Linda = function(canvas) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
