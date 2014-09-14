@@ -67,6 +67,35 @@ body {
     display: none;
 }
 
+#shake-feedback {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    & > div {
+        position: relative;
+        margin: 0 auto;
+        padding: 0;
+        width: 30%;
+        height: 100%;
+        & > p {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+            margin: 0;
+            padding: auto 0;
+            text-align: center;
+            background-color: white;
+        }
+    }
+    &.animating {
+        opacity: 0;
+    }
+}
+
 body.uninitialized {
     #stage {
         opacity: 0;

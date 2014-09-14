@@ -83,7 +83,8 @@ Linda.prototype.initInput = function(options) {
 };
 Linda.prototype.initState = function() {
     this.state = new Linda.State();
-    new Linda.State.View(document.getElementById("speech-text"), this.state);
+    var id = Linda.Microphone.available() ? "speech-text" : "shake-feedback";
+    new Linda.State.View(document.getElementById(id), this.state);
 };
 
 // Obsolete

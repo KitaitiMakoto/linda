@@ -29,3 +29,22 @@ Linda.Shake.prototype.startListening = function() {
 Linda.Shake.prototype.stopListening = function() {
     window.removeEventListener("shake", this.listener);
 };
+
+
+console.warn("FIXME");
+addEventListener("DOMContentLoaded", function() {
+    var shakeCount = 0;
+    var shakeGauge = document.querySelector("#shake-feedback p");
+    var renderShakeGauge = function() {
+        shakeGauge.style.height = (shakeCount / 12) * 100 + "%";
+        shakeGauge.textContent = shakeCount + "回";
+    };
+    addEventListener("shake", function() {
+        shakeCount++;
+        renderShakeGauge();
+    });
+    addEventListener("linda.listeningstart", function() {
+        shakeCount = 0;
+        renderShakeGauge();
+    });
+});
