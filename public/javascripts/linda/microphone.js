@@ -8,7 +8,7 @@ Linda.Microphone = function(navigator, options) {
     options = options || {};
     this.init(options);
     this.navigator = navigator;
-    this.whisperRange = options.whisperRange || {lower: 200, upper: 255};
+    this.whisperRange = options.whisperRange || {lower: 120, upper: 255};
     this.listener = Linda.Microphone.createListener(this);
     this.initAudioContext(options.decibelsRange);
     this.controls = this.initControls(options.controls);

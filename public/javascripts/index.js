@@ -23,7 +23,7 @@
 	Linda.init(
             document.getElementById("stage"),
             {},
-            {whisperRange: {lower: 120, upper: 255}, controls: document.getElementById("microphone-controls")}
+            {controls: document.getElementById("microphone-controls")}
         ),
 	Linda.Splash.run()
     ]);
