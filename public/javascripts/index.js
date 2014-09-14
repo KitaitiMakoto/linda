@@ -16,7 +16,6 @@
         }
     });
 }).then(function() {
-    var match;
     if (/input=shake/.test(location.search)) {
         Linda.Microphone.available = function() {return false};
     }
