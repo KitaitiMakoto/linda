@@ -27,8 +27,8 @@
         ),
 	Linda.Splash.run()
     ]);
-}).then(function(app) {
-    app = app[0];
+}).then(function(appAndSplash) {
+    var app = appAndSplash[0];
     var promise = new Promise(function(resolve, reject) {
         var listener = function(event) {
             ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
