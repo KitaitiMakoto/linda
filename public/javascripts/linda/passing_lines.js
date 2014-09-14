@@ -1,4 +1,4 @@
-Linda.PassingLines = function() {};
+Linda.PassingLines = {};
 Linda.Animation.patterns.push(Linda.PassingLines);
 Linda.PassingLines.draw = function(progress) {
     var gradient = this.rotation || 0;

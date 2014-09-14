@@ -37,7 +37,7 @@ addEventListener("DOMContentLoaded", function() {
     var shakeGauge = document.querySelector("#shake-feedback p");
     var renderShakeGauge = function() {
         shakeGauge.style.height = (shakeCount / 12) * 100 + "%";
-        shakeGauge.textContent = shakeCount + "回";
+        shakeGauge.textContent = shakeCount === 0 ? "" : shakeCount + "回";
     };
     addEventListener("shake", function() {
         shakeCount++;

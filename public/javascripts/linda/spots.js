@@ -1,4 +1,4 @@
-Linda.Spots = function() {};
+Linda.Spots = {};
 Linda.Animation.patterns.push(Linda.Spots);
 Linda.Spots.draw = function(progress) {
     var canvas = this.shape.parent.canvas;

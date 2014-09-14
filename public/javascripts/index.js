@@ -19,6 +19,33 @@
     if (/input=shake/.test(location.search)) {
         Linda.Microphone.available = function() {return false};
     }
+    if (location.search.indexOf("env=development") !== -1) {
+        var devArea = document.getElementById("development")
+        var ul = devArea.querySelector("ul");
+        Object.keys(Linda).filter(function(prop) {
+            return Linda.Animation.patterns.indexOf(Linda[prop]) !== -1;
+        }).forEach(function(prop) {
+            var li = document.createElement("li");
+            var button = document.createElement("button");
+            button.textContent = prop;
+            li.appendChild(button);
+            ul.appendChild(li);
+            button.addEventListener("click", function(event) {
+                var origFunc = Linda.Animation.prototype.getDrawFunction;
+                Linda.Animation.prototype.getDrawFunction = function() {
+
+                    return Linda[prop].draw;
+                };
+                var rotation = 24 * Math.PI;
+                var duration = 6000;
+                window.app.shape.animate(rotation + Math.random(), duration + Math.random() * 100)
+                    .then(function() {
+                        Linda.Animation.prototype.getDrawFunction = origFunc;
+                    });
+            });
+        });
+        devArea.hidden = false;
+    }
     return Promise.all([
 	Linda.init(
             document.getElementById("stage"),
@@ -29,6 +56,9 @@
     ]);
 }).then(function(appAndSplash) {
     var app = appAndSplash[0];
+    if (location.search.indexOf("env=development" !== -1)) {
+        window.app = app;
+    }
     var promise = new Promise(function(resolve, reject) {
         var listener = function(event) {
             ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
