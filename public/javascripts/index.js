@@ -82,6 +82,7 @@
                 radio.type = "radio";
                 radio.name = "image";
                 radio.value = app.animation.images.length - 1;
+                radio.checked = true;
                 label.appendChild(radio);
                 image.style.height = "1em";
                 label.appendChild(image);
