@@ -29,8 +29,8 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
     }
     return Promise.all([app.initImages(), app.initInput(inputOptions)])
         .then(function(results) {
-            app.shape = new Linda.Animation(results[0], animationOptions);
-            app.stage.addChild(app.shape.shape);
+            app.animation = new Linda.Animation(results[0], animationOptions);
+            app.stage.addChild(app.animation.shape);
             app.input = results[1];
             return app;
         });
@@ -41,7 +41,7 @@ Linda.prototype.run = function() {
     var app = this;
     addEventListener("linda.inputend", function() {
         app.input.stopListening();
-        app.shape
+        app.animation
             .animate(rotation + Math.random(), duration + Math.random() * 100)
             .then(function(shape) {
                 shape.clear();

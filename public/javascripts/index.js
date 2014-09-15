@@ -38,7 +38,7 @@
                 };
                 var rotation = 24 * Math.PI;
                 var duration = 6000;
-                window.app.shape.animate(rotation + Math.random(), duration + Math.random() * 100)
+                window.app.animation.animate(rotation + Math.random(), duration + Math.random() * 100)
                     .then(function() {
                         Linda.Animation.prototype.getDrawFunction = origFunc;
                     });
