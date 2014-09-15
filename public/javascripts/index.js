@@ -61,6 +61,8 @@
         radio.value = index;
         radio.checked = index === 0;
         label.appendChild(radio);
+        image.style.height = "1em";
+        label.appendChild(image);
         var text = document.createTextNode(image.src);
         label.appendChild(text);
         li.appendChild(label);
@@ -81,6 +83,8 @@
                 radio.name = "image";
                 radio.value = app.animation.images.length - 1;
                 label.appendChild(radio);
+                image.style.height = "1em";
+                label.appendChild(image);
                 var text = document.createTextNode(file.name);
                 label.appendChild(text);
                 li.appendChild(label);
