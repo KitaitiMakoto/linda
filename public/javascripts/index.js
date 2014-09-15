@@ -33,7 +33,6 @@
             button.addEventListener("click", function(event) {
                 var origFunc = Linda.Animation.prototype.getDrawFunction;
                 Linda.Animation.prototype.getDrawFunction = function() {
-
                     return Linda[prop].draw;
                 };
                 var rotation = 24 * Math.PI;
