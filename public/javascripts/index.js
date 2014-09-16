@@ -52,20 +52,18 @@
     }
     var images = document.getElementById("images");
     var imageList = images.querySelector("ul");
+	var liTemplate = images.querySelector("template");
     app.animation.images.forEach(function(image, index) {
-        var li = document.createElement("li");
-        var label = document.createElement("label");
-        var radio = document.createElement("input");
-        radio.type = "radio";
-        radio.name = "image";
+        var li = document.importNode(liTemplate.content, true);
+        var radio = li.querySelector("input");
         radio.value = index;
         radio.checked = index === 0;
-        label.appendChild(radio);
-        image.style.height = "1em";
-        label.appendChild(image);
+        var img = li.querySelector("img");
+        img.src = image.src
+        img.style.height = "1em";
+        var label = li.querySelector("label");
         var text = document.createTextNode(image.src);
         label.appendChild(text);
-        li.appendChild(label);
         imageList.appendChild(li);
     });
     var input = images.querySelector("input");
@@ -76,19 +74,16 @@
                 var image = new Image();
                 image.src = e.target.result;
                 app.animation.images.push(image);
-                var li = document.createElement("li");
-                var label = document.createElement("label");
-                var radio = document.createElement("input");
-                radio.type = "radio";
-                radio.name = "image";
+                var li = document.importNode(liTemplate.content, true);
+                var radio = li.querySelector("input");
                 radio.value = app.animation.images.length - 1;
                 radio.checked = true;
-                label.appendChild(radio);
-                image.style.height = "1em";
-                label.appendChild(image);
+                var img = li.querySelector("img");
+                img.src = image.src;
+                img.style.height = "1em";
+                var label = li.querySelector("label");
                 var text = document.createTextNode(file.name);
                 label.appendChild(text);
-                li.appendChild(label);
                 imageList.appendChild(li);
                 input.value = null;
             });
