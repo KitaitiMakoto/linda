@@ -53,18 +53,23 @@
     var images = document.getElementById("images");
     var imageList = images.querySelector("ul");
 	var liTemplate = images.querySelector("template");
-    app.animation.images.forEach(function(image, index) {
+    var appendItem = function(image, callback) {
         var li = document.importNode(liTemplate.content, true);
-        var radio = li.querySelector("input");
-        radio.value = index;
-        radio.checked = index === 0;
         var img = li.querySelector("img");
         img.src = image.src
         img.style.height = "1em";
-        var label = li.querySelector("label");
-        var text = document.createTextNode(image.src);
-        label.appendChild(text);
+        callback(li);
         imageList.appendChild(li);
+    };
+    app.animation.images.forEach(function(image, index) {
+        appendItem(image, function(li) {
+            var radio = li.querySelector("input");
+            radio.value = index;
+            radio.checked = index === 0;
+            var label = li.querySelector("label");
+            var text = document.createTextNode(image.src);
+            label.appendChild(text);
+        });
     });
     var input = images.querySelector("input");
     input.addEventListener("change", function(event) {
@@ -74,17 +79,14 @@
                 var image = new Image();
                 image.src = e.target.result;
                 app.animation.images.push(image);
-                var li = document.importNode(liTemplate.content, true);
-                var radio = li.querySelector("input");
-                radio.value = app.animation.images.length - 1;
-                radio.checked = true;
-                var img = li.querySelector("img");
-                img.src = image.src;
-                img.style.height = "1em";
-                var label = li.querySelector("label");
-                var text = document.createTextNode(file.name);
-                label.appendChild(text);
-                imageList.appendChild(li);
+                appendItem(image, function(li) {
+                    var radio = li.querySelector("input");
+                    radio.value = app.animation.images.length - 1;
+                    radio.checked = true;
+                    var label = li.querySelector("label");
+                    var text = document.createTextNode(file.name);
+                    label.appendChild(text);
+                });
                 input.value = null;
             });
             reader.readAsDataURL(file);
