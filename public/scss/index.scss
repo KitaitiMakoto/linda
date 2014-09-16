@@ -33,13 +33,14 @@ body {
     -webkit-transition-property: opacity;
     -webkit-transition-duration: 1s;
     span {
+        display: inline-block;
         &.splashed {
-            transform: rotate3d(0, 1, 0, 360deg);
-            transition-property: transform;
-            transition-duration: 1s;
-            -webkit-transform: rotate3d(0, 1, 0, 360deg);
+            -webkit-transform: rotateY(360deg);
             -webkit-transition-property: -webkit-transform;
             -webkit-transition-duration: 1s;
+            transform: rotateY(360deg);
+            transition-property: transform;
+            transition-duration: 1s;
         }
     }
 }
