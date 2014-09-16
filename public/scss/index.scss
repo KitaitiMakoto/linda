@@ -53,11 +53,11 @@ body {
     text-align: center;
     color: white;
     &.active {
-      $text-shadow-color: #ff0000;
-      text-shadow: -2px 0 0 $text-shadow-color,
-                   0 -2px 0 $text-shadow-color,
-                   2px 0 0 $text-shadow-color,
-                   0 2px 0 $text-shadow-color;
+        $text-shadow-color: #ff0000;
+        text-shadow: -2px 0 0 $text-shadow-color,
+                     0 -2px 0 $text-shadow-color,
+                     2px 0 0 $text-shadow-color,
+                     0 2px 0 $text-shadow-color;
     }
     &.animating {
         display: none;
