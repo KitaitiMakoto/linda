@@ -119,6 +119,7 @@
                 .animate(rotation + Math.random(), duration + Math.random() * 100)
                 .then(function() {
                     app.animation.getDrawFunction = Linda.Animation.prototype.getDrawFunction;
+                    app.animation.getImage = Linda.Animation.prototype.getImage;
                 });
         });
         li.appendChild(button);
