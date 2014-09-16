@@ -20,12 +20,12 @@
         Linda.Microphone.available = function() {return false};
     }
     return Promise.all([
-	Linda.init(
+    Linda.init(
             document.getElementById("stage"),
             {},
             {controls: document.getElementById("microphone-controls")}
         ),
-	Linda.Splash.run()
+    Linda.Splash.run()
     ]);
 }).then(function(appAndSplash) {
     var app = appAndSplash[0];
@@ -50,23 +50,24 @@
     if (location.search.indexOf("env=development") === -1) {
         return app;
     }
+
     var images = document.getElementById("images");
     var imageList = images.querySelector("ul");
-	var liTemplate = images.querySelector("template");
+    var liTemplate = images.querySelector("template");
     var appendItem = function(image, callback) {
         var li = document.importNode(liTemplate.content, true);
         var img = li.querySelector("img");
         img.src = image.src
         img.style.height = "1em";
-        callback(li);
+        var radio = li.querySelector("input");
+        var label = li.querySelector("label");
+        callback(li, label, radio);
         imageList.appendChild(li);
     };
     app.animation.images.forEach(function(image, index) {
-        appendItem(image, function(li) {
-            var radio = li.querySelector("input");
+        appendItem(image, function(li, label, radio) {
             radio.value = index;
             radio.checked = index === 0;
-            var label = li.querySelector("label");
             var text = document.createTextNode(image.src);
             label.appendChild(text);
         });
@@ -79,11 +80,9 @@
                 var image = new Image();
                 image.src = e.target.result;
                 app.animation.images.push(image);
-                appendItem(image, function(li) {
-                    var radio = li.querySelector("input");
+                appendItem(image, function(li, label, radio) {
                     radio.value = app.animation.images.length - 1;
                     radio.checked = true;
-                    var label = li.querySelector("label");
                     var text = document.createTextNode(file.name);
                     label.appendChild(text);
                 });
