@@ -93,12 +93,13 @@
     });
 
     var patterns = animation.querySelector("#animation ul");
+    var buttonTemplate = patterns.querySelector("template");
     Object.keys(Linda).filter(function(prop) {
         return Linda.Animation.patterns.indexOf(Linda[prop]) !== -1;
     }).forEach(function(patternName) {
         var pattern = Linda[patternName];
-        var li = document.createElement("li");
-        var button = document.createElement("button");
+        var li = document.importNode(buttonTemplate.content, true);
+        var button = li.querySelector("button");
         button.textContent = patternName;
         button.addEventListener("click", function() {
             var rotation = 24 * Math.PI;
@@ -117,7 +118,6 @@
                     app.animation.getImage = Linda.Animation.prototype.getImage;
                 });
         });
-        li.appendChild(button);
         patterns.appendChild(li);
     });
 
