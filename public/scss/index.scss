@@ -34,6 +34,10 @@ body {
     -webkit-transition-duration: 1s;
     span {
         display: inline-block;
+        &:nth-child(2) {
+            margin-left: 0.01em;
+            margin-right: 0.03em;
+        }
         &.splashed {
             -webkit-transform: rotateY(360deg);
             -webkit-transition-property: -webkit-transform;
