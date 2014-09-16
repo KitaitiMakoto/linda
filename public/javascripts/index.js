@@ -92,8 +92,7 @@
         });
     });
 
-    var animation = document.getElementById("animation");
-    var patterns = animation.querySelector("ul");
+    var patterns = animation.querySelector("#animation ul");
     Object.keys(Linda).filter(function(prop) {
         return Linda.Animation.patterns.indexOf(Linda[prop]) !== -1;
     }).forEach(function(patternName) {
