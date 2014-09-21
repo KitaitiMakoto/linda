@@ -93,7 +93,7 @@ Linda.Microphone.prototype.initControls = function(form) {
         output.value = input.value = microphone.whisperRange[prop];
         input.addEventListener("input", function(event) {
             var value = Number(event.target.value);
-            if ((prop === "lower") && (value > microphone.whisperRange.upper)) {
+            if (prop === "lower" && value > microphone.whisperRange.upper) {
                 value = input.value = microphone.whisperRange.upper;
             }
             if (prop === "upper" && value < microphone.whisperRange.lower) {
