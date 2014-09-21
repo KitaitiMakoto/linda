@@ -1,7 +1,6 @@
 Linda.SpotLight = {};
 Linda.Animation.patterns.push(Linda.SpotLight);
 Linda.SpotLight.draw = function(progress) {
-    progress = Math.min(progress, 1);
     var canvas = this.shape.parent.canvas;
     var canvasWidth = canvas.width;
     var radius = canvasWidth / 2 * (1 - progress);

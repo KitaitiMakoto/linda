@@ -37,10 +37,10 @@ Linda.Animation.prototype.animate = function(rotation, duration) {
             if (! startedAt) {
                 startedAt = timestamp;
             }
-            var progress = (timestamp - startedAt) / duration;
+            var progress = Math.min((timestamp - startedAt) / duration, 1);
             var gradient = scope.rotation * progress;
             scope.draw(progress, gradient);
-            if (progress > 1) {
+            if (progress === 1) {
                 cancelAnimationFrame(requestID);
                 resolve(scope);
             } else {
