@@ -9,7 +9,7 @@ Linda.Shake = function(options) {
     this.listener = Linda.Shake.createListener(this);
     var scope = this;
     setTimeout(function() {
-	scope.fire("inputready");
+        scope.fire("inputready");
     });
 };
 Linda.Shake.createListener = function(scope) {
