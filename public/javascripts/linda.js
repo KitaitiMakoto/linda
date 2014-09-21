@@ -43,8 +43,8 @@ Linda.prototype.run = function() {
         app.input.stopListening();
         app.animation
             .animate(rotation + Math.random(), duration + Math.random() * 100)
-            .then(function(shape) {
-                shape.clear();
+            .then(function(animation) {
+                animation.clear();
                 app.input.startListening();
             });
     });
