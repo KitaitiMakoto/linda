@@ -53,31 +53,12 @@ Linda.prototype.run = function() {
 };
 Linda.prototype.initImages = function() {
     var uris = JSON.parse(document.getElementById("image-uris").textContent);
-    var stageCanvas = this.stage.canvas;
+    var scope = this;
     return Promise.all(uris.map(function(uri) {
         return new Promise(function(resolve, reject) {
             var image = new Image();
             image.addEventListener("load", function(event) {
-                var image = event.target;
-                var workspaceCanvas = document.createElement("canvas");
-                workspaceCanvas.width = stageCanvas.width;
-                workspaceCanvas.height = stageCanvas.height;
-                var workspace = new Stage(workspaceCanvas);
-                var bitmap = new Bitmap(image);
-                var stageAspectRatio = stageCanvas.width / stageCanvas.height;
-                var imageAspectRatio = image.width / image.height;
-                if (imageAspectRatio < stageAspectRatio) {
-                    var scale = stageCanvas.width / image.width;
-                } else {
-                    var scale = stageCanvas.height / image.height;
-                }
-                bitmap.scaleX = bitmap.scaleY = scale;
-                bitmap.x = (workspaceCanvas.width - bitmap.scaleX * image.width) / 2;
-                bitmap.y = (workspaceCanvas.height - bitmap.scaleY * image.height) / 2;
-                workspace.addChild(bitmap);
-                workspace.update();
-                var adaptedImage = new Image();
-                adaptedImage.src = workspaceCanvas.toDataURL();
+                var adaptedImage = scope.adaptImage(event.target);
                 resolve(adaptedImage);
             });
             image.addEventListener("error", function(event) {
@@ -107,6 +88,29 @@ Linda.prototype.initState = function() {
     var id = Linda.Microphone.available() ? "speech-text" : "shake-feedback";
     new Linda.State.View(document.getElementById(id), state);
     return state;
+};
+Linda.prototype.adaptImage = function(image) {
+    var stageCanvas = this.stage.canvas;
+    var workspaceCanvas = document.createElement("canvas");
+    workspaceCanvas.width = stageCanvas.width;
+    workspaceCanvas.height = stageCanvas.height;
+    var workspace = new Stage(workspaceCanvas);
+    var bitmap = new Bitmap(image);
+    var stageAspectRatio = stageCanvas.width / stageCanvas.height;
+    var imageAspectRatio = image.width / image.height;
+    if (imageAspectRatio < stageAspectRatio) {
+        var scale = stageCanvas.width / image.width;
+    } else {
+        var scale = stageCanvas.height / image.height;
+    }
+    bitmap.scaleX = bitmap.scaleY = scale;
+    bitmap.x = (workspaceCanvas.width - bitmap.scaleX * image.width) / 2;
+    bitmap.y = (workspaceCanvas.height - bitmap.scaleY * image.height) / 2;
+    workspace.addChild(bitmap);
+    workspace.update();
+    var adaptedImage = new Image();
+    adaptedImage.src = workspaceCanvas.toDataURL();
+    return adaptedImage;
 };
 
 // Obsolete
