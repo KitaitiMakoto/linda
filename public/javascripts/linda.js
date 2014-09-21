@@ -19,7 +19,7 @@ Linda.transition = {
 };
 Linda.init = function(canvas, animationOptions, inputOptions) {
     var app = new Linda(canvas);
-    app.initState();
+    app.state = app.initState();
     animationOptions = animationOptions || {};
     if (! ("x" in animationOptions)) {
         animationOptions.x = canvas.width / 2;
@@ -85,9 +85,10 @@ Linda.prototype.initInput = function(options) {
     });
 };
 Linda.prototype.initState = function() {
-    this.state = new Linda.State();
+    var state = new Linda.State();
     var id = Linda.Microphone.available() ? "speech-text" : "shake-feedback";
-    new Linda.State.View(document.getElementById(id), this.state);
+    new Linda.State.View(document.getElementById(id), state);
+    return state;
 };
 
 // Obsolete
