@@ -77,9 +77,6 @@ Linda.prototype.initInput = function(options) {
         if (Linda.Microphone.available()) {
             new Linda.Microphone(navigator, options);
         } else {
-            if (! ("pauseThreshold" in options)) {
-                options.pauseThreshold = 6000;
-            }
             new Linda.Shake(options);
         }
     });

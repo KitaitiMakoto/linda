@@ -12,8 +12,7 @@
     "es6-promise": "1.0.0",
     "easeljs": "CreateJS/EaselJS",
     "preloadjs": "CreateJS/PreloadJS",
-    "tweenjs": "CreateJS/TweenJS",
-    "shake.js": "1.1.0"
+    "tweenjs": "CreateJS/TweenJS"
   },
   "devDependencies": {
     "vue": "*"
