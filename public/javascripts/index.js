@@ -68,8 +68,6 @@
         appendItem(image, function(li, label, radio) {
             radio.value = index;
             radio.checked = index === 0;
-            var text = document.createTextNode(image.src);
-            label.appendChild(text);
         });
     });
     var input = images.querySelector("input");
