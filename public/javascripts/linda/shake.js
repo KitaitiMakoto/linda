@@ -46,6 +46,9 @@ Linda.Shake.prototype.stopListening = function() {
 
 console.warn("FIXME");
 addEventListener("DOMContentLoaded", function() {
+    if (Linda.Microphone.available()) {
+        return;
+    }
     var shakeCount = 0;
     var shakeGauge = document.querySelector("#shake-feedback p");
     var renderShakeGauge = function() {
