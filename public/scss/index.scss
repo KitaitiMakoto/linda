@@ -13,7 +13,7 @@ body {
     -webkit-transition-duration: 2s;
 }
 
-#splash {
+h1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -22,6 +22,7 @@ body {
     text-align: center;
     font-family: "Times New Roman", serif;
     font-size: 6em;
+    font-weight: normal;
     color: white;
     text-shadow: -2px 0 0 black,
                  0 -2px 0 black,

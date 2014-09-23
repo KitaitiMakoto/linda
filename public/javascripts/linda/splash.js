@@ -7,7 +7,7 @@ Promise.delay = function(duration) {
 Linda.Splash = function() {};
 Linda.Splash.run = function() {
     return Array.prototype.reduce.call(
-        document.querySelectorAll("#splash span:not(:last-child)"),
+        document.querySelectorAll("h1 span:not(:last-child)"),
         function(sequence, character) {
             return sequence.then(function() {
                 character.classList.add("splashed");
