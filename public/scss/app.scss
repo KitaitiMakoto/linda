@@ -52,17 +52,28 @@ h1 {
 
 #speech-text {
     position: absolute;
-    top: 1em;
+    top: 10em;
     width: 100%;
-    font-size: 3em;
+    font-size: 0em;
     text-align: center;
     color: white;
+    svg {
+        width: 30%;
+        path, rect, circle {
+            fill: black;
+        }
+    }
     &.active {
         $text-shadow-color: #ff0000;
         text-shadow: -2px 0 0 $text-shadow-color,
                      0 -2px 0 $text-shadow-color,
                      2px 0 0 $text-shadow-color,
                      0 2px 0 $text-shadow-color;
+        svg {
+            path, rect, circle {
+                fill: #00b0ff;
+            }
+        }
     }
     &.animating {
         display: none;

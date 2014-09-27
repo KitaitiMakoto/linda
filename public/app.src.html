@@ -1,4 +1,18 @@
 <!doctype html>
+<script>
+var connection = new XMLHttpRequest();
+connection.open("GET", "images/icon_microphone.svg")
+connection.addEventListener("readystatechange", function(event) {
+    var conn = event.target;
+    if (conn.readyState === 4 && conn.status === 200) {
+        var image = conn.responseXML.getElementsByTagName("svg").item(0);
+        var container = document.getElementById("speech-text");
+        container.appendChild(image);
+        
+    }
+});
+connection.send();
+</script>
 <title>Linda</title>
 <script src="components/es6-promise/promise.min.js"></script>
 <link href="linda.html" rel="import">
@@ -8,7 +22,7 @@
   <h1 id="splash"><span>L</span><span>i</span><span>n</span><span>d</span><span>a</span></h1>
   <canvas id="stage" role="application"></canvas>
   <form id="microphone-controls" class="uninitialized">
-    <p id="speech-text">なにか おはなし してみましょう</p>
+    <p id="speech-text"><img src="images/icon_microphone.svg" alt="なにか おはなし してみましょう"></p>
     <table>
       <tr>
         <th>lower</th>

@@ -9,7 +9,9 @@ Linda.State.prototype.set = function(state) {
     }
     this.state = state;
     this.observers.forEach(function(observer) {
-        observer(state, oldState);
+        setTimeout(function() {
+            observer(state, oldState);
+        });
     });
 };
 Linda.State.View = function(element, state) {
