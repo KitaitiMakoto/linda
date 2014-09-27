@@ -86,12 +86,35 @@ h1 {
 }
 
 #guide {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
     &.waiting {
         display: none;
+    }
+    div {
+        position: absolute;
+        display: inline-block;
+        &:first-child {
+            $upper-width: 80vmin;
+            top: calc((100vh - 80vmin) / 2);
+            left: calc((100vw - 80vmin) / 2);
+            width: $upper-width;
+            height: $upper-width;
+            border: dashed thin white;
+            border-radius: $upper-width / 2;
+        }
+        &:nth-child(2) {
+            $lower-width: 20vmin;
+            top: calc((100vh - 20vmin) / 2);
+            left: calc((100vw - 20vmin) / 2);
+            width: $lower-width;
+            height: $lower-width;
+            border: dashed thin white;
+            border-radius: $lower-width / 2;
+        }
     }
 }
 
