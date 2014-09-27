@@ -20,11 +20,7 @@
         Linda.Microphone.available = function() {return false};
     }
     return Promise.all([
-        Linda.init(
-            document.getElementById("stage"),
-            {},
-            {controls: document.getElementById("microphone-controls")}
-        ),
+        Linda.init(document.getElementById("stage")),
         Linda.Splash.run()
     ]);
 }).then(function(appAndSplash) {
