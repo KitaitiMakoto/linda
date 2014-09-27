@@ -62,6 +62,12 @@ h1 {
         margin-top: calc((100vh - 80vmin) / 2);
         padding: 0;
         text-align: center;
+        &#shake {
+            animation: shake 0.5s linear;
+            animation-delay: 1s;
+            -webkit-animation: shake 0.5s linear;
+            -webkit-animation-delay: 1s;
+        }
         &.completed {
             opacity: 0;
             transition-property: opacity;
@@ -86,4 +92,26 @@ body.uninitialized {
     #splash {
         opacity: 1;
     }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0) rotate(0); transform-origin: bottom; }
+    10% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
+    25% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
+    40% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
+    55% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
+    70% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
+    85% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
+    100% { transform: translateX(0) rotate(0); transform-origin: bottom; }
+}
+
+@-webkit-keyframes shake {
+    0% { transform: translateX(0) rotate(0); transform-origin: bottom; }
+    10% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
+    25% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
+    40% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
+    55% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
+    70% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
+    85% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
+    100% { transform: translateX(0) rotate(0); transform-origin: bottom; }
 }
