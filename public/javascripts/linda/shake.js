@@ -42,25 +42,3 @@ Linda.Shake.prototype.startListening = function() {
 Linda.Shake.prototype.stopListening = function() {
     window.removeEventListener("devicemotion", this.listener);
 };
-
-
-console.warn("FIXME");
-addEventListener("DOMContentLoaded", function() {
-    if (Linda.Microphone.available()) {
-        return;
-    }
-    var shakeCount = 0;
-    var shakeGauge = document.querySelector("#shake-feedback p");
-    var renderShakeGauge = function() {
-        shakeGauge.style.height = (shakeCount / 12) * 100 + "%";
-        shakeGauge.textContent = shakeCount === 0 ? "" : shakeCount + "回";
-    };
-    addEventListener("linda.inputsensingstart", function() {
-        shakeCount++;
-        renderShakeGauge();
-    });
-    addEventListener("linda.listeningstart", function() {
-        shakeCount = 0;
-        renderShakeGauge();
-    });
-});

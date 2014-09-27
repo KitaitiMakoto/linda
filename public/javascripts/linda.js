@@ -85,8 +85,7 @@ Linda.prototype.initInput = function(options) {
 };
 Linda.prototype.initState = function() {
     var state = new Linda.State();
-    var id = Linda.Microphone.available() ? "speech-text" : "shake-feedback";
-    new Linda.State.View(document.getElementById(id), state);
+    new Linda.State.View(document.getElementById("guide"), state);
     return state;
 };
 Linda.prototype.adaptImage = function(image) {

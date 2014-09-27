@@ -7,8 +7,12 @@
 <body class="uninitialized">
   <h1 id="splash"><span>L</span><span>i</span><span>n</span><span>d</span><span>a</span></h1>
   <canvas id="stage" role="application"></canvas>
+  <section id="input-information">
+    <p id="microphone" hidden><img src="images/icon_microphone.svg" alt="microphone"></p>
+    <p id="shake" hidden><img src="images/icon_shake.svg" alt="shake"></p>
+    <div id="guide"></div>
+  </section>
   <form id="microphone-controls" class="uninitialized">
-    <p id="speech-text"><img src="images/icon_microphone.svg" alt="なにか おはなし してみましょう"></p>
     <table>
       <tr>
         <th>lower</th>
@@ -27,11 +31,6 @@
       </tr>
     </table>
   </form>
-  <section id="shake-feedback">
-    <div>
-      <p></p>
-    </div>
-  </section>
   <section id="development" hidden>
     <h2>Development</h2>
     <section id="images" style="float: left;">
