@@ -4,6 +4,6 @@
     "vulcanize": "*"
   },
   "scripts": {
-    "postinstall": "PATH=./node_modules/.bin:$PATH bower install && bower prune && vulcanize -o ./public/index.html ./public/index.src.html"
+    "postinstall": "PATH=./node_modules/.bin:$PATH bower install && bower prune && vulcanize -o ./public/app.html ./public/app.src.html"
   }
 }
