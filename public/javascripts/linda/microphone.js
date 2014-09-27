@@ -81,6 +81,18 @@ Linda.Microphone.prototype.initControls = function(form) {
     if (! form) {
         return form;
     }
+
+var connection = new XMLHttpRequest();
+connection.open("GET", "images/icon_microphone.svg")
+connection.addEventListener("readystatechange", function(event) {
+    var conn = event.target;
+    if (conn.readyState === 4 && conn.status === 200) {
+        var image = conn.responseXML.getElementsByTagName("svg").item(0);
+        document.body.appendChild(image);
+    }
+});
+connection.send();
+
     form.addEventListener("submit", function(event) {
         event.target.preventDefault();
     });
