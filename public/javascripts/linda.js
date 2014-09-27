@@ -88,6 +88,36 @@ Linda.prototype.initState = function() {
     new Linda.State.View(document.getElementById("guide"), state);
     return state;
 };
+Linda.prototype.showInput = function() {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        var inputId;
+        if (self.input instanceof Linda.Microphone) {
+            inputId = "microphone";
+        } else if(self.input instanceof Linda.Shake) {
+            inputId = "shake";
+        } else {
+            reject(new Error("Unknown input"));
+        }
+        var p = document.getElementById(inputId);
+        p.hidden = false;
+        ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
+            var listener = arguments.callee;
+            p.addEventListener(eventName, function(event) {
+                var target = event.target;
+                resolve([self, target]);
+                target.removeEventListener("transitionend", listener);
+                target.removeEventListener("webkitTransitionEnd", listener);
+            });
+        });
+        setTimeout(function() {
+            p.setAttribute("class", "completed");
+        }, 2000);
+    }).then(function(appAndInputImage) {
+        appAndInputImage[1].setAttribute("class", "ended");
+        return appAndInputImage[0];
+    });
+};
 Linda.prototype.adaptImage = function(image) {
     var stageCanvas = this.stage.canvas;
     var workspaceCanvas = document.createElement("canvas");

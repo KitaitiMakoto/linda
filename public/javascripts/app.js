@@ -40,6 +40,8 @@
         ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
             app.stage.canvas.addEventListener(eventName, listener);
         });
+    }).then(function() {
+	return app.showInput();
     });
     document.querySelector("body").classList.remove("uninitialized");
     return promise;
