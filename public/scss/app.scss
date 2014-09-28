@@ -62,12 +62,6 @@ h1 {
         margin-top: calc((100vh - 80vmin) / 2);
         padding: 0;
         text-align: center;
-        &#shake {
-            animation: shake 0.5s linear;
-            animation-delay: 1s;
-            -webkit-animation: shake 0.5s linear;
-            -webkit-animation-delay: 1s;
-        }
         &.completed {
             opacity: 0;
             transition-property: opacity;
@@ -77,6 +71,12 @@ h1 {
         }
         &.ended {
             display: none;
+        }
+        &#shake img {
+            animation: shake 0.5s linear;
+            animation-delay: 1s;
+            -webkit-animation: shake 0.5s linear;
+            -webkit-animation-delay: 1s;
         }
         img {
             width: 80vmin;
