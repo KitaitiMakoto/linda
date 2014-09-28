@@ -128,23 +128,23 @@ body.uninitialized {
 }
 
 @keyframes shake {
-    0% { transform: translateX(0) rotate(0); transform-origin: bottom; }
-    10% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
-    25% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
-    40% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
-    55% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
-    70% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
-    85% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
-    100% { transform: translateX(0) rotate(0); transform-origin: bottom; }
+    0% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
+    10% { transform: translateX(3px) rotateZ(12deg); transform-origin: bottom; }
+    25% { transform: translateX(-3px) rotateZ(-12deg); transform-origin: bottom; }
+    40% { transform: translateX(3px) rotateZ(12deg); transform-origin: bottom; }
+    55% { transform: translateX(-3px) rotateZ(-12deg); transform-origin: bottom; }
+    70% { transform: translateX(3px) rotateZ(12deg); transform-origin: bottom; }
+    85% { transform: translateX(-3px) rotateZ(-12deg); transform-origin: bottom; }
+    100% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
 }
 
 @-webkit-keyframes shake {
-    0% { transform: translateX(0) rotate(0); transform-origin: bottom; }
-    10% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
-    25% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
-    40% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
-    55% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
-    70% { transform: translateX(3px) rotate(12deg); transform-origin: bottom; }
-    85% { transform: translateX(-3px) rotate(-12deg); transform-origin: bottom; }
-    100% { transform: translateX(0) rotate(0); transform-origin: bottom; }
+    0% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
+    10% { transform: translateX(3px) rotateZ(12deg); transform-origin: bottom; }
+    25% { transform: translateX(-3px) rotateZ(-12deg); transform-origin: bottom; }
+    40% { transform: translateX(3px) rotateZ(12deg); transform-origin: bottom; }
+    55% { transform: translateX(-3px) rotateZ(-12deg); transform-origin: bottom; }
+    70% { transform: translateX(3px) rotateZ(12deg); transform-origin: bottom; }
+    85% { transform: translateX(-3px) rotateZ(-12deg); transform-origin: bottom; }
+    100% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
 }
