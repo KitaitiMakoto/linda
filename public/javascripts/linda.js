@@ -120,25 +120,28 @@ Linda.prototype.showInput = function() {
 };
 Linda.prototype.adaptImage = function(image) {
     var stageCanvas = this.stage.canvas;
-    var workspaceCanvas = document.createElement("canvas");
-    workspaceCanvas.width = stageCanvas.width;
-    workspaceCanvas.height = stageCanvas.height;
-    var workspace = new Stage(workspaceCanvas);
+    return Linda.adaptImage(image, stageCanvas.width, stageCanvas.height);
+};
+Linda.adaptImage = function(image, width, height) {
+    var canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    var workspace = new Stage(canvas);
     var bitmap = new Bitmap(image);
-    var stageAspectRatio = stageCanvas.width / stageCanvas.height;
+    var aspectRatio = width / height;
     var imageAspectRatio = image.width / image.height;
-    if (imageAspectRatio < stageAspectRatio) {
-        var scale = stageCanvas.width / image.width;
+    if (imageAspectRatio < aspectRatio) {
+        var scale = width / image.width;
     } else {
-        var scale = stageCanvas.height / image.height;
+        var scale = height / image.height;
     }
     bitmap.scaleX = bitmap.scaleY = scale;
-    bitmap.x = (workspaceCanvas.width - bitmap.scaleX * image.width) / 2;
-    bitmap.y = (workspaceCanvas.height - bitmap.scaleY * image.height) / 2;
+    bitmap.x = (canvas.width - bitmap.scaleX * image.width) / 2;
+    bitmap.y = (canvas.height - bitmap.scaleY * image.height) / 2;
     workspace.addChild(bitmap);
     workspace.update();
     var adaptedImage = new Image();
-    adaptedImage.src = workspaceCanvas.toDataURL();
+    adaptedImage.src = canvas.toDataURL();
     return adaptedImage;
 };
 
