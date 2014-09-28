@@ -101,14 +101,14 @@ Linda.prototype.showInput = function() {
         }
         var p = document.getElementById(inputId);
         p.hidden = false;
+        var listener = function(event) {
+            var target = event.target;
+            resolve([self, target]);
+            target.removeEventListener("transitionend", listener);
+            target.removeEventListener("webkitTransitionEnd", listener);
+        };
         ["transitionend", "webkitTransitionEnd"].forEach(function(eventName) {
-            var listener = arguments.callee;
-            p.addEventListener(eventName, function(event) {
-                var target = event.target;
-                resolve([self, target]);
-                target.removeEventListener("transitionend", listener);
-                target.removeEventListener("webkitTransitionEnd", listener);
-            });
+            p.addEventListener(eventName, listener);
         });
         setTimeout(function() {
             p.setAttribute("class", "completed");
