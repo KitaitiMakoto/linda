@@ -1,3 +1,9 @@
+Promise.delay = function(duration) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(resolve, duration);
+    });
+};
+
 (new Promise(function(resolve, reject) {
     if (document.readyState !== "loading") {
         resolve();

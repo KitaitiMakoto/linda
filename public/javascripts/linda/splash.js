@@ -1,9 +1,3 @@
-Promise.delay = function(duration) {
-    return new Promise(function(resolve, reject) {
-        setTimeout(resolve, duration);
-    });
-};
-
 Linda.Splash = function() {};
 Linda.Splash.run = function() {
     return Array.prototype.reduce.call(
