@@ -92,11 +92,14 @@ Linda.prototype.showInput = function() {
     var self = this;
     return new Promise(function(resolve, reject) {
         var inputId;
-        if (self.input instanceof Linda.Microphone) {
+        switch(self.input.constructor) {
+        case Linda.Microphone:
             inputId = "microphone";
-        } else if(self.input instanceof Linda.Shake) {
+            break;
+        case Linda.Shake:
             inputId = "shake";
-        } else {
+            break;
+        default:
             reject(new Error("Unknown input"));
         }
         var p = document.getElementById(inputId);
