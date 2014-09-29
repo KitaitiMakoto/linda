@@ -148,3 +148,14 @@ body.uninitialized {
     85% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
     100% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
 }
+
+@-webkit-keyframes shake {
+    0% { -webkit-transform: translateX(0) rotateZ(0); -webkit-transform-origin: bottom; }
+    10% { -webkit-transform: translateX(1%) rotateZ(12deg); -webkit-transform-origin: bottom; }
+    25% { -webkit-transform: translateX(-1%) rotateZ(-12deg); -webkit-transform-origin: bottom; }
+    40% { -webkit-transform: translateX(1%) rotateZ(12deg); -webkit-transform-origin: bottom; }
+    55% { -webkit-transform: translateX(-1%) rotateZ(-12deg); -webkit-transform-origin: bottom; }
+    70% { -webkit-transform: translateX(1%) rotateZ(12deg); -webkit-transform-origin: bottom; }
+    85% { -webkit-transform: translateX(-1%) rotateZ(-12deg); -webkit-transform-origin: bottom; }
+    100% { -webkit-transform: translateX(0) rotateZ(0); -webkit-transform-origin: bottom; }
+}
