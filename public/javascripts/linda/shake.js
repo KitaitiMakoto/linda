@@ -35,6 +35,7 @@ Linda.Shake.createListener = function(scope) {
     };
 };
 Linda.Shake.prototype = Object.create(Linda.Input.prototype);
+Linda.Shake.prototype.constructor = Linda.Shake;
 Linda.Shake.prototype.startListening = function() {
     this.fire("listeningstart");
     window.addEventListener("devicemotion", this.listener);

@@ -45,6 +45,7 @@ Linda.Microphone.createStreamHandler = function(scope) {
     };
 };
 Linda.Microphone.prototype = Object.create(Linda.Input.prototype);
+Linda.Microphone.prototype.constructor = Linda.Microphone;
 Linda.Microphone.prototype.dispatchInput = function(max, timestamp) {
     if (max.vol <= this.whisperRange.lower) {
         this.stopInputting(timestamp, {vol: max.vol, freq: max.freq, state: "too quiet"});
