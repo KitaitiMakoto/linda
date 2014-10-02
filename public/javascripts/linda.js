@@ -18,6 +18,7 @@ Linda.transition = {
     "inputsensingstop":  "inactive"
 };
 Linda.init = function(canvas, animationOptions, inputOptions) {
+    location.hash = "application";
     var app = new Linda(canvas);
     app.state = app.initState();
     animationOptions = animationOptions || {};

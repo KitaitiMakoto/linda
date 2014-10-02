@@ -3,6 +3,7 @@
   var createjs = this;
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
   window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+  Element.prototype.requestFullScreen = Element.prototype.requestFullScreen || Element.prototype.mozRequestFullScreen || Element.prototype.webkitRequestFullScreen;
 </script>
 <script src="components/easeljs/lib/easeljs-0.7.1.min.js"></script>
 <script src="javascripts/linda.js"></script>

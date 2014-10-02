@@ -4,8 +4,11 @@
 <meta name="viewport" content="user-scalable=no, initial-scale=1">
 <link rel="stylesheet" href="/stylesheets/app.css">
 <body class="uninitialized">
-  <h1 id="splash"><span>L</span><span>i</span><span>n</span><span>d</span><span>a</span></h1>
-  <canvas id="stage" role="application"></canvas>
+  <h1 id="splash" role="banner"><span>L</span><span>i</span><span>n</span><span>d</span><span>a</span></h1>
+  <section id="application" role="application">
+    <canvas id="stage"></canvas>
+    <a href="#menu">メニュー</a>
+  </section>
   <section id="input-information">
     <p id="microphone" hidden><img src="images/icon_microphone.svg" alt="microphone"></p>
     <p id="shake" hidden><img src="images/icon_shake.svg" alt="shake"></p>
@@ -13,6 +16,14 @@
       <div></div>
       <div></div>
     </div>
+  </section>
+  <section id="menu">
+    <ul>
+      <li><label>画像追加<input type="file" accept="image/png,image/jpeg,image/gif"></label></li>
+      <li><a href="#application">メニューを閉じる</a></li>
+      <li><span>ツイート</span></li>
+      <li><span>ライク</span></li>
+    </ul>
   </section>
   <section id="development" hidden>
     <h2>Development</h2>

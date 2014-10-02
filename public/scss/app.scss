@@ -1,9 +1,15 @@
 $canvas-color: black;
 
-body {
+body, section {
     margin: 0;
     padding: 0;
 }
+
+body {
+    background-color: $canvas-color;
+    overflow: hidden;
+}
+
 #stage {
     background-color: $canvas-color;
     opacity: 1;
@@ -11,6 +17,20 @@ body {
     transition-duration: 2s;
     -webkit-transition-property: opacity;
     -webkit-transition-duration: 2s;
+}
+
+#application {
+    a {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 24;
+
+        visibility: hidden;
+    }
+    &:target a {
+        visibility: visible;
+    }
 }
 
 h1 {
@@ -114,6 +134,49 @@ h1 {
             height: $lower-width;
             border: dashed thin white;
             border-radius: $lower-width / 2;
+        }
+    }
+}
+
+#menu {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    ul {
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        z-index: 24;
+        background-color: white;
+        overflow: hidden;
+        list-style: none;
+
+        width: 0;
+        height: 0;
+    }
+    &:target ul {
+        width: 95%;
+        height: 95%;
+        transition: 0.6s;
+    }
+
+    li {
+        float: left;
+        width: 50%;
+        height: 50%;
+        text-align: center;
+        & > * {
+            display: block;
+            width: 90%;
+            height: 90%;
+            margin: 2.5%;
+            border: dashed thin black;
+            border-radius: 3em;
         }
     }
 }
