@@ -30,6 +30,9 @@ body {
     }
     &:target a {
         display: initial;
+        &.disabled {
+            display: none;
+        }
     }
 }
 

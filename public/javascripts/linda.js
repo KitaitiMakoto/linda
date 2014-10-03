@@ -21,6 +21,7 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
     location.hash = "application";
     var app = new Linda(canvas);
     app.state = app.initState();
+	app.initMenu();
     animationOptions = animationOptions || {};
     if (! ("x" in animationOptions)) {
         animationOptions.x = canvas.width / 2;
@@ -88,6 +89,27 @@ Linda.prototype.initState = function() {
     var state = new Linda.State();
     new Linda.State.View(document.getElementById("guide"), state);
     return state;
+};
+Linda.prototype.initMenu = function() {
+    var link = document.querySelector("#application a");
+    var self = this;
+    addEventListener("hashchange", function(event) {
+        if (location.hash === "#menu") {
+            self.input.stopListening();
+        }
+        if (location.hash === "#application") {
+            self.input.pausedAt = null;
+            self.input.startListening();
+        }
+    });
+    this.state.observers.push(function(state, oldState) {
+        if (state === "animating") {
+            link.classList.add("disabled");
+        }
+        if (state === "listening") {
+            link.classList.remove("disabled");
+        }
+    });
 };
 Linda.prototype.showInput = function() {
     var self = this;
