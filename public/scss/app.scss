@@ -190,17 +190,6 @@ body.uninitialized {
     }
 }
 
-@keyframes shake {
-    0% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
-    10% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
-    25% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
-    40% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
-    55% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
-    70% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
-    85% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
-    100% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
-}
-
 @-webkit-keyframes shake {
     0% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
     10% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
@@ -221,4 +210,15 @@ body.uninitialized {
     70% { -webkit-transform: translateX(1%) rotateZ(12deg); -webkit-transform-origin: bottom; }
     85% { -webkit-transform: translateX(-1%) rotateZ(-12deg); -webkit-transform-origin: bottom; }
     100% { -webkit-transform: translateX(0) rotateZ(0); -webkit-transform-origin: bottom; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
+    10% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
+    25% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
+    40% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
+    55% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
+    70% { transform: translateX(1%) rotateZ(12deg); transform-origin: bottom; }
+    85% { transform: translateX(-1%) rotateZ(-12deg); transform-origin: bottom; }
+    100% { transform: translateX(0) rotateZ(0); transform-origin: bottom; }
 }
