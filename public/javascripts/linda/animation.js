@@ -8,6 +8,7 @@ Linda.Animation = function(images, options) {
     this.unit = options.unit || 12;
     this.shape = new Shape();
 };
+Linda.Animation.availableImageTypes = ["image/png", "image/jpeg", "image.gif"];
 Linda.Animation.patterns = [];
 Linda.Animation.prototype.beginDrawing = function() {
     return this.clear()
@@ -24,6 +25,10 @@ Linda.Animation.prototype.getDrawFunction = function() {
 };
 Linda.Animation.prototype.getImage = function() {
     var images = this.images;
+    if (this.useLastImage) {
+        this.useLastImage = false;
+        return images[images.length - 1];
+    }
     return images[Math.floor(Math.random() * images.length)];
 };
 Linda.Animation.prototype.animate = function(rotation, duration) {
@@ -60,4 +65,26 @@ Linda.Animation.prototype.translate = function(coord) {
         x: coord.x + this.x,
         y: coord.y + this.y
     }
+};
+Linda.Animation.prototype.addImage = function(source) {
+    var image = new Image();
+    image.src = source;
+    var canvas = this.shape.parent.canvas;
+    var adaptedImage = Linda.adaptImage(image, canvas.width, canvas.height);
+    this.images.push(adaptedImage);
+};
+Linda.Animation.prototype.loadImage = function(file) {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+        if (Linda.Animation.availableImageTypes.indexOf(file.type) === -1) {
+            resolve();
+            return;
+        }
+        var reader = new FileReader();
+        reader.addEventListener("load", function(event) {
+            self.addImage(event.target.result);
+            resolve();
+        });
+        reader.readAsDataURL(file);
+    });
 };

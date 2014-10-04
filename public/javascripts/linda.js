@@ -113,6 +113,17 @@ Linda.prototype.initMenu = function() {
             link.classList.remove("disabled");
         }
     });
+    var menu = document.getElementById("menu");
+    var additionalImage = menu.querySelector("input");
+    additionalImage.addEventListener("change", function(event) {
+        var file = event.target.files[0]; // SPECIFICATION: Only one file is acceptable
+        self.animation.loadImage(file)
+            .then(function() {
+                self.animation.useLastImage = true;
+                location.hash = "#application";
+            });
+        additionalImage.value = null;
+    });
 };
 Linda.prototype.showInput = function() {
     var self = this;
