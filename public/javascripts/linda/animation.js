@@ -1,6 +1,6 @@
-Linda.Animation = function(images, options) {
+Linda.Animation = function(options) {
     options = options || {};
-    this.images = images;
+    this.images = [];
     this.thickness = options.thickness || 24;
     this.x = options.x || 0;
     this.y = options.y || 0;

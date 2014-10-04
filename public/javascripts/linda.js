@@ -31,8 +31,11 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
     }
     return Promise.all([app.initImages(), app.initInput(inputOptions)])
         .then(function(results) {
-            app.animation = new Linda.Animation(results[0], animationOptions);
+            app.animation = new Linda.Animation(animationOptions);
             app.stage.addChild(app.animation.shape);
+            results[0].forEach(function(image) {
+                app.animation.addImage(image.src);
+            });
             app.input = results[1];
             return app;
         });
@@ -60,8 +63,7 @@ Linda.prototype.initImages = function() {
         return new Promise(function(resolve, reject) {
             var image = new Image();
             image.addEventListener("load", function(event) {
-                var adaptedImage = scope.adaptImage(event.target);
-                resolve(adaptedImage);
+                resolve(event.target);
             });
             image.addEventListener("error", function(event) {
                 reject(new Error(event.srcElement.src + " not found"));
