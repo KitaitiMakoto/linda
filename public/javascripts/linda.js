@@ -98,6 +98,9 @@ Linda.prototype.initMenu = function() {
             self.input.stopListening();
         }
         if (location.hash === "#application") {
+            if (! self.input) {
+                return;
+            }
             self.input.pausedAt = null;
             self.input.startListening();
         }
