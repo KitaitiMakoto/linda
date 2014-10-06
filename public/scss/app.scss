@@ -119,24 +119,21 @@ h1 {
     }
     div {
         position: absolute;
-        display: inline-block;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border: dashed thin white;
+        border-radius: 50%;
         &:first-child {
             $upper-width: 80vmin;
-            top: calc((100vh - 80vmin) / 2);
-            left: calc((100vw - 80vmin) / 2);
             width: $upper-width;
             height: $upper-width;
-            border: dashed thin white;
-            border-radius: $upper-width / 2;
         }
         &:nth-child(2) {
             $lower-width: 20vmin;
-            top: calc((100vh - 20vmin) / 2);
-            left: calc((100vw - 20vmin) / 2);
             width: $lower-width;
             height: $lower-width;
-            border: dashed thin white;
-            border-radius: $lower-width / 2;
         }
     }
 }
