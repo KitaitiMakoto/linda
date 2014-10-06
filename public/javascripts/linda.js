@@ -37,6 +37,8 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
                 app.animation.addImage(image.src);
             });
             app.input = results[1];
+            var feedbackCircle = document.querySelector("#guide div:nth-child(3)");
+            app.input.feedback = new Linda.Feedback.Microphone(feedbackCircle);
             return app;
         });
 };

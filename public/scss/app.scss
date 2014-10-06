@@ -135,6 +135,12 @@ h1 {
             width: $lower-width;
             height: $lower-width;
         }
+        &:nth-child(3) {
+            width: 0;
+            height: 0;
+            background-color: white;
+            opacity: 0.5;
+        }
     }
 }
 
