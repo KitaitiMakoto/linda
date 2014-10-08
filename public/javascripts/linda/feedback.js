@@ -20,7 +20,7 @@ Linda.Feedback.Microphone = function(element) {
     this.requestID = null;
     Linda.Feedback.call(this, element);
 };
-Linda.Feedback.Microphone.SPEED = 10;// vmin/s
+Linda.Feedback.Microphone.SPEED = 6;// vmin/s
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Microphone.prototype.constructor = Linda.Feedback.Microphone;
 Linda.Feedback.Microphone.prototype.start = function() {
