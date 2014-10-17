@@ -27,17 +27,21 @@ Linda.Feedback.Microphone.prototype.start = function() {
     if (this.requestID) {
         return;
     }
+    this.radius = 0;
     var scope = this;
+    var lastTimestamp;
     this.requestID = requestAnimationFrame(function(timestamp) {
-        if (! scope.startedAt) {
-            scope.startedAt = timestamp;
+        if (! lastTimestamp) {
+            lastTimestamp = timestamp;
         }
-        scope.setRadius(Linda.Feedback.Microphone.SPEED * (timestamp - scope.startedAt) / 1000);
+        var radius = scope.radius;
+        var diff = Linda.Feedback.Microphone.SPEED * (timestamp - lastTimestamp) / 1000;
+        scope.setRadius(radius + diff);
+        lastTimestamp = timestamp;
         scope.requestID = requestAnimationFrame(arguments.callee);
     });
 };
 Linda.Feedback.Microphone.prototype.stop = function() {
     cancelAnimationFrame(this.requestID);
-    this.startedAt = null;
     this.requestID = null;
 }
