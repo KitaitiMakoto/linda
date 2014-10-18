@@ -1,13 +1,23 @@
 Linda.Feedback = function(element) {
     this.element = element;
     this.radius = 0;
-    this.startedAt = null;
+    this.paunsed = false;
     var self = this;
     addEventListener("linda.listeningstart", function() {
+        if (self.paused) {
+            self.paused = false;
+        } else {
+            self.rewind();
+        }
         self.start();
     });
     addEventListener("linda.inputend", function() {
         self.stop();
+    });
+    addEventListener("hashchange", function() {
+        if (location.hash === "#menu") {
+            self.pause();
+        }
     });
 };
 Linda.Feedback.prototype.constructor = Linda.Feedback;
@@ -18,33 +28,34 @@ Linda.Feedback.prototype.setRadius = function(radius) {
 
 Linda.Feedback.Microphone = function(element) {
     this.requestID = null;
+    this.lastTimestamp = null;
     Linda.Feedback.call(this, element);
 };
-Linda.Feedback.Microphone.SPEED = 6;// vmin/s
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
-Linda.Feedback.Microphone.prototype.constructor = Linda.Feedback.Microphone;
-Linda.Feedback.Microphone.prototype.start = function() {
-    if (this.requestID) {
-        return;
-    }
-    this.radius = 0;
-    this.restart();
+Linda.Feedback.Microphone.prototype.rewind = function() {
+    this.lastTimestamp = null;
+    this.setRadius(0);
+    return this;
 };
-Linda.Feedback.Microphone.prototype.restart = function() {
-    var scope = this;
-    var lastTimestamp;
+Linda.Feedback.Microphone.prototype.start = function() {
+    var self = this;
     this.requestID = requestAnimationFrame(function(timestamp) {
-        if (! lastTimestamp) {
-            lastTimestamp = timestamp;
+        if (! self.lastTimestamp) {
+            self.lastTimestamp = timestamp;
         }
-        var radius = scope.radius;
-        var diff = Linda.Feedback.Microphone.SPEED * (timestamp - lastTimestamp) / 1000;
-        scope.setRadius(radius + diff);
-        lastTimestamp = timestamp;
-        scope.requestID = requestAnimationFrame(arguments.callee);
+        self.setRadius(self.radius + (timestamp - self.lastTimestamp) / 1000 * 3);
+        self.lastTimestamp = timestamp;
+        self.requestID = requestAnimationFrame(arguments.callee);
     });
+    return this;
+};
+Linda.Feedback.Microphone.prototype.pause = function() {
+    this.paused = true;
+    this.stop();
+    return this;
 };
 Linda.Feedback.Microphone.prototype.stop = function() {
     cancelAnimationFrame(this.requestID);
-    this.requestID = null;
-}
+    this.lastTimestamp = null;
+    return this;
+};
