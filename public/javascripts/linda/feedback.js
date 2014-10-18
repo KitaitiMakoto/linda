@@ -28,6 +28,9 @@ Linda.Feedback.Microphone.prototype.start = function() {
         return;
     }
     this.radius = 0;
+    this.restart();
+};
+Linda.Feedback.Microphone.prototype.restart = function() {
     var scope = this;
     var lastTimestamp;
     this.requestID = requestAnimationFrame(function(timestamp) {
