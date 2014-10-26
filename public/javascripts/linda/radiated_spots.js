@@ -1,8 +1,8 @@
 Linda.RadiatedSpots = {};
 Linda.Animation.patterns.push(Linda.RadiatedSpots);
 Linda.RadiatedSpots.draw = function(progress) {
-    var radius = 12;console.warn("parameterize circle radius");
-    var distance = 24;console.warn("parameterize circle distance");
+    var radius = this.radiatedSpotsRadius;
+    var distance = this.radiatedSpotsDistance;
     var gradient = -2 * Math.PI * progress;
     var graphics = this.beginDrawing()
         .setStrokeStyle(0)
