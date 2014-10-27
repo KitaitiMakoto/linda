@@ -5,7 +5,6 @@ Linda.Animation = function(options) {
     this.x = options.x || 0;
     this.y = options.y || 0;
     this.expandingRate = options.expandingRate || (this.thickness / 3);
-    this.unit = options.unit || 12;
     this.radiatedSpotsRadius = options.radiatedSpotsRadius || 12;
     this.radiatedSpotsDistance = options.radiatedSpotsDistance || 24;
     this.shape = new Shape();
