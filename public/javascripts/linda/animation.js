@@ -57,16 +57,16 @@ Linda.Animation.prototype.animate = function(rotation, duration) {
     });
 };
 Linda.Animation.prototype.rotate = function(coord, angle) {
-    return {
-        x: coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
-        y: coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
-    };
+    return new Point(
+        coord.x * Math.cos(angle) - coord.y * Math.sin(angle),
+        coord.x * Math.sin(angle) + coord.y * Math.cos(angle)
+    );
 };
 Linda.Animation.prototype.translate = function(coord) {
-    return {
-        x: coord.x + this.x,
-        y: coord.y + this.y
-    }
+    return new Point(
+        coord.x + this.x,
+        coord.y + this.y
+    );
 };
 Linda.Animation.prototype.addImage = function(source) {
     var image = new Image();

@@ -6,10 +6,10 @@ Linda.PassingLines.draw = function(progress) {
     var canvasWidth = canvas.width;
     var length = Math.min(canvasWidth * progress, canvasWidth);
     var lineWidth = canvas.height / 2;
-    var startPoint = {x: -canvasWidth / 2, y: -canvas.height / 2 + lineWidth / 2}
-    var endPoint = {x: startPoint.x + length, y: startPoint.y};
-    var mirrorStartPoint = {x: -startPoint.x, y: -startPoint.y};
-    var mirrorEndPoint = {x: -endPoint.x, y: -endPoint.y};
+    var startPoint = new Point(-canvasWidth / 2, -canvas.height / 2 + lineWidth / 2);
+    var endPoint = new Point(startPoint.x + length, startPoint.y);
+    var mirrorStartPoint = new Point(-startPoint.x, -startPoint.y);
+    var mirrorEndPoint = new Point(-endPoint.x, -endPoint.y);
 
     startPoint = this.translate(this.rotate(startPoint, gradient));
     endPoint = this.translate(this.rotate(endPoint, gradient));
