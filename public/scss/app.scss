@@ -123,23 +123,24 @@ h1 {
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        border: dashed thin white;
+        border: none;
         border-radius: 50%;
         &:first-child {
             $upper-width: 80vmin;
             width: $upper-width;
             height: $upper-width;
+            background-color: #212121;
         }
         &:nth-child(2) {
             $lower-width: 20vmin;
             width: $lower-width;
             height: $lower-width;
+            background-color: $canvas-color;
         }
         &:nth-child(3) {
             width: 0;
             height: 0;
-            background-color: white;
-            opacity: 0.5;
+            background-color: #40c4ff;
         }
     }
 }
