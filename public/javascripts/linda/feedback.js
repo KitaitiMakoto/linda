@@ -1,5 +1,6 @@
-Linda.Feedback = function(element) {
+Linda.Feedback = function(element, container) {
     this.element = element;
+    this.container = container;
     this.radius = 0;
     this.state = "stopped";// stopped, expanding, paused
     var self = this;
@@ -28,10 +29,10 @@ Linda.Feedback.prototype.setRadius = function(radius) {
     this.element.style.width = this.element.style.height = radius * 2 + "vmin";
 };
 
-Linda.Feedback.Microphone = function(element) {
+Linda.Feedback.Microphone = function(element, container) {
     this.requestID = null;
     this.lastTimestamp = null;
-    Linda.Feedback.call(this, element);
+    Linda.Feedback.call(this, element, container);
 };
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Microphone.prototype.rewind = function() {
@@ -42,6 +43,7 @@ Linda.Feedback.Microphone.prototype.rewind = function() {
 Linda.Feedback.Microphone.prototype.start = function() {
     var self = this;
     this.state = "expanding";
+    this.container.classList.remove("paused");
     this.requestID = requestAnimationFrame(function(timestamp) {
         if (! self.lastTimestamp) {
             self.lastTimestamp = timestamp;
@@ -55,6 +57,7 @@ Linda.Feedback.Microphone.prototype.start = function() {
 Linda.Feedback.Microphone.prototype.pause = function() {
     this.stop();
     this.state = "paused";
+    this.container.classList.add("paused");
     return this;
 };
 Linda.Feedback.Microphone.prototype.stop = function() {
