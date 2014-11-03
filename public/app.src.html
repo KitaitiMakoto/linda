@@ -11,7 +11,7 @@
     <h1 id="splash" role="banner"><span>L</span><span>i</span><span>n</span><span>d</span><span>a</span></h1>
     <section id="application" role="application">
       <canvas id="stage"></canvas>
-      <a href="#menu" class="disabled">メニュー</a>
+      <a href="#menu" class="disabled"><i class="fa fa-bars"><span>メニュー</span></i></a>
     </section>
     <section id="input-information">
       <p id="microphone" hidden><img src="images/icon_microphone.svg" alt="microphone"></p>
@@ -24,12 +24,16 @@
       </div>
     </section>
     <section id="menu">
-      <ul>
-        <li><label>画像追加<input type="file" accept="image/png,image/jpeg,image/gif"></label></li>
-        <li><a href="#application">メニューを閉じる</a></li>
-        <li><span>ツイート</span></li>
-        <li><span>ライク</span></li>
-      </ul>
+      <div>
+        <div>
+          <a href="#application" class="close"><i class="fa fa-close"><span>メニューを閉じる</span></i></a>
+          <ul>
+            <li><label><i class="fa fa-photo"><span>画像を追加</span><input type="file" accept="image/png,image/jpeg,image/gif"></i></label></li>
+            <li><a href="https://twitter.com/share?url=http%3A%2F%2Flocalhost%2F&amp;count=none" target="tweet-linda"><i class="fa fa-twitter"><span>Tweet</span></i></a></li>
+            <li><a href=""><i class="fa fa-thumbs-up"><span>Share on Facebook</span></i></a></li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section id="development" hidden>
       <h2>Development</h2>
