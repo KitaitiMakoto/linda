@@ -197,6 +197,7 @@ h1 {
 
     &:target {
         border: solid medium $feedback-color;
+        transition: 0.6s;
     }
 
     & > div {
