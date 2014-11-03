@@ -20,6 +20,8 @@ Linda.Feedback = function(element, container) {
     addEventListener("hashchange", function() {
         if (location.hash === "#menu") {
             self.pause();
+        } else {
+            self.container.classList.remove("paused");
         }
     });
 };
@@ -43,7 +45,6 @@ Linda.Feedback.Microphone.prototype.rewind = function() {
 Linda.Feedback.Microphone.prototype.start = function() {
     var self = this;
     this.state = "expanding";
-    this.container.classList.remove("paused");
     this.requestID = requestAnimationFrame(function(timestamp) {
         if (! self.lastTimestamp) {
             self.lastTimestamp = timestamp;
