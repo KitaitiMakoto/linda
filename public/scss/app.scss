@@ -184,7 +184,6 @@ h1 {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    color: $feedback-color;
 
     & > div {
         position: absolute;
@@ -199,6 +198,7 @@ h1 {
             padding-bottom: 0.5em;
             border: solid thin $feedback-color;
             border-radius: 0.2em;
+            background-color: $canvas-color;
         }
     }
     &:target > div {
@@ -212,6 +212,7 @@ h1 {
         overflow: hidden;
         text-align: right;
         font-size: 1.5em;
+        color: $feedback-color;
     }
 
     ul {
@@ -232,6 +233,18 @@ h1 {
         border: solid thin $feedback-color;
         border-radius: 0.2em;
         text-align: center;
+        &:nth-child(2), &:nth-child(3) {
+            background-color: $feedback-color;
+        }
+
+        label {
+            color: $feedback-color;
+            cursor: pointer;
+        }
+
+        a {
+            color: $canvas-color;
+        }
     }
 }
 
