@@ -10,7 +10,8 @@
   ],
   "dependencies": {
     "es6-promise": "1.0.0",
-    "easeljs": "CreateJS/EaselJS"
+    "easeljs": "CreateJS/EaselJS",
+    "font-awesome": "*"
   },
   "devDependencies": {
     "vue": "*"
