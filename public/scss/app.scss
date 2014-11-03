@@ -2,6 +2,10 @@ $canvas-color: black;
 $area-gray-color: #212121;
 $feedback-color: #40c4ff;
 
+* {
+    box-sizing: border-box;
+}
+
 body, section {
     margin: 0;
     padding: 0;
@@ -190,6 +194,10 @@ h1 {
     width: 100%;
     height: 100%;
     overflow: hidden;
+
+    &:target {
+        border: solid medium $feedback-color;
+    }
 
     & > div {
         position: absolute;
