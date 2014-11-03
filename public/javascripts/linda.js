@@ -97,14 +97,19 @@ Linda.prototype.initState = function() {
 Linda.prototype.initMenu = function() {
     var link = document.querySelector("#application a");
     var self = this;
+    var inputInformation = document.getElementById("input-information");console.warn("Mock implementation. Fix me.");
     addEventListener("hashchange", function(event) {
         if (location.hash === "#menu") {
             self.input.stopListening();
+            inputInformation.style.filter = "blur(10px)";
+            inputInformation.style.webkitFilter = "blur(10px)";
         }
         if (location.hash === "#application") {
             if (! self.input) {
                 return;
             }
+            inputInformation.style.filter = "";
+            inputInformation.style.webkitFilter = "";
             self.input.pausedAt = null;
             self.input.startListening();
         }
