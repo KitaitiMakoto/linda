@@ -152,7 +152,7 @@ Linda.prototype.showInput = function() {
         p.hidden = false;
         var listener = function(event) {
             var target = event.target;
-            resolve([self, target]);
+            resolve(self);
             target.removeEventListener("transitionend", listener);
             target.removeEventListener("webkitTransitionEnd", listener);
         };
@@ -162,9 +162,8 @@ Linda.prototype.showInput = function() {
         setTimeout(function() {
             p.setAttribute("class", "completed");
         }, 2000);
-    }).then(function(appAndInputImage) {
-        appAndInputImage[1].setAttribute("class", "ended");
-        return appAndInputImage[0];
+    }).then(function(app) {
+        return app;
     });
 };
 Linda.prototype.adaptImage = function(image) {

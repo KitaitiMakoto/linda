@@ -112,15 +112,11 @@ h1 {
         width: 100%;
         padding: 0;
         text-align: center;
+        z-index: 12;
         &.completed {
-            opacity: 0;
-            transition-property: opacity;
+            top: 50%;
             transition-duration: 0.5s;
-            -webkit-transition-property: opacity;
             -webkit-transition-duration: 0.5s;
-        }
-        &.ended {
-            display: none;
         }
         &#shake img {
             animation: shake 0.5s linear;
@@ -131,6 +127,11 @@ h1 {
         img {
             width: 80vmin;
             vertical-align: middle;
+        }
+        &.completed img {
+            width: 15vmin;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
         }
     }
 }
