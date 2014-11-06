@@ -108,17 +108,21 @@ h1 {
 
     p {
         position: absolute;
-        top: calc((100vh - 80vmin) / 2);
         margin: 0 auto;
         width: 100%;
         padding: 0;
         text-align: center;
         z-index: 12;
-        &.completed {
-            top: 50%;
-            -webkit-transition-duration: 0.5s;
-            transition-duration: 0.5s;
+        top: 50%;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        &.initial {
+            top: calc((100vh - 80vmin) / 2);
         }
+        &.animating {
+            display: none;
+        }
+
         &#shake img {
             -webkit-animation: shake 0.5s linear;
             -webkit-animation-delay: 1s;
@@ -126,13 +130,13 @@ h1 {
             animation-delay: 1s;
         }
         img {
-            width: 80vmin;
-            vertical-align: middle;
-        }
-        &.completed img {
             width: 15vmin;
             -webkit-transition-duration: 0.5s;
             transition-duration: 0.5s;
+        }
+        &.initial img {
+            width: 80vmin;
+            vertical-align: middle;
         }
     }
 }
