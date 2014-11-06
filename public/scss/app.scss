@@ -116,14 +116,14 @@ h1 {
         z-index: 12;
         &.completed {
             top: 50%;
-            transition-duration: 0.5s;
             -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
         }
         &#shake img {
-            animation: shake 0.5s linear;
-            animation-delay: 1s;
             -webkit-animation: shake 0.5s linear;
             -webkit-animation-delay: 1s;
+            animation: shake 0.5s linear;
+            animation-delay: 1s;
         }
         img {
             width: 80vmin;
