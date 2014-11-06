@@ -102,6 +102,7 @@ h1 {
 
     &.paused {
         -webkit-filter: blur(10px);
+        filter: blur(10px);
         transition: 0.6s;
     }
 
