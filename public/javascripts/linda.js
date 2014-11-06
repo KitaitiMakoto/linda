@@ -21,7 +21,7 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
     location.hash = "application";
     var app = new Linda(canvas);
     app.state = app.initState();
-	app.initMenu();
+    app.initMenu();
     animationOptions = animationOptions || {};
     if (! ("x" in animationOptions)) {
         animationOptions.x = canvas.width / 2;
