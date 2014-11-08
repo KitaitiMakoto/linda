@@ -185,7 +185,7 @@ h1 {
             height: $lower-width;
             background-color: $canvas-color;
         }
-        &:nth-child(4) {
+        &:last-child {
             width: 0;
             height: 0;
             background-color: $feedback-color;
