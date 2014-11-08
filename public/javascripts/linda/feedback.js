@@ -1,7 +1,7 @@
 Linda.Feedback = function(element, container) {
     this.element = element;
     this.container = container;
-    this.radius = 0;
+    this.initialRadius = this.radius = 31.25 / 2;
     this.state = "stopped";// stopped, expanding, paused
     var self = this;
     addEventListener("linda.listeningstart", function() {
@@ -39,7 +39,7 @@ Linda.Feedback.Microphone = function(element, container) {
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Microphone.prototype.rewind = function() {
     this.lastTimestamp = null;
-    this.setRadius(0);
+    this.setRadius(this.initialRadius);
     return this;
 };
 Linda.Feedback.Microphone.prototype.start = function() {
