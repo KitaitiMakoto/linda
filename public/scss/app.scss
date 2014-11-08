@@ -23,10 +23,10 @@ body {
 #stage {
     background-color: $canvas-color;
     opacity: 1;
-    transition-property: opacity;
-    transition-duration: 2s;
     -webkit-transition-property: opacity;
     -webkit-transition-duration: 2s;
+    transition-property: opacity;
+    transition-duration: 2s;
 }
 
 #application {
@@ -71,10 +71,10 @@ h1 {
                  2px 0 0 black,
                  0 2px 0 black;
     opacity: 0;
-    transition-property: opacity;
-    transition-duration: 1s;
     -webkit-transition-property: opacity;
     -webkit-transition-duration: 1s;
+    transition-property: opacity;
+    transition-duration: 1s;
     span {
         display: inline-block;
         &:nth-child(2) {
