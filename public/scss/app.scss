@@ -248,7 +248,6 @@ h1 {
     overflow: hidden;
 
     &:target {
-        border: solid medium $feedback-color;
         transition: 0.6s;
     }
 
