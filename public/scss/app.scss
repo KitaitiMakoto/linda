@@ -248,6 +248,7 @@ h1 {
     overflow: hidden;
 
     &:target {
+        -webkit-transition: 0.6s;
         transition: 0.6s;
     }
 
