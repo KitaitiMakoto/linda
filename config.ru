@@ -1,6 +1,7 @@
 require 'sprockets'
 require 'compass'
 require 'sprockets-sass'
+require './app'
 
 Rack::Mime::MIME_TYPES.merge!({
   '.html' => 'text/html; charset=UTF-8',
@@ -16,6 +17,7 @@ map '/stylesheets' do
   run environment
 end
 
+
 map '/' do
-  run Rack::Directory.new('public')
+  run Sinatra::Application
 end
