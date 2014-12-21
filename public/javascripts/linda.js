@@ -147,6 +147,7 @@ Linda.prototype.showInput = function() {
             break;
         default:
             reject(new Error("Unknown input"));
+            return;
         }
         var p = document.getElementById(inputId);
         new Linda.State.View(p, self.state);
