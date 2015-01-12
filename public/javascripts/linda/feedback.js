@@ -71,3 +71,13 @@ Linda.Feedback.Microphone.prototype.constructor = Linda.Feedback.Microphone;
 Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
     this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
 };
+
+Linda.Feedback.Shake = function(element, container) {
+    Linda.Feedback.call(this, element, container);
+};
+Linda.Feedback.Shake.prototype = Object.create(Linda.Feedback.prototype);
+Linda.Feedback.Shake.prototype.constructor = Linda.Feedback.Shake;
+Linda.Feedback.Shake.prototype.drawCurrentFrame = function(timestamp) {
+    console.warn("This is mock implementation");
+    this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
+};

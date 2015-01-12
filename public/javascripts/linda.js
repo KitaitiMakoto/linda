@@ -38,7 +38,8 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
             });
             app.input = results[1];
             var feedbackCircle = document.querySelector("#guide div:last-child");
-            app.input.feedback = new Linda.Feedback.Microphone(feedbackCircle, document.getElementById("input-information"));
+            var feedbackConstructor = app.input.constructor === Linda.Microphone ? "Microphone" : "Shake";
+            app.input.feedback = new Linda.Feedback[feedbackConstructor](feedbackCircle, document.getElementById("input-information"));
             return app;
         });
 };
