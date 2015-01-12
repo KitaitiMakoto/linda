@@ -62,9 +62,12 @@ Linda.Feedback.Microphone.prototype.start = function() {
         if (! self.lastTimestamp) {
             self.lastTimestamp = timestamp;
         }
-        self.setRadius(self.radius + (timestamp - self.lastTimestamp) / 1000 * 3);
+        self.drawCurrentFrame(timestamp);
         self.lastTimestamp = timestamp;
         self.requestID = requestAnimationFrame(arguments.callee);
     });
     return this;
+};
+Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
+    this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
 };
