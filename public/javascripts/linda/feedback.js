@@ -32,11 +32,6 @@ Linda.Feedback.prototype.setRadius = function(radius) {
     this.radius = radius;
     this.element.style.width = this.element.style.height = radius * 2 + "vmin";
 };
-
-Linda.Feedback.Microphone = function(element, container) {
-    Linda.Feedback.call(this, element, container);
-};
-Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.prototype.start = function() {
     var self = this;
     this.state = "expanding";
@@ -68,6 +63,10 @@ Linda.Feedback.prototype.rewind = function() {
     return this;
 };
 
+Linda.Feedback.Microphone = function(element, container) {
+    Linda.Feedback.call(this, element, container);
+};
+Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
     this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
 };
