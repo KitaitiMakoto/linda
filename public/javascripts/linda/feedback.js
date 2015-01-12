@@ -37,6 +37,19 @@ Linda.Feedback.Microphone = function(element, container) {
     Linda.Feedback.call(this, element, container);
 };
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
+Linda.Feedback.prototype.start = function() {
+    var self = this;
+    this.state = "expanding";
+    this.requestID = requestAnimationFrame(function(timestamp) {
+        if (! self.lastTimestamp) {
+            self.lastTimestamp = timestamp;
+        }
+        self.drawCurrentFrame(timestamp);
+        self.lastTimestamp = timestamp;
+        self.requestID = requestAnimationFrame(arguments.callee);
+    });
+    return this;
+};
 Linda.Feedback.prototype.pause = function() {
     this.stop();
     this.state = "paused";
@@ -55,19 +68,6 @@ Linda.Feedback.prototype.rewind = function() {
     return this;
 };
 
-Linda.Feedback.Microphone.prototype.start = function() {
-    var self = this;
-    this.state = "expanding";
-    this.requestID = requestAnimationFrame(function(timestamp) {
-        if (! self.lastTimestamp) {
-            self.lastTimestamp = timestamp;
-        }
-        self.drawCurrentFrame(timestamp);
-        self.lastTimestamp = timestamp;
-        self.requestID = requestAnimationFrame(arguments.callee);
-    });
-    return this;
-};
 Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
     this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
 };
