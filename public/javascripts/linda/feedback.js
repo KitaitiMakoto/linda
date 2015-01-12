@@ -3,6 +3,8 @@ Linda.Feedback = function(element, container) {
     this.container = container;
     this.initialRadius = this.radius = 31.25 / 2;
     this.state = "stopped";// stopped, expanding, paused
+    this.requestID = null;
+    this.lastTimestamp = null;
     var self = this;
     addEventListener("linda.listeningstart", function() {
         if (self.state !== "paused") {
@@ -32,16 +34,27 @@ Linda.Feedback.prototype.setRadius = function(radius) {
 };
 
 Linda.Feedback.Microphone = function(element, container) {
-    this.requestID = null;
-    this.lastTimestamp = null;
     Linda.Feedback.call(this, element, container);
 };
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
-Linda.Feedback.Microphone.prototype.rewind = function() {
+Linda.Feedback.prototype.pause = function() {
+    this.stop();
+    this.state = "paused";
+    this.container.classList.add("paused");
+    return this;
+};
+Linda.Feedback.prototype.stop = function() {
+    cancelAnimationFrame(this.requestID);
+    this.lastTimestamp = null;
+    this.state = "stopped";
+    return this;
+};
+Linda.Feedback.prototype.rewind = function() {
     this.lastTimestamp = null;
     this.setRadius(this.initialRadius);
     return this;
 };
+
 Linda.Feedback.Microphone.prototype.start = function() {
     var self = this;
     this.state = "expanding";
@@ -53,17 +66,5 @@ Linda.Feedback.Microphone.prototype.start = function() {
         self.lastTimestamp = timestamp;
         self.requestID = requestAnimationFrame(arguments.callee);
     });
-    return this;
-};
-Linda.Feedback.Microphone.prototype.pause = function() {
-    this.stop();
-    this.state = "paused";
-    this.container.classList.add("paused");
-    return this;
-};
-Linda.Feedback.Microphone.prototype.stop = function() {
-    cancelAnimationFrame(this.requestID);
-    this.lastTimestamp = null;
-    this.state = "stopped";
     return this;
 };
