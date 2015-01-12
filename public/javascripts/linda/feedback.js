@@ -67,6 +67,7 @@ Linda.Feedback.Microphone = function(element, container) {
     Linda.Feedback.call(this, element, container);
 };
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
+Linda.Feedback.Microphone.prototype.constructor = Linda.Feedback.Microphone;
 Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
     this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
 };
