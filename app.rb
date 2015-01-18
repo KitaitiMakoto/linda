@@ -1,7 +1,8 @@
 require 'sinatra'
+require 'pathname'
 
 HOST = 'linda-tokyo.herokuapp.com'
-DOC_ROOT = File.join(__dir__, 'public')
+DOC_ROOT = Pathname(__dir__) + 'public'
 
 error 404 do
   'Not Found'
@@ -15,8 +16,8 @@ get '/*' do
     return
   end
 
-  path = File.join(DOC_ROOT, unescape(request.path).chomp('/'))
-  if File.file? path
+  path = DOC_ROOT + unescape(request.path).chomp('/')
+  if path.file?
     path.read
   elsif File.directory? path
     '<ul><li>' <<
