@@ -8,6 +8,15 @@ error 404 do
   'Not Found'
 end
 
+get '/' do
+  path = DOC_ROOT + 'app.html'
+  if path.exist?
+    path.read
+  else
+    (DOC_ROOT + 'app.src.html').read
+  end
+end
+
 get '/*' do
   if request.host == HOST and request.scheme != 'https'
     uri = URI(request.url)
