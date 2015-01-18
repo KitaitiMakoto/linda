@@ -4,6 +4,15 @@ require 'pathname'
 HOST = 'linda-tokyo.herokuapp.com'
 DOC_ROOT = Pathname(__dir__) + 'public'
 
+before do
+  if request.host == HOST and request.scheme != 'https'
+    uri = URI(request.url)
+    uri.scheme = 'https'
+    redirect uri
+    halt
+  end
+end
+
 error 404 do
   'Not Found'
 end
@@ -18,13 +27,6 @@ get '/' do
 end
 
 get '/*' do
-  if request.host == HOST and request.scheme != 'https'
-    uri = URI(request.url)
-    uri.scheme = 'https'
-    redirect uri
-    return
-  end
-
   path = DOC_ROOT + unescape(request.path).chomp('/')
   if path.file?
     path.read
