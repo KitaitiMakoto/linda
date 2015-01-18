@@ -28,10 +28,6 @@ get '/*' do
   path = DOC_ROOT + unescape(request.path).chomp('/')
   if path.file?
     path.read
-  elsif File.directory? path
-    '<ul><li>' <<
-      Dir.glob(File.join(path, '*')).map {|e| e.sub("#{path}/", '')}.join('</li><li>') <<
-      '</li></ul>'
   else
     404
   end
