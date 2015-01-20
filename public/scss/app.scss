@@ -157,6 +157,7 @@ h1 {
         display: none;
     }
     h1 {
+        position: relative;
         width: 90%;
         height: 20%;
         margin: 0 5%;
@@ -169,76 +170,15 @@ h1 {
         letter-spacing: -0.1em;
         opacity: initial;
     }
-    & > div {
+
+    img {
         position: absolute;
-        top: 70%;
-        left: 50%;
-        height: 100%;
+        top: 50%;
+        max-width: 95%;
+        max-height: 75vmin;
+        margin-top: 20vmin;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        border-radius: 50%;
-        &:nth-of-type(1) {
-            $width: 0vmin;
-            width: $width;
-            height: $width;
-            background-color: $area-gray-color;
-        }
-        &:nth-of-type(2) {
-            $width: 31.25vmin;
-            width: $width;
-            height: $width;
-            background-color: transparent;
-            overflow: hidden;
-        }
-        div {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            height: 100%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            border: none;
-            border-radius: 50%;
-            &:nth-of-type(1) {
-                $width: 87.5vmin;
-                width: $width;
-                height: $width;
-                background-color: #03a9f4;
-            }
-            &:nth-of-type(2) {
-                $width: 68.75vmin;
-                width: $width;
-                height: $width;
-                background-color: #4fc3f7;
-                overflow: hidden;
-            }
-            &:nth-of-type(3) {
-                $width: 50vmin;
-                width: $width;
-                height: $width;
-                background-color: #b3e5fc;
-                
-            }
-            &:nth-of-type(4) {
-                $width: 31.25vmin;
-                width: $width;
-                height: $width;
-                background-color: $canvas-color;
-                
-            }
-            &:nth-of-type(5) {
-                $width: 0vmin;
-                width: $width;
-                height: $width;
-                
-            }
-            &:nth-of-type(6) {
-                $width: 0vmin;
-                width: $width;
-                height: $width;
-                
-            }
-        }
     }
 }
 
