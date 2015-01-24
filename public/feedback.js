@@ -37,7 +37,6 @@ function clip() {
         }
         r = ratio * 100;
         element.setAttribute("r", (r / 2) + "%");
-        console.info(element);
         id = requestAnimationFrame(arguments.callee);
     });
 }
