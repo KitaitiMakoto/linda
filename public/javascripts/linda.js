@@ -120,7 +120,6 @@ Linda.prototype.initMenu = function() {
     });
     var menu = document.getElementById("menu");
     var additionalImage = menu.querySelector("input");
-    var notUploadedInformed = false;
     additionalImage.addEventListener("click", function(event) {
         alert("追加した画像はサーバーにはアップロードされません");
         additionalImage.removeEventListener("click", arguments.callee);
