@@ -33,8 +33,11 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
         .then(function(results) {
             app.animation = new Linda.Animation(animationOptions);
             app.stage.addChild(app.animation.shape);
-            results[0].forEach(function(image) {
-                app.animation.addImage(image.src);
+            var levels = Object.keys(app.animation.images);
+            results[0].forEach(function(images, index) {
+                images.forEach(function(image) {
+                    app.animation.addImage(image.src, levels[index]);
+                });
             });
             app.input = results[1];
             var feedbackCircle = document.querySelector("#clip circle"); // TODO: should not specify selector here
@@ -47,10 +50,19 @@ Linda.prototype.run = function() {
     var rotation = 24 * Math.PI;
     var duration = 6000;
     var app = this;
-    addEventListener("linda.inputend", function() {
+    addEventListener("linda.inputend", function(event) {
+        var radius = event.detail.input.feedback.radius
+        var level;
+        if (radius < 25) {
+            level = "low";
+        } else if (radius < 34.375) {
+            level = "mid";
+        } else {
+            level = "high";
+        }
         app.input.stopListening();
         app.animation
-            .animate(rotation + Math.random(), duration + Math.random() * 100)
+            .animate(level)
             .then(function(animation) {
                 animation.clear();
                 app.input.startListening();
@@ -60,22 +72,25 @@ Linda.prototype.run = function() {
     app.input.startListening();
 };
 Linda.prototype.initImages = function() {
-    var uris = JSON.parse(document.getElementById("image-uris").textContent);
+    var uriMap = JSON.parse(document.getElementById("image-uris").textContent);
     var scope = this;
-    return Promise.all(uris.map(function(uri) {
-        return new Promise(function(resolve, reject) {
-            var image = new Image();
-            image.addEventListener("load", function(event) {
-                resolve(event.target);
+    return Promise.all(Object.keys(uriMap).map(function(level) {
+		var uris = uriMap[level];
+        return Promise.all(uris.map(function(uri) {
+            return new Promise(function(resolve, reject) {
+                var image = new Image();
+                image.addEventListener("load", function(event) {
+                    resolve(event.target);
+                });
+                image.addEventListener("error", function(event) {
+                    reject(new Error(event.srcElement.src + " not found"));
+                });
+                image.addEventListener("abort", function(event) {
+                    reject(new Error("request for " + event.srcElement.src + " aborted"));
+                });
+                image.src = uri;
             });
-            image.addEventListener("error", function(event) {
-                reject(new Error(event.srcElement.src + " not found"));
-            });
-            image.addEventListener("abort", function(event) {
-                reject(new Error("request for " + event.srcElement.src + " aborted"));
-            });
-            image.src = uri;
-        });
+        }));
     }));
 };
 Linda.prototype.initInput = function(options) {

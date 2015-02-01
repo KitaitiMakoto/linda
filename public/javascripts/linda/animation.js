@@ -1,6 +1,10 @@
 Linda.Animation = function(options) {
     options = options || {};
-    this.images = [];
+    this.images = {
+        "low": [],
+        "mid": [],
+        "high": []
+    };
     this.thickness = options.thickness || 24;
     this.x = options.x || 0;
     this.y = options.y || 0;
@@ -11,6 +15,20 @@ Linda.Animation = function(options) {
 };
 Linda.Animation.availableImageTypes = ["image/png", "image/jpeg", "image.gif"];
 Linda.Animation.patterns = [];
+Linda.Animation.Params = {
+    low: {
+        rotation: 24 * Math.PI,
+        duration: 3000
+    },
+    mid: {
+        rotation: 24 * Math.PI,
+        duration: 6000
+    },
+    high: {
+        rotation: 24 * Math.PI,
+        duration: 9000
+    }
+};
 Linda.Animation.prototype.beginDrawing = function() {
     return this.clear()
         .beginBitmapStroke(this.image)
@@ -24,18 +42,19 @@ Linda.Animation.prototype.getDrawFunction = function() {
     var pattern = patterns[Math.floor(Math.random() * patterns.length)];
     return pattern.draw;
 };
-Linda.Animation.prototype.getImage = function() {
-    var images = this.images;
+Linda.Animation.prototype.getImage = function(level) {
+    var images = this.images[level];
     if (this.useLastImage) {
         this.useLastImage = false;
         return images[images.length - 1];
     }
     return images[Math.floor(Math.random() * images.length)];
 };
-Linda.Animation.prototype.animate = function(rotation, duration) {
+Linda.Animation.prototype.animate = function(level) {
+    var params = Linda.Animation.Params[level];
     this.draw = this.getDrawFunction();
-    this.image = this.getImage();
-    this.rotation = rotation;
+    this.image = this.getImage(level);
+    this.rotation = params.rotation + Math.random();
     var scope = this;
     return new Promise(function(resolve, reject) {
         var startedAt = null;
@@ -43,7 +62,7 @@ Linda.Animation.prototype.animate = function(rotation, duration) {
             if (! startedAt) {
                 startedAt = timestamp;
             }
-            var progress = Math.min((timestamp - startedAt) / duration, 1);
+            var progress = Math.min((timestamp - startedAt) / params.duration, 1);
             var gradient = scope.rotation * progress;
             scope.draw(progress, gradient);
             if (progress === 1) {
@@ -67,12 +86,18 @@ Linda.Animation.prototype.translate = function(coord) {
         coord.y + this.y
     );
 };
-Linda.Animation.prototype.addImage = function(source) {
+Linda.Animation.prototype.addImage = function(source, level) {
     var image = new Image();
     image.src = source;
     var canvas = this.shape.parent.canvas;
     var adaptedImage = Linda.adaptImage(image, canvas.width, canvas.height);
-    this.images.push(adaptedImage);
+    if (level) {
+        this.images[level].push(adaptedImage);
+    } else {
+        Object.keys(this.images).forEach(function(level) {
+            this.images[level].push(adaptedImage);
+        });
+    }
 };
 Linda.Animation.prototype.loadImage = function(file) {
     var self = this;
