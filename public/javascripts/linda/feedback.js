@@ -1,7 +1,7 @@
 Linda.Feedback = function(element, container) {
     this.element = element;
     this.container = container;
-    this.initialRadius = this.radius = 31.25 / 2;
+    this.initialRadius = this.radius = 15.625;
     this.state = "stopped";// stopped, expanding, paused
     this.requestID = null;
     this.lastTimestamp = null;
@@ -30,7 +30,7 @@ Linda.Feedback = function(element, container) {
 Linda.Feedback.prototype.constructor = Linda.Feedback;
 Linda.Feedback.prototype.setRadius = function(radius) {
     this.radius = radius;
-    this.element.style.width = this.element.style.height = radius * 2 + "vmin";
+	this.element.setAttribute("r", radius + "%");
 };
 Linda.Feedback.prototype.start = function() {
     var self = this;
@@ -65,11 +65,17 @@ Linda.Feedback.prototype.rewind = function() {
 
 Linda.Feedback.Microphone = function(element, container) {
     Linda.Feedback.call(this, element, container);
+    this.expandingDuration = 6000; //milliseconds
 };
 Linda.Feedback.Microphone.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Microphone.prototype.constructor = Linda.Feedback.Microphone;
 Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
-    this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
+    var ratio = (timestamp - this.lastTimestamp) / this.expandingDuration;
+    var radius = this.radius + (50 - this.initialRadius) * ratio;
+    if (radius > 50) {
+        return;
+    }
+    this.setRadius(radius);
 };
 
 Linda.Feedback.Shake = function(element, container) {
@@ -79,5 +85,10 @@ Linda.Feedback.Shake.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Shake.prototype.constructor = Linda.Feedback.Shake;
 Linda.Feedback.Shake.prototype.drawCurrentFrame = function(timestamp) {
     console.warn("This is mock implementation");
-    this.setRadius(this.radius + (timestamp - this.lastTimestamp) / 1000 * 3);
+    var ratio = (timestamp - this.lastTimestamp) / this.expandingDuration;
+    var radius = this.radius + (50 - this.initialRadius) * ratio;
+    if (radius > 50) {
+        return;
+    }
+    this.setRadius(radius);
 };

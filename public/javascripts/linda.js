@@ -37,7 +37,7 @@ Linda.init = function(canvas, animationOptions, inputOptions) {
                 app.animation.addImage(image.src);
             });
             app.input = results[1];
-            var feedbackCircle = document.querySelector("#guide div:last-child");
+            var feedbackCircle = document.querySelector("#clip circle"); // TODO: should not specify selector here
             var feedbackConstructor = app.input.constructor === Linda.Microphone ? "Microphone" : "Shake";
             app.input.feedback = new Linda.Feedback[feedbackConstructor](feedbackCircle, document.getElementById("input-information"));
             return app;
