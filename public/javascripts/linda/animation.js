@@ -91,11 +91,13 @@ Linda.Animation.prototype.addImage = function(source, level) {
     image.src = source;
     var canvas = this.shape.parent.canvas;
     var adaptedImage = Linda.adaptImage(image, canvas.width, canvas.height);
+    var images = this.images;
     if (level) {
-        this.images[level].push(adaptedImage);
+        images[level].push(adaptedImage);
     } else {
-        Object.keys(this.images).forEach(function(level) {
-            this.images[level].push(adaptedImage);
+        var self = this;
+        Object.keys(images).forEach(function(level) {
+            images[level].push(adaptedImage);
         });
     }
 };
