@@ -18,7 +18,7 @@ Linda.Animation.patterns = [];
 Linda.Animation.Params = {
     low: {
         rotation: 24 * Math.PI,
-        duration: 3000
+        duration: 12000
     },
     mid: {
         rotation: 24 * Math.PI,
@@ -26,7 +26,7 @@ Linda.Animation.Params = {
     },
     high: {
         rotation: 24 * Math.PI,
-        duration: 9000
+        duration: 3000
     }
 };
 Linda.Animation.prototype.beginDrawing = function() {
