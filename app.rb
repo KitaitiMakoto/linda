@@ -18,6 +18,10 @@ error 404 do
 end
 
 get '/' do
+  (DOC_ROOT + 'index.html').read
+end
+
+get '/app' do
   path = DOC_ROOT + 'app.html'
   if path.exist?
     path.read
