@@ -80,6 +80,7 @@ Linda.Feedback.Microphone.prototype.drawCurrentFrame = function(timestamp) {
 
 Linda.Feedback.Shake = function(element, container) {
     Linda.Feedback.call(this, element, container);
+    this.expandingDuration = 6000; //milliseconds
 };
 Linda.Feedback.Shake.prototype = Object.create(Linda.Feedback.prototype);
 Linda.Feedback.Shake.prototype.constructor = Linda.Feedback.Shake;
