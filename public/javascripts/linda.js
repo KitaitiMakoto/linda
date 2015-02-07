@@ -75,7 +75,7 @@ Linda.prototype.initImages = function() {
     var uriMap = JSON.parse(document.getElementById("image-uris").textContent);
     var scope = this;
     return Promise.all(Object.keys(uriMap).map(function(level) {
-		var uris = uriMap[level];
+        var uris = uriMap[level];
         return Promise.all(uris.map(function(uri) {
             return new Promise(function(resolve, reject) {
                 var image = new Image();

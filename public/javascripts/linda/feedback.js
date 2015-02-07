@@ -30,7 +30,7 @@ Linda.Feedback = function(element, container) {
 Linda.Feedback.prototype.constructor = Linda.Feedback;
 Linda.Feedback.prototype.setRadius = function(radius) {
     this.radius = radius;
-	this.element.setAttribute("r", radius + "%");
+    this.element.setAttribute("r", radius + "%");
 };
 Linda.Feedback.prototype.start = function() {
     var self = this;
