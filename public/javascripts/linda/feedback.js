@@ -1,7 +1,7 @@
 Linda.Feedback = function(element, container) {
     this.element = element;
     this.container = container;
-    this.initialRadius = this.radius = 15.625;
+    this.initialRadius = this.radius = 17.625;
     this.state = "stopped";// stopped, expanding, paused
     this.requestID = null;
     this.lastTimestamp = null;
