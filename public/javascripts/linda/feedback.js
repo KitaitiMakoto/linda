@@ -32,7 +32,7 @@ Linda.Feedback.prototype.setRadius = function(radius) {
     this.radius = radius;
     this.element.setAttribute("r", radius + "%");
     var circles = document.getElementById("feedback-circles");//TODO: cache it
-    var value = "circle(" + radius + "% at 50% 50%);";
+    var value = "circle(" + radius + "% at 50% 50%)";
     circles.setAttribute("style", "-webkit-clip-path: " + value + "; clip-path: " + value + ";");
 };
 Linda.Feedback.prototype.start = function() {
