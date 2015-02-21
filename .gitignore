@@ -4,3 +4,4 @@ node_modules
 public/components
 .sass-cache
 *.sketch/*
+public/stylesheets
