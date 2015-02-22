@@ -3,6 +3,10 @@ body{
 	font-family: Avenir, 'Helvetica neue', Helvetica, '游ゴシック', YuGothic, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', sans-serif; 
 }
 
+a{
+	color: #ff4081;
+}
+
 h1{
 	margin: 10px;
 }
@@ -46,7 +50,6 @@ h3{
 	padding: 0.5em 0;
 	margin-top: 3em;
 	margin-bottom: 2em;
-
 }
 
 footer.page-footer{
@@ -67,4 +70,22 @@ footer.page-footer{
 .fb_iframe_widget{
 	margin-bottom: 0.5em;
 	display: inline-block;
+}
+
+.collapsible-header{
+	background-color:#37474f;
+}
+
+.collapsible{
+	border: none;
+	box-shadow: none;
+}
+
+.collapsible-header{
+	border: none;
+	padding: 0;
+}
+
+.collapsible-body{
+	border: none;
 }
