@@ -41,6 +41,13 @@ h3{
 	background-size: contain;
 }
 
+.photo{
+	
+	a{
+		color:;
+	}
+}
+
 .frame{
 	border: solid 1px #fff;
 	padding: 0.5em 0;
@@ -51,12 +58,16 @@ h3{
 
 footer.page-footer{
 	background-color: #37474f;
-}
+	container{
+		padding-bottom: 1em;
+	}
+	.footer-copyright{
+		background-color: #263238;
+	}
 
-footer.page-footer .footer-copyright{
-	background-color: #263238;
 }
 
 .fb_iframe_widget{
-	margin-bottom: 0.5em;	
+	margin-bottom: 0.5em;
+	display: inline-block;
 }
