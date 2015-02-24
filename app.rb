@@ -3,8 +3,15 @@ require 'pathname'
 
 HOST = 'linda-tokyo.herokuapp.com'
 DOC_ROOT = Pathname(__dir__) + 'public'
+EOL = Date.new(2016, 2, 23)
+
 
 before do
+  if Date.today > EOL
+    status 410
+    halt
+  end
+
   if request.host == HOST and request.scheme != 'https'
     uri = URI(request.url)
     uri.scheme = 'https'
