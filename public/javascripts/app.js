@@ -43,7 +43,7 @@ Promise.delay = function(duration) {
             app.stage.canvas.addEventListener(eventName, listener);
         });
     }).then(function() {
-    return app.showInput();
+        return app.showInput();
     });
     document.querySelector("body").classList.remove("uninitialized");
     return promise;
