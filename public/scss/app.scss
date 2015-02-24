@@ -114,8 +114,7 @@ h1 {
         padding: 0;
         text-align: center;
         z-index: 12;
-        /* top: 54%; // I don't know why addition 4% is needed. */
-        top: 52%;
+        top: 54%; // I don't know why addition 4% is needed.
         -webkit-transition-duration: 0.5s;
         transition-duration: 0.5s;
         &.initial {
