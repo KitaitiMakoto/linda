@@ -22,6 +22,11 @@ Promise.delay = function(duration) {
         }
     });
 }).then(function() {
+        if (! /iPhone|iPod|Android/.test(navigator.userAgent)) {
+            var style = document.createElement("style");
+            style.textContent = "#input-information p {top: 52% !important;}#input-information p.initial {top: calc((100vh - 80vmin) / 2) !important;}";
+            document.getElementsByTagName("head")[0].appendChild(style);
+        }
     if (/input=shake/.test(location.search)) {
         Linda.Microphone.available = function() {return false};
     }
